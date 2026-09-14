@@ -1,5 +1,4 @@
 import os
-<<<<<<< HEAD
 import sys
 
 # Always run from the directory where app.py lives
@@ -1279,25 +1278,10 @@ To send automated WhatsApp messages from the server in the background without cl
 
 # ── Routes ────────────────────────────────────────────────────────────────────
 
-=======
-import sqlite3
-import secrets
-from flask import Flask, render_template, request, jsonify, redirect, url_for, session
-from werkzeug.utils import secure_filename
-from db import get_db_connection
-
-app = Flask(__name__)
-app.secret_key = 'super_secret_key_agentx'
-
-app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
 @app.route('/')
 def index():
     return render_template('index.html')
 
-<<<<<<< HEAD
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -1312,19 +1296,10 @@ def login():
         email    = (request.form.get('email', '') or data.get('email', '')).strip()[:254]
         password = (request.form.get('password', '') or data.get('password', '')).strip()[:128]
 
-=======
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form.get('email', '').strip()
-        password = request.form.get('password', '').strip()
-        
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
         if not email or not password:
             return jsonify({'error': 'Please provide both email and password.'}), 400
 
         conn = get_db_connection()
-<<<<<<< HEAD
         user = conn.execute(
             'SELECT * FROM users WHERE LOWER(email) = LOWER(?)',
             (email,)
@@ -1359,18 +1334,6 @@ def login():
             return jsonify({
                 'message': 'Login successful',
                 'redirect': '/dashboard',
-=======
-        user = conn.execute('SELECT * FROM users WHERE LOWER(email) = LOWER(?) AND password = ?', (email, password)).fetchone()
-        conn.close()
-        
-        if user:
-            session['user_id'] = user['id']
-            session['name'] = user['name']
-            session['email'] = user['email']
-            session['role'] = user['role']
-            return jsonify({
-                'message': 'Login successful',
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
                 'user': {
                     'email': user['email'],
                     'full_name': user['name'],
@@ -1382,7 +1345,6 @@ def login():
                 'token': secrets.token_hex(16)
             })
         else:
-<<<<<<< HEAD
             _record_failed_attempt(ip)
             remaining = MAX_LOGIN_ATTEMPTS - len(_login_attempts[ip])
             return jsonify({'error': f'Invalid credentials. {max(remaining, 0)} attempt(s) remaining before lockout.'}), 401
@@ -1414,34 +1376,12 @@ def register():
         # ── Hash password before storing ──────────────────────────────────────
         hashed_password = generate_password_hash(password)
 
-=======
-            return jsonify({'error': 'Invalid email or passphrase. Check your credentials.'}), 401
-            
-    return render_template('login.html')
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        name = request.form.get('full_name', '').strip()
-        if not name:
-            name = request.form.get('name', 'Agent Developer').strip()
-        email = request.form.get('email', '').strip()
-        password = request.form.get('password', '').strip()
-        role = request.form.get('role', 'Agent Developer').strip()
-        phone = request.form.get('phone', '').strip()
-        organization = request.form.get('organization', '').strip()
-        
-        if not email or not password:
-            return jsonify({'error': 'Email and passphrase are required.'}), 400
-        
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
         filename = 'default.png'
         if 'profile_image' in request.files:
             file = request.files['profile_image']
             if file and file.filename != '':
                 filename = secure_filename(f"{secrets.token_hex(4)}_{file.filename}")
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-<<<<<<< HEAD
 
         conn = get_db_connection()
         try:
@@ -1459,30 +1399,11 @@ def register():
             session['email']   = new_user['email']
             session['role']    = new_user['role']
 
-=======
-        
-        conn = get_db_connection()
-        try:
-            conn.execute(
-                'INSERT INTO users (name, email, password, role, profile_pic, phone, organization) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                (name, email, password, role, filename, phone, organization)
-            )
-            conn.commit()
-            
-            # Fetch the newly registered user to set session immediately
-            new_user = conn.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
-            session['user_id'] = new_user['id']
-            session['name'] = new_user['name']
-            session['email'] = new_user['email']
-            session['role'] = new_user['role']
-            
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
         except sqlite3.IntegrityError:
             conn.close()
             return jsonify({'error': 'An account with this email address already exists.'}), 409
         except Exception as e:
             conn.close()
-<<<<<<< HEAD
             return jsonify({'error': 'Registration failed. Please try again.'}), 500
 
         conn.close()
@@ -1492,32 +1413,18 @@ def register():
 
 
 
-=======
-            return jsonify({'error': f'Database error: {str(e)}'}), 500
-            
-        conn.close()
-        return jsonify({'message': 'Registration successful and sealed in database!'})
-        
-    return render_template('register.html')
-
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
         return redirect(url_for('login'))
-<<<<<<< HEAD
     ensure_user_default_mcps(session['user_id'])
 
-=======
-        
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     conn = get_db_connection()
     user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
     if not user:
         conn.close()
         session.clear()
         return redirect(url_for('login'))
-<<<<<<< HEAD
 
     user_role = user['role'] or ''
     is_admin = check_is_admin(user_role)
@@ -1591,26 +1498,10 @@ def skills():
     user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
     is_admin = check_is_admin(user['role'] if user else '')
 
-=======
-        
-    skill_count = conn.execute('SELECT COUNT(*) FROM skills WHERE user_id = ?', (session['user_id'],)).fetchone()[0]
-    mcp_count = conn.execute('SELECT COUNT(*) FROM mcp WHERE user_id = ?', (session['user_id'],)).fetchone()[0]
-    recent_skills = conn.execute('SELECT * FROM skills WHERE user_id = ? ORDER BY created_at DESC LIMIT 5', (session['user_id'],)).fetchall()
-    conn.close()
-    
-    return render_template('dashboard.html', user=user, skill_count=skill_count, mcp_count=mcp_count, recent_skills=recent_skills)
-
-@app.route('/skills', methods=['GET', 'POST'])
-def skills():
-    if 'user_id' not in session: return redirect(url_for('login'))
-    
-    conn = get_db_connection()
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     if request.method == 'POST':
         name = request.form.get('name', '').strip()
         desc = request.form.get('description', '').strip()
         if name and desc:
-<<<<<<< HEAD
             conn.execute(
                 'INSERT INTO skills (user_id, name, description) VALUES (?, ?, ?)',
                 (session['user_id'], name, desc)
@@ -1737,28 +1628,10 @@ def mcp():
     user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
     is_admin = check_is_admin(user['role'] if user else '')
 
-=======
-            conn.execute('INSERT INTO skills (user_id, name, description) VALUES (?, ?, ?)', (session['user_id'], name, desc))
-            conn.commit()
-        conn.close()
-        return redirect(url_for('skills'))
-        
-    user_skills = conn.execute('SELECT * FROM skills WHERE user_id = ? ORDER BY created_at DESC', (session['user_id'],)).fetchall()
-    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
-    conn.close()
-    return render_template('skills.html', skills=user_skills, user=user)
-
-@app.route('/mcp', methods=['GET', 'POST'])
-def mcp():
-    if 'user_id' not in session: return redirect(url_for('login'))
-    
-    conn = get_db_connection()
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     if request.method == 'POST':
         provider = request.form.get('provider', '').strip()
         api_key = request.form.get('api_key', '').strip()
         if provider and api_key:
-<<<<<<< HEAD
             conn.execute(
                 'INSERT INTO mcp (user_id, provider, api_key) VALUES (?, ?, ?)',
                 (session['user_id'], provider, api_key)
@@ -1801,28 +1674,10 @@ def freshworks():
     user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
     is_admin = check_is_admin(user['role'] if user else '')
 
-=======
-            conn.execute('INSERT INTO mcp (user_id, provider, api_key) VALUES (?, ?, ?)', (session['user_id'], provider, api_key))
-            conn.commit()
-        conn.close()
-        return redirect(url_for('mcp'))
-        
-    user_mcp = conn.execute('SELECT * FROM mcp WHERE user_id = ? ORDER BY created_at DESC', (session['user_id'],)).fetchall()
-    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
-    conn.close()
-    return render_template('mcp.html', mcps=user_mcp, user=user)
-
-@app.route('/freshworks', methods=['GET', 'POST'])
-def freshworks():
-    if 'user_id' not in session: return redirect(url_for('login'))
-    
-    conn = get_db_connection()
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     if request.method == 'POST':
         ws_type = request.form.get('workspace_type', 'Freshdesk')
         domain = request.form.get('domain', '').strip()
         if domain:
-<<<<<<< HEAD
             conn.execute(
                 'INSERT INTO deployments (user_id, workspace_type, domain) VALUES (?, ?, ?)',
                 (session['user_id'], ws_type, domain)
@@ -2120,90 +1975,17 @@ def admin_delete_user(target_id):
 
     return jsonify({'message': f'User "{target["name"]}" deleted successfully', 'redirect': '/dashboard'})
 
-=======
-            conn.execute('INSERT INTO deployments (user_id, workspace_type, domain) VALUES (?, ?, ?)', (session['user_id'], ws_type, domain))
-            conn.commit()
-        conn.close()
-        return redirect(url_for('freshworks'))
-        
-    deployments = conn.execute('SELECT * FROM deployments WHERE user_id = ? ORDER BY created_at DESC', (session['user_id'],)).fetchall()
-    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
-    conn.close()
-    return render_template('freshworks.html', user=user, deployments=deployments)
-
-@app.route('/knowledge_graph')
-def knowledge_graph():
-    if 'user_id' not in session: return redirect(url_for('login'))
-    conn = get_db_connection()
-    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
-    skills = conn.execute('SELECT * FROM skills WHERE user_id = ?', (session['user_id'],)).fetchall()
-    mcps = conn.execute('SELECT * FROM mcp WHERE user_id = ?', (session['user_id'],)).fetchall()
-    conn.close()
-    return render_template('knowledge_graph.html', user=user, skills=skills, mcps=mcps)
-
-@app.route('/simulator', methods=['GET', 'POST'])
-def simulator():
-    if 'user_id' not in session: return redirect(url_for('login'))
-    
-    conn = get_db_connection()
-    if request.method == 'POST':
-        cmd = request.json.get('command', '') if request.is_json else request.form.get('command', '')
-        if cmd.strip():
-            resp = "Evaluating intent... ➜ Triggering MCP Context... ➜ Skill Executed Successfully in Sandbox."
-            conn.execute('INSERT INTO simulator_logs (user_id, command, response) VALUES (?, ?, ?)', (session['user_id'], cmd, resp))
-            conn.commit()
-            conn.close()
-            return jsonify({'response': resp})
-            
-    logs = conn.execute('SELECT * FROM simulator_logs WHERE user_id = ? ORDER BY created_at ASC', (session['user_id'],)).fetchall()
-    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
-    conn.close()
-    return render_template('simulator.html', user=user, logs=logs)
-
-@app.route('/analytics')
-def analytics():
-    if 'user_id' not in session: return redirect(url_for('login'))
-    conn = get_db_connection()
-    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
-    skill_count = conn.execute('SELECT COUNT(*) FROM skills WHERE user_id = ?', (session['user_id'],)).fetchone()[0]
-    mcp_count = conn.execute('SELECT COUNT(*) FROM mcp WHERE user_id = ?', (session['user_id'],)).fetchone()[0]
-    sim_count = conn.execute('SELECT COUNT(*) FROM simulator_logs WHERE user_id = ?', (session['user_id'],)).fetchone()[0]
-    conn.close()
-    return render_template('analytics.html', user=user, skill_count=skill_count, mcp_count=mcp_count, sim_count=sim_count)
-
-@app.route('/api_keys', methods=['GET', 'POST'])
-def api_keys():
-    if 'user_id' not in session: return redirect(url_for('login'))
-    
-    conn = get_db_connection()
-    if request.method == 'POST':
-        name = request.form.get('name', 'Default Key').strip()
-        new_key = f"agx_{secrets.token_urlsafe(16)}"
-        conn.execute('INSERT INTO api_keys (user_id, name, key_value) VALUES (?, ?, ?)', (session['user_id'], name, new_key))
-        conn.commit()
-        conn.close()
-        return redirect(url_for('api_keys'))
-        
-    keys = conn.execute('SELECT * FROM api_keys WHERE user_id = ? ORDER BY created_at DESC', (session['user_id'],)).fetchall()
-    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
-    conn.close()
-    return render_template('api_keys.html', user=user, keys=keys)
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login'))
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
 @app.route('/api/data')
 def api_data():
     return jsonify({"status": "success", "data": []})
 
-<<<<<<< HEAD
 
 @app.route('/api/agent', methods=['POST'])
 def api_agent():
@@ -2577,12 +2359,3 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5001))
     debug_mode = os.environ.get('FLASK_DEBUG', 'true').lower() == 'true'
     app.run(host='127.0.0.1', port=port, debug=debug_mode)
-=======
-if __name__ == '__main__':
-    conn = get_db_connection()
-    with open('schema.sql', 'r') as f:
-        conn.executescript(f.read())
-    conn.commit()
-    conn.close()
-    app.run(port=3000, debug=True)
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgentX — Telemetry & Analytics</title>
   <meta name="description" content="Live telemetry and analytics for your AgentX platform usage.">
@@ -26,27 +25,10 @@
       --sidebar-width: 275px;
     }
     *, *::before, *::after { box-sizing: border-box; }
-=======
-  <title>AgentX Dashboard - Analytics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #0F172A;
-      --bg-secondary: #111827;
-      --card-bg: #1E293B;
-      --accent-primary: #3B82F6;
-      --accent-ai: #8B5CF6;
-      --text-main: #FFFFFF;
-      --text-gray: #D1D5DB;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --font-family: 'Poppins', sans-serif;
-    }
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     body {
       margin: 0;
       font-family: var(--font-family);
       background-color: var(--bg-primary);
-<<<<<<< HEAD
       background-image: 
         radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.09) 0%, transparent 45%),
         radial-gradient(circle at 90% 90%, rgba(5, 150, 105, 0.07) 0%, transparent 45%);
@@ -917,114 +899,5 @@
       }
     });
   </script>
-=======
-      color: var(--text-main);
-      display: flex;
-      min-height: 100vh;
-    }
-    .sidebar {
-      width: 260px;
-      background-color: var(--bg-secondary);
-      border-right: 1px solid var(--border-color);
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-      text-align: center;
-      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #f093fb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 10px rgba(0,242,254,0.6));
-    }
-    .nav-item {
-      padding: 0.75rem 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 8px;
-      color: var(--text-gray);
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .nav-item:hover, .nav-item.active {
-      background-color: rgba(255, 255, 255, 0.05);
-      color: var(--accent-ai);
-    }
-    .main-content {
-      flex: 1;
-      padding: 3rem;
-    }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.8rem;
-      margin-bottom: 2rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="sidebar">
-    <div class="logo" style="text-align:center; margin-bottom: 2rem;"><a href="/dashboard"><img src="/static/logo.png" alt="AgentX Platform" style="max-width: 190px; height: auto; object-fit: contain; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6)); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a></div>
-    <a href="/dashboard" class="nav-item">Dashboard</a>
-    <a href="/skills" class="nav-item">Skill Registry</a>
-    <a href="/mcp" class="nav-item">MCP Integrations</a>
-    <a href="/freshworks" class="nav-item">Freshworks Deployer</a>
-    <a href="/knowledge_graph" class="nav-item">Knowledge Graph</a>
-    <a href="/simulator" class="nav-item">Agent Simulator</a>
-    <a href="/analytics" class="nav-item active">Analytics</a>
-    <a href="/api_keys" class="nav-item">API Keys</a>
-    <div style="flex:1"></div>
-    <a href="/logout" class="nav-item" style="color:#EF4444">Logout</a>
-  </div>
-
-  <div class="main-content">
-    <div class="header">
-      <h1>Platform Analytics</h1>
-      <span style="color:var(--text-gray);">Live Telemetry from Database</span>
-    </div>
-
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; margin-bottom:2rem;">
-      <div class="card" style="text-align:center;">
-        <h3 style="font-size:2.5rem; margin:0; color:#00f2fe;">{{ skill_count }}</h3>
-        <p style="color:var(--text-gray); margin-top:0.4rem;">Active Skills in DB</p>
-      </div>
-      <div class="card" style="text-align:center;">
-        <h3 style="font-size:2.5rem; margin:0; color:#f093fb;">{{ mcp_count }}</h3>
-        <p style="color:var(--text-gray); margin-top:0.4rem;">Connected MCPs</p>
-      </div>
-      <div class="card" style="text-align:center;">
-        <h3 style="font-size:2.5rem; margin:0; color:#10B981;">{{ sim_count }}</h3>
-        <p style="color:var(--text-gray); margin-top:0.4rem;">Simulated Commands</p>
-      </div>
-      <div class="card" style="text-align:center;">
-        <h3 style="font-size:2.5rem; margin:0; color:#38BDF8;">99.4%</h3>
-        <p style="color:var(--text-gray); margin-top:0.4rem;">Reliability Score</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3 style="color:#fff; margin-top:0;">Telemetry & Audit Log</h3>
-      <div style="font-family:monospace; color:var(--text-gray); font-size:0.92rem; line-height:2;">
-        <span style="color:#22C55E;">✔ [AUTH]</span> User '{{ user.name }}' authenticated via session token.<br>
-        <span style="color:#00f2fe;">✔ [DB]</span> Loaded {{ skill_count }} registered skills from database.<br>
-        <span style="color:#f093fb;">✔ [MCP]</span> Synchronized {{ mcp_count }} active tool context providers.<br>
-        <span style="color:#38BDF8;">✔ [SIM]</span> {{ sim_count }} interactions logged to persistent store.<br>
-        <span style="color:#10B981;">✔ [FRESHWORKS]</span> Gateway healthy & ready for dispatch.
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="/static/js/constellations.js"></script>
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
 </body>
 </html>

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgentX — Semantic Knowledge Matrix</title>
   <meta name="description" content="Explore your AgentX semantic knowledge graph — 3D realistic Earth with orbital skills, users, and MCP bridges.">
@@ -32,27 +31,10 @@
       --sidebar-width: 275px;
     }
     *, *::before, *::after { box-sizing: border-box; }
-=======
-  <title>AgentX Dashboard - Knowledge Graph</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #0F172A;
-      --bg-secondary: #111827;
-      --card-bg: #1E293B;
-      --accent-primary: #3B82F6;
-      --accent-ai: #8B5CF6;
-      --text-main: #FFFFFF;
-      --text-gray: #D1D5DB;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --font-family: 'Poppins', sans-serif;
-    }
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     body {
       margin: 0;
       font-family: var(--font-family);
       background-color: var(--bg-primary);
-<<<<<<< HEAD
       background-image: 
         radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.09) 0%, transparent 45%),
         radial-gradient(circle at 90% 90%, rgba(5, 150, 105, 0.07) 0%, transparent 45%);
@@ -697,63 +679,10 @@
       border-radius: 50%;
       background: #10b981;
       box-shadow: 0 0 8px #10b981;
-=======
-      color: var(--text-main);
-      display: flex;
-      min-height: 100vh;
-    }
-    .sidebar {
-      width: 260px;
-      background-color: var(--bg-secondary);
-      border-right: 1px solid var(--border-color);
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-      text-align: center;
-      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #f093fb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 10px rgba(0,242,254,0.6));
-    }
-    .nav-item {
-      padding: 0.75rem 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 8px;
-      color: var(--text-gray);
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .nav-item:hover, .nav-item.active {
-      background-color: rgba(255, 255, 255, 0.05);
-      color: var(--accent-ai);
-    }
-    .main-content {
-      flex: 1;
-      padding: 3rem;
-    }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.8rem;
-      margin-bottom: 2rem;
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     }
   </style>
 </head>
 <body>
-<<<<<<< HEAD
 
   <!-- Background Particle Constellation -->
   <div id="particles-bg"></div>
@@ -1598,70 +1527,5 @@
       }
     }
   </script>
-=======
-  <div class="sidebar">
-    <div class="logo" style="text-align:center; margin-bottom: 2rem;"><a href="/dashboard"><img src="/static/logo.png" alt="AgentX Platform" style="max-width: 190px; height: auto; object-fit: contain; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6)); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a></div>
-    <a href="/dashboard" class="nav-item">Dashboard</a>
-    <a href="/skills" class="nav-item">Skill Registry</a>
-    <a href="/mcp" class="nav-item">MCP Integrations</a>
-    <a href="/freshworks" class="nav-item">Freshworks Deployer</a>
-    <a href="/knowledge_graph" class="nav-item active">Knowledge Graph</a>
-    <a href="/simulator" class="nav-item">Agent Simulator</a>
-    <a href="/analytics" class="nav-item">Analytics</a>
-    <a href="/api_keys" class="nav-item">API Keys</a>
-    <div style="flex:1"></div>
-    <a href="/logout" class="nav-item" style="color:#EF4444">Logout</a>
-  </div>
-
-  <div class="main-content">
-    <div class="header">
-      <h1>Semantic Knowledge Graph</h1>
-      <span style="color:var(--text-gray);">Connected Database Entities</span>
-    </div>
-
-    <div class="card">
-      <h3 style="color:#fff; margin-top:0;">User & Knowledge Cluster</h3>
-      <p style="color:var(--text-gray); margin-bottom:1.5rem;">Live semantic entities populated dynamically from your registered account and skills database.</p>
-      
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
-        <div style="padding:1.5rem; border:1px solid rgba(0,242,254,0.4); border-radius:12px; background:rgba(0,0,0,0.3);">
-          <h4 style="color:#00f2fe; margin-top:0; font-size:1.1rem;">👤 User Entity (DB)</h4>
-          <p style="color:white; margin:0.4rem 0;"><strong>Name:</strong> {{ user.name }}</p>
-          <p style="color:var(--text-gray); margin:0.4rem 0; font-size:0.9rem;"><strong>Email:</strong> {{ user.email }}</p>
-          <p style="color:#f093fb; margin:0.4rem 0; font-size:0.9rem;"><strong>Role:</strong> {{ user.role }}</p>
-        </div>
-
-        <div style="padding:1.5rem; border:1px solid rgba(240,147,251,0.4); border-radius:12px; background:rgba(0,0,0,0.3);">
-          <h4 style="color:#f093fb; margin-top:0; font-size:1.1rem;">📦 Connected Skills ({{ skills|length }})</h4>
-          {% if skills %}
-            <ul style="padding-left:1.2rem; color:var(--text-gray); font-size:0.9rem;">
-              {% for s in skills %}
-                <li><strong style="color:white;">{{ s.name }}</strong>: {{ s.description }}</li>
-              {% endfor %}
-            </ul>
-          {% else %}
-            <p style="color:var(--text-gray); font-size:0.9rem;">No skills registered yet.</p>
-          {% endif %}
-        </div>
-
-        <div style="padding:1.5rem; border:1px solid rgba(16,185,129,0.4); border-radius:12px; background:rgba(0,0,0,0.3);">
-          <h4 style="color:#10B981; margin-top:0; font-size:1.1rem;">🔗 MCP Bridges ({{ mcps|length }})</h4>
-          {% if mcps %}
-            <ul style="padding-left:1.2rem; color:var(--text-gray); font-size:0.9rem;">
-              {% for m in mcps %}
-                <li><strong style="color:white;">{{ m.provider }}</strong> ({{ m.status }})</li>
-              {% endfor %}
-            </ul>
-          {% else %}
-            <p style="color:var(--text-gray); font-size:0.9rem;">No MCP connections added yet.</p>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="/static/js/constellations.js"></script>
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
 </body>
 </html>

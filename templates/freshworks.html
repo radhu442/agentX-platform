@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgentX — Freshworks Deployer</title>
   <meta name="description" content="Deploy your AgentX AI agents directly into Freshdesk, Freshservice, and Freshsales workspaces.">
@@ -25,27 +24,10 @@
       --sidebar-width: 275px;
     }
     *, *::before, *::after { box-sizing: border-box; }
-=======
-  <title>AgentX Dashboard - Freshworks Deployer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #0F172A;
-      --bg-secondary: #111827;
-      --card-bg: #1E293B;
-      --accent-primary: #3B82F6;
-      --accent-ai: #8B5CF6;
-      --text-main: #FFFFFF;
-      --text-gray: #D1D5DB;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --font-family: 'Poppins', sans-serif;
-    }
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     body {
       margin: 0;
       font-family: var(--font-family);
       background-color: var(--bg-primary);
-<<<<<<< HEAD
       background-image: 
         radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.09) 0%, transparent 45%),
         radial-gradient(circle at 90% 90%, rgba(5, 150, 105, 0.07) 0%, transparent 45%);
@@ -491,130 +473,10 @@
           <select name="workspace_type" id="workspace_type">
             <option value="Freshdesk (Customer Support)">Freshdesk (Customer Support — CX)</option>
             <option value="Freshservice (ITSM / Employee Experience)">Freshservice (ITSM / Employee Experience — EX)</option>
-=======
-      color: var(--text-main);
-      display: flex;
-      min-height: 100vh;
-    }
-    .sidebar {
-      width: 260px;
-      background-color: var(--bg-secondary);
-      border-right: 1px solid var(--border-color);
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-      text-align: center;
-      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #f093fb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 10px rgba(0,242,254,0.6));
-    }
-    .nav-item {
-      padding: 0.75rem 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 8px;
-      color: var(--text-gray);
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .nav-item:hover, .nav-item.active {
-      background-color: rgba(255, 255, 255, 0.05);
-      color: var(--accent-ai);
-    }
-    .main-content {
-      flex: 1;
-      padding: 3rem;
-    }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.8rem;
-      margin-bottom: 2rem;
-    }
-    .btn {
-      background-color: var(--accent-primary);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn:hover { background-color: #2563EB; }
-    input, select {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 12px;
-      border-radius: 8px;
-      background: #111827;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: white;
-      font-size: 1rem;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-color);
-    }
-    th { color: var(--text-gray); }
-  </style>
-</head>
-<body>
-  <div class="sidebar">
-    <div class="logo" style="text-align:center; margin-bottom: 2rem;"><a href="/dashboard"><img src="/static/logo.png" alt="AgentX Platform" style="max-width: 190px; height: auto; object-fit: contain; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6)); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a></div>
-    <a href="/dashboard" class="nav-item">Dashboard</a>
-    <a href="/skills" class="nav-item">Skill Registry</a>
-    <a href="/mcp" class="nav-item">MCP Integrations</a>
-    <a href="/freshworks" class="nav-item active">Freshworks Deployer</a>
-    <a href="/knowledge_graph" class="nav-item">Knowledge Graph</a>
-    <a href="/simulator" class="nav-item">Agent Simulator</a>
-    <a href="/analytics" class="nav-item">Analytics</a>
-    <a href="/api_keys" class="nav-item">API Keys</a>
-    <div style="flex:1"></div>
-    <a href="/logout" class="nav-item" style="color:#EF4444">Logout</a>
-  </div>
-
-  <div class="main-content">
-    <div class="header">
-      <h1>Freshworks Deployer</h1>
-      <span style="color:var(--text-gray);">Deploy directly to Freshdesk / Freshservice</span>
-    </div>
-
-    <div class="card">
-      <h3 style="color:#fff; margin-top:0;">Deploy Agent to Workspace</h3>
-      <p style="color:var(--text-gray); margin-bottom:1.5rem;">Save and push your trained agent into your live Freshworks environment.</p>
-      
-      <form action="/freshworks" method="POST" style="display:flex; flex-direction:column; gap:1.2rem;">
-        <div>
-          <label style="display:block; margin-bottom:0.5rem; color:var(--text-gray);">Workspace Product</label>
-          <select name="workspace_type">
-            <option value="Freshdesk (Customer Support)">Freshdesk (Customer Support - CX)</option>
-            <option value="Freshservice (ITSM / Employee Experience)">Freshservice (ITSM / Employee Experience - EX)</option>
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
             <option value="Freshsales (CRM / Leads)">Freshsales (CRM / Leads)</option>
           </select>
         </div>
 
-<<<<<<< HEAD
         <div class="form-group">
           <label for="domain">Workspace Domain / URL</label>
           <input type="text" name="domain" id="domain" placeholder="e.g. acme-corp.freshdesk.com" required>
@@ -623,19 +485,10 @@
         <div>
           <button type="submit" class="btn btn-gradient">DEPLOY &amp; SAVE TO DB 🚀</button>
         </div>
-=======
-        <div>
-          <label style="display:block; margin-bottom:0.5rem; color:var(--text-gray);">Workspace Domain / URL</label>
-          <input type="text" name="domain" placeholder="e.g. acme-corp.freshdesk.com" required>
-        </div>
-
-        <button type="submit" class="btn" style="align-self:flex-start; background:linear-gradient(135deg, #00f2fe, #4facfe); color:#000;">Deploy & Save to DB 🚀</button>
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
       </form>
     </div>
 
     <div class="card">
-<<<<<<< HEAD
       <h3 style="color:var(--accent-cyan); font-family:var(--font-display); margin-bottom:1.2rem; font-size:1rem; letter-spacing:0.05em; text-transform:uppercase;">Active Deployments Catalog</h3>
       {% if deployments %}
         <div style="overflow-x:auto;">
@@ -678,37 +531,5 @@
     menuToggle.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('active'); });
     overlay.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
   </script>
-=======
-      <h3 style="color:#fff; margin-top:0;">Active Deployments Saved in DB</h3>
-      {% if deployments %}
-      <table>
-        <thead>
-          <tr>
-            <th>Workspace Type</th>
-            <th>Domain</th>
-            <th>Status</th>
-            <th>Deployed At</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for d in deployments %}
-          <tr>
-            <td style="color:#00f2fe; font-weight:600;">{{ d.workspace_type }}</td>
-            <td>{{ d.domain }}</td>
-            <td><span style="background:rgba(34,197,94,0.15); color:#22C55E; padding:4px 10px; border-radius:12px; font-size:0.85rem;">{{ d.status }}</span></td>
-            <td style="color:var(--text-gray); font-size:0.85rem;">{{ d.created_at }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% else %}
-      <p style="color:var(--text-gray);">No deployments saved yet. Fill out the form above to deploy your agent!</p>
-      {% endif %}
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="/static/js/constellations.js"></script>
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
 </body>
 </html>

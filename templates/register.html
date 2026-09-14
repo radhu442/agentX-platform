@@ -1151,11 +1151,7 @@
       // also means it keeps working after deployment (Railway, etc.)
       // without any code changes.
       const REGISTER_ENDPOINT = '/register';
-<<<<<<< HEAD
       const LOGIN_PAGE = '/dashboard';
-=======
-      const LOGIN_PAGE = '/login';
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
       const MAX_IMAGE_BYTES = 5 * 1024 * 1024; // 5 MB
       const ALLOWED_IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'];
       const ALLOWED_IMAGE_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
@@ -1466,19 +1462,11 @@
             const successText = payload && typeof payload.message === 'string'
               ? payload.message
               : 'Registration successful';
-<<<<<<< HEAD
             showMessage('success', `⚜ ${successText} — Entering the AgentX dashboard…`);
             form.reset();
             resetFileInput();
             window.setTimeout(() => {
               window.location.href = LOGIN_PAGE;
-=======
-            showMessage('success', `⚜ ${successText} — Redirecting to the chamber…`);
-            form.reset();
-            resetFileInput();
-            window.setTimeout(() => {
-              window.location.replace(LOGIN_PAGE);
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
             }, 2000);
             return;
           }
@@ -1518,11 +1506,7 @@
   </script>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<<<<<<< HEAD
 <script src="/static/js/constellations.js?v=2.5"></script>
-=======
-<script src="/static/js/constellations.js"></script>
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
 </body>
 
 

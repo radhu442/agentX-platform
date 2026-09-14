@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgentX — Enterprise Command Center</title>
   <meta name="description" content="AgentX Platform — Premium AI agent governance and executive orchestration console.">
@@ -27,27 +26,10 @@
       --sidebar-width: 275px;
     }
     *, *::before, *::after { box-sizing: border-box; }
-=======
-  <title>AgentX Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #0F172A;
-      --bg-secondary: #111827;
-      --card-bg: #1E293B;
-      --accent-primary: #3B82F6;
-      --accent-ai: #8B5CF6;
-      --text-main: #FFFFFF;
-      --text-gray: #D1D5DB;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --font-family: 'Poppins', sans-serif;
-    }
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     body {
       margin: 0;
       font-family: var(--font-family);
       background-color: var(--bg-primary);
-<<<<<<< HEAD
       background-image: 
         radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.09) 0%, transparent 45%),
         radial-gradient(circle at 90% 90%, rgba(5, 150, 105, 0.07) 0%, transparent 45%);
@@ -1053,169 +1035,10 @@
                 <p style="color:var(--text-gray); margin:0.3rem 0 0; font-size:0.9rem;">{{ s.description }}</p>
               </div>
               <span class="badge-green">{{ s.status }}</span>
-=======
-      color: var(--text-main);
-      display: flex;
-      min-height: 100vh;
-    }
-    .sidebar {
-      width: 260px;
-      background-color: var(--bg-secondary);
-      border-right: 1px solid var(--border-color);
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-      text-align: center;
-      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #f093fb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 10px rgba(0,242,254,0.6));
-    }
-    .nav-item {
-      padding: 0.75rem 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 8px;
-      color: var(--text-gray);
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .nav-item:hover, .nav-item.active {
-      background-color: rgba(255, 255, 255, 0.05);
-      color: var(--accent-ai);
-    }
-    .main-content {
-      flex: 1;
-      padding: 3rem;
-    }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0,242,254,0.4);
-    }
-    .avatar-circle {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #00f2fe, #f093fb);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #0F172A;
-      margin: 0 auto 1.2rem;
-      box-shadow: 0 0 25px rgba(0,242,254,0.5);
-      overflow: hidden;
-    }
-    .avatar-circle img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  </style>
-</head>
-<body>
-  <div class="sidebar">
-    <div class="logo" style="text-align:center; margin-bottom: 2rem;"><a href="/dashboard"><img src="/static/logo.png" alt="AgentX Platform" style="max-width: 190px; height: auto; object-fit: contain; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6)); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a></div>
-    <a href="/dashboard" class="nav-item active">Dashboard</a>
-    <a href="/skills" class="nav-item">Skill Registry</a>
-    <a href="/mcp" class="nav-item">MCP Integrations</a>
-    <a href="/freshworks" class="nav-item">Freshworks Deployer</a>
-    <a href="/knowledge_graph" class="nav-item">Knowledge Graph</a>
-    <a href="/simulator" class="nav-item">Agent Simulator</a>
-    <a href="/analytics" class="nav-item">Analytics</a>
-    <a href="/api_keys" class="nav-item">API Keys</a>
-    <div style="flex:1"></div>
-    <a href="/logout" class="nav-item" style="color:#EF4444">Logout</a>
-  </div>
-
-  <div class="main-content">
-    <div class="header">
-      <h1 style="font-size:2.2rem;">Welcome back, <span style="background:linear-gradient(90deg, #00f2fe, #f093fb); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">{{ user.name }}</span></h1>
-      <span style="color:#22C55E; background:rgba(34,197,94,0.15); padding:6px 14px; border-radius:20px; font-size:0.85rem; font-weight:600;">● Live Session Verified</span>
-    </div>
-
-    <div class="grid">
-      <!-- Profile Card -->
-      <div class="card" style="text-align: center;">
-        <div class="avatar-circle">
-          {% if user.profile_pic and user.profile_pic != 'default.png' %}
-            <img src="/static/uploads/{{ user.profile_pic }}" alt="Avatar" onerror="this.style.display='none'; this.parentNode.innerText='{{ user.name[:2]|upper }}';">
-          {% else %}
-            {{ user.name[:2]|upper }}
-          {% endif %}
-        </div>
-        <h2 style="margin: 0 0 0.4rem; font-size: 1.4rem; color: #fff;">{{ user.name }}</h2>
-        <div style="color: #00f2fe; font-weight: 600; margin-bottom: 0.5rem;">Rank: {{ user.role }}</div>
-        <div style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 0.3rem;">{{ user.email }}</div>
-        {% if user.organization %}
-          <div style="color: #f093fb; font-size: 0.85rem;">🏢 {{ user.organization }}</div>
-        {% endif %}
-      </div>
-
-      <!-- Skills Count -->
-      <div class="card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-        <div style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #00f2fe, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0;">
-          {{ skill_count }}
-        </div>
-        <p style="color: var(--text-gray); font-size: 1.1rem; margin: 0.5rem 0 0;">Agent Skills in Database</p>
-        <a href="/skills" style="color: #00f2fe; font-size: 0.9rem; margin-top: 1rem; text-decoration: none;">Manage Skills →</a>
-      </div>
-
-      <!-- MCP Integrations -->
-      <div class="card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-        <div style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #a855f7, #f093fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0;">
-          {{ mcp_count }}
-        </div>
-        <p style="color: var(--text-gray); font-size: 1.1rem; margin: 0.5rem 0 0;">Active MCP Bridges</p>
-        <a href="/mcp" style="color: #f093fb; font-size: 0.9rem; margin-top: 1rem; text-decoration: none;">Configure MCP →</a>
-      </div>
-    </div>
-
-    <!-- Recent Skills Stored in DB -->
-    <div class="card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
-        <h3 style="margin:0; color:#fff;">Recent Skills Saved in Database</h3>
-        <a href="/skills" style="color:#00f2fe; text-decoration:none; font-size:0.9rem;">+ Add New Skill</a>
-      </div>
-      {% if recent_skills %}
-        <div style="display:flex; flex-direction:column; gap:0.8rem;">
-          {% for s in recent_skills %}
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:0.9rem 1.2rem; background:rgba(15,23,42,0.6); border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
-              <div>
-                <strong style="color:#fff; font-size:1.05rem;">{{ s.name }}</strong>
-                <p style="color:var(--text-gray); margin:0.2rem 0 0; font-size:0.9rem;">{{ s.description }}</p>
-              </div>
-              <span style="background:rgba(34,197,94,0.15); color:#22C55E; padding:4px 10px; border-radius:12px; font-size:0.8rem;">{{ s.status }}</span>
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
             </div>
           {% endfor %}
         </div>
       {% else %}
-<<<<<<< HEAD
         <p style="color:var(--text-gray); margin:0;">No skills registered yet. Click <a href="/skills" style="color:#38bdf8;">here</a> to create your first agent skill!</p>
       {% endif %}
     </div>
@@ -1328,14 +1151,5 @@
       }
     }
   </script>
-=======
-        <p style="color:var(--text-gray); margin:0;">No skills saved yet. Click <a href="/skills" style="color:#00f2fe;">here</a> to create your first agent skill!</p>
-      {% endif %}
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="/static/js/constellations.js"></script>
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
 </body>
 </html>
