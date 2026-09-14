@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import os
 import sqlite3
 
@@ -44,21 +43,3 @@ def init_db():
 if __name__ == '__main__':
     init_db()
     print(f"Database initialised at: {DB_PATH}")
-=======
-import sqlite3
-
-def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
-
-def init_db():
-    conn = get_db_connection()
-    with open('schema.sql', 'r') as f:
-        conn.executescript(f.read())
-    conn.commit()
-    conn.close()
-
-if __name__ == '__main__':
-    init_db()
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
