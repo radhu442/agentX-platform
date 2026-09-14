@@ -1276,6 +1276,13 @@ To send automated WhatsApp messages from the server in the background without cl
     )
 
 
+import traceback
+
+@app.errorhandler(500)
+def internal_error(e):
+    tb = traceback.format_exc()
+    return f"<pre style='color:red;padding:20px'><b>500 DEBUG ERROR:</b>\n{tb}</pre>", 500
+
 # ── Routes ────────────────────────────────────────────────────────────────────
 
 @app.route('/')
