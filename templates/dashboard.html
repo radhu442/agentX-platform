@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<<<<<<< HEAD
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentX — Enterprise Command Center</title>
+  <meta name="description" content="AgentX Platform — Premium AI agent governance and executive orchestration console.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #050a08;
+      --bg-secondary: #0a1410;
+      --card-bg: rgba(10, 22, 17, 0.82);
+      --card-hover: rgba(15, 32, 25, 0.92);
+      --accent-emerald: #10b981;
+      --accent-mint: #34d399;
+      --accent-green-glow: rgba(16, 185, 129, 0.35);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-subtle: rgba(16, 185, 129, 0.14);
+      --border-emerald: rgba(16, 185, 129, 0.35);
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sidebar-width: 275px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+=======
+  <title>AgentX Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0F172A;
+      --bg-secondary: #111827;
+      --card-bg: #1E293B;
+      --accent-primary: #3B82F6;
+      --accent-ai: #8B5CF6;
+      --text-main: #FFFFFF;
+      --text-gray: #D1D5DB;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --font-family: 'Poppins', sans-serif;
+    }
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+<<<<<<< HEAD
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 90% 90%, rgba(5, 150, 105, 0.07) 0%, transparent 45%);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+    .sidebar {
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      background: linear-gradient(180deg, rgba(5, 12, 9, 0.97) 0%, rgba(8, 20, 15, 0.96) 100%);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-right: 1px solid var(--border-emerald);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+      box-shadow: 8px 0 35px rgba(0, 0, 0, 0.6);
+    }
+    .logo {
+      margin-bottom: 1.6rem;
+      text-align: center;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .logo::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px;
+      height: 80px;
+      background: radial-gradient(ellipse, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.15) 50%, transparent 80%);
+      filter: blur(16px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .logo img {
+      max-width: 180px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .logo img:hover {
+      transform: scale(1.04);
+      filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.5));
+    }
+    .nav-section { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+    
+    .nav-category {
+      font-size: 0.66rem;
+      font-weight: 700;
+      color: #34d399;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 0.6rem 0.35rem;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-category::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.35), transparent);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 10px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+      position: relative;
+    }
+    .nav-item:hover {
+      background: rgba(16, 185, 129, 0.08);
+      color: #ffffff;
+      transform: translateX(4px);
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+    .nav-item.active {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.22) 0%, rgba(6, 78, 59, 0.12) 100%);
+      color: #ffffff;
+      border: 1px solid rgba(16, 185, 129, 0.55);
+      border-left: 3.5px solid #10b981;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 16px rgba(16, 185, 129, 0.14);
+    }
+    .nav-item.active .nav-label {
+      color: #6ee7b7;
+      text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    }
+
+    .nav-icon-box {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      font-size: 1.05rem;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+    .nav-item:hover .nav-icon-box {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #34d399;
+      transform: scale(1.1);
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+    }
+    .nav-item.active .nav-icon-box {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.45), rgba(5, 150, 105, 0.35));
+      border-color: #34d399;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.55);
+      transform: scale(1.08);
+    }
+
+    .nav-pill-green {
+      margin-left: auto;
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: #6ee7b7;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.06em;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+    }
+    .nav-pill-mint {
+      margin-left: auto;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      color: #34d399;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-item.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .lock-icon { font-size: 0.75rem; margin-left: auto; opacity: 0.7; }
+    
+    .sidebar-user-card {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 11px 13px;
+      margin: 0.8rem 0 0.5rem;
+      border-radius: 11px;
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.18);
+      backdrop-filter: blur(12px);
+    }
+    .user-avatar-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981, #047857);
+      color: #ffffff;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+      flex-shrink: 0;
+    }
+    .user-info-text {
+      overflow: hidden;
+      line-height: 1.25;
+      flex: 1;
+    }
+    .user-display-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #f8fafc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-display-role {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #34d399;
+      margin-top: 2px;
+      letter-spacing: 0.04em;
+    }
+    .nav-item.logout {
+      color: #f87171;
+      border: 1px solid rgba(248, 113, 113, 0.2);
+      margin-top: 0.3rem;
+    }
+    .nav-item.logout:hover {
+      background: rgba(248, 113, 113, 0.12);
+      color: #ef4444;
+      border-color: rgba(248, 113, 113, 0.4);
+      transform: translateX(2px);
+    }
+
+    .main-content { flex: 1; padding: 2.2rem 3rem; min-width: 0; }
+    
+    .page-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;
+      flex-wrap: wrap; gap: 1rem; background: var(--card-bg); backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.4rem 1.8rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .page-tag {
+      font-size: 0.75rem; color: #34d399; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px;
+    }
+    .page-header h1 {
+      font-size: 1.7rem; font-weight: 700; margin: 0; letter-spacing: -0.02em; color: var(--text-main);
+    }
+    .page-subtitle {
+      font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;
+    }
+    .counter-pill {
+      background: rgba(16, 185, 129, 0.12); border: 1px solid var(--border-emerald);
+      color: #34d399; padding: 5px 13px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+
+    .card {
+      background: var(--card-bg); backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle); border-radius: 14px;
+      padding: 1.8rem; margin-bottom: 1.8rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .card-title {
+      font-size: 1.15rem; font-weight: 700; margin: 0 0 0.4rem; color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+    .card-desc {
+      font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.2rem;
+    }
+
+    .input-field, input[type="text"], input[type="password"], textarea, select {
+      width: 100%; box-sizing: border-box; padding: 11px 15px; border-radius: 8px;
+      background: rgba(6, 14, 10, 0.85); border: 1px solid var(--border-subtle);
+      color: #fff; font-size: 0.94rem; font-family: var(--font-family);
+      outline: none; transition: all 0.2s ease;
+    }
+    .input-field:focus, input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+      border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    }
+
+    .btn-royal, .btn-gradient, .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: linear-gradient(135deg, #10b981 0%, #047857 100%) !important;
+      color: #ffffff !important; font-weight: 700; font-size: 0.9rem;
+      padding: 11px 22px; border-radius: 8px; cursor: pointer;
+      text-decoration: none; border: 1px solid rgba(52, 211, 153, 0.3) !important;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35) !important;
+    }
+    .btn-royal:hover, .btn-gradient:hover, .btn-primary:hover {
+      background: linear-gradient(135deg, #34d399 0%, #059669 100%) !important;
+      box-shadow: 0 6px 24px rgba(16, 185, 129, 0.55) !important; transform: translateY(-1px);
+    }
+
+    .section-heading {
+      font-size: 1.15rem; font-weight: 700; color: var(--text-main);
+      margin: 2rem 0 1rem; letter-spacing: -0.01em;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* Simulator chat styles */
+    .ai-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .ai-badge.fallback { background: rgba(5, 150, 105, 0.15); color: #6ee7b7; border-color: rgba(5, 150, 105, 0.4); }
+    #chat-box { flex: 1; background: rgba(6, 14, 10, 0.92); border-radius: 14px; padding: 1.5rem; overflow-y: auto; margin-bottom: 1.4rem; border: 1px solid var(--border-subtle); min-height: 350px; display: flex; flex-direction: column; gap: 1.2rem; }
+    .msg-user { text-align: right; }
+    .msg-user .bubble { display: inline-block; background: linear-gradient(135deg, #047857 0%, #065f46 100%); border: 1px solid rgba(52, 211, 153, 0.3); padding: 13px 18px; border-radius: 16px 16px 3px 16px; color: #ffffff; font-weight: 500; font-size: 0.94rem; max-width: 78%; text-align: left; word-break: break-word; box-shadow: 0 4px 16px rgba(4, 120, 87, 0.25); line-height: 1.55; }
+    .msg-agent { text-align: left; }
+    .msg-agent .sender { color: #34d399; font-weight: 700; font-size: 0.8rem; margin-bottom: 6px; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+    .msg-agent .bubble { display: inline-block; background: rgba(10, 24, 18, 0.9); border: 1px solid rgba(16, 185, 129, 0.25); border-left: 3.5px solid #10b981; padding: 14px 18px; border-radius: 3px 16px 16px 16px; color: #f8fafc; font-size: 0.95rem; max-width: 80%; text-align: left; word-break: break-word; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); line-height: 1.6; }
+    .msg-system { color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 6px 0; }
+    .msg-system span { color: #34d399; font-weight: 600; }
+    .input-row { display: flex; gap: 12px; }
+    .sim-input { flex: 1; padding: 14px 18px; border-radius: 10px; background: rgba(6, 14, 10, 0.9); border: 1px solid rgba(16, 185, 129, 0.25); color: #fff; font-size: 0.96rem; font-family: var(--font-family); outline: none; transition: all 0.2s ease; }
+    .sim-input:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18); }
+    .btn-send { font-family: var(--font-family); font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; background: linear-gradient(135deg, #10b981 0%, #047857 100%); color: #ffffff; border: 1px solid rgba(52, 211, 153, 0.4); padding: 14px 26px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35); white-space: nowrap; }
+    .btn-send:hover { background: linear-gradient(135deg, #34d399 0%, #059669 100%); box-shadow: 0 6px 24px rgba(16, 185, 129, 0.55); transform: translateY(-1px); }
+
+    .menu-toggle { display: none; position: fixed; top: 1.2rem; left: 1.2rem; z-index: 200; background: #060d0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 10px; cursor: pointer; flex-direction: column; gap: 5px; }
+    .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--text-main); border-radius: 2px; }
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 99; }
+
+    /* Grid System for Dashboard */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .grid > .card {
+      margin-bottom: 0 !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 16px;
+      padding: 1.8rem;
+      background: rgba(8, 20, 15, 0.88);
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .grid > .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+    .grid > .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #10b981, #34d399, transparent);
+      opacity: 0.8;
+    }
+
+    /* Pipeline Execution Flow */
+    .pipeline-container {
+      background: rgba(8, 20, 15, 0.88);
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+    }
+    .pipeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #34d399, #10b981, #059669);
+    }
+    .pipeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .pipeline-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 0.9rem;
+    }
+    @media (max-width: 1024px) {
+      .pipeline-flow {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .pipeline-arrow { display: none; }
+    }
+    .pipeline-step {
+      background: rgba(5, 14, 10, 0.9);
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      border-radius: 12px;
+      padding: 1.3rem 1.2rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    .pipeline-step:hover {
+      transform: translateY(-3px);
+      border-color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(16, 185, 129, 0.25);
+    }
+    .step-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+    .step-num {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #34d399;
+      letter-spacing: 0.08em;
+    }
+    .step-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .step-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .step-desc {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      line-height: 1.45;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+    .step-badge {
+      align-self: flex-start;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(16, 185, 129, 0.16);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    .pipeline-arrow {
+      color: #10b981;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+      opacity: 0.8;
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+
+</style>
+</head>
+
+
+<body data-constellations="false">
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Cyber Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="logo">
+      <a href="/dashboard"><img src="/static/logo.png" alt="AgentX Platform"></a>
+    </div>
+
+            <nav class="nav-section">
+      <div class="nav-category">Command Console</div>
+      <a href="/dashboard" class="nav-item active">
+        <span class="nav-icon-box">📊</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+
+      <div class="nav-category">Agent Engine</div>
+      {% if 'skills' in allowed_pages %}
+      <a href="/skills" class="nav-item">
+        <span class="nav-icon-box">⚙️</span>
+        <span class="nav-label">Skill Registry</span>
+      </a>
+      {% else %}
+      <span class="nav-item disabled">
+        <span class="nav-icon-box">⚙️</span>
+        <span class="nav-label">Skill Registry</span>
+        <span class="lock-icon">🔒</span>
+      </span>
+      {% endif %}
+
+      {% if 'mcp' in allowed_pages %}
+      <a href="/mcp" class="nav-item">
+        <span class="nav-icon-box">🔗</span>
+        <span class="nav-label">MCP Bridges</span>
+        <span class="nav-pill-mint">v2</span>
+      </a>
+      {% else %}
+      <span class="nav-item disabled">
+        <span class="nav-icon-box">🔗</span>
+        <span class="nav-label">MCP Bridges</span>
+        <span class="lock-icon">🔒</span>
+      </span>
+      {% endif %}
+
+      {% if 'freshworks' in allowed_pages %}
+      <a href="/freshworks" class="nav-item">
+        <span class="nav-icon-box">🚀</span>
+        <span class="nav-label">Freshworks Deployer</span>
+      </a>
+      {% else %}
+      <span class="nav-item disabled">
+        <span class="nav-icon-box">🚀</span>
+        <span class="nav-label">Freshworks Deployer</span>
+        <span class="lock-icon">🔒</span>
+      </span>
+      {% endif %}
+
+      <div class="nav-category">Runtime & Intelligence</div>
+      <a href="/knowledge_graph" class="nav-item">
+        <span class="nav-icon-box">🧠</span>
+        <span class="nav-label">Knowledge Graph</span>
+      </a>
+
+      {% if 'simulator' in allowed_pages %}
+      <a href="/simulator" class="nav-item">
+        <span class="nav-icon-box">💬</span>
+        <span class="nav-label">Agent Simulator</span>
+        <span class="nav-pill-green">AI LIVE</span>
+      </a>
+      {% else %}
+      <span class="nav-item disabled">
+        <span class="nav-icon-box">💬</span>
+        <span class="nav-label">Agent Simulator</span>
+        <span class="lock-icon">🔒</span>
+      </span>
+      {% endif %}
+
+      <div class="nav-category">Security & Governance</div>
+      <a href="/analytics" class="nav-item">
+        <span class="nav-icon-box">📈</span>
+        <span class="nav-label">Telemetry</span>
+      </a>
+      <a href="/api_keys" class="nav-item">
+        <span class="nav-icon-box">🔑</span>
+        <span class="nav-label">API Keys</span>
+      </a>
+      <a href="/billing" class="nav-item">
+        <span class="nav-icon-box">💳</span>
+        <span class="nav-label">Billing & Credits</span>
+        {% if user_is_pro %}
+          <span class="nav-pill-green" style="color:#fbbf24; border-color:#f59e0b; background:rgba(245,158,11,0.15);">PRO</span>
+        {% endif %}
+      </a>
+
+      <div class="nav-spacer"></div>
+
+      <div class="sidebar-user-card">
+        <div class="user-avatar-circle">{{ session.get('name', 'U')[:1]|upper }}</div>
+        <div class="user-info-text">
+          <div class="user-display-name">{{ session.get('name', 'Operator') }}</div>
+          <div class=\"user-display-role\">● {{ session.get('role', 'Developer')|upper }} {% if user_is_pro %}<span style=\"color:#fbbf24; font-size:0.65rem; font-weight:800;\">[PRO]</span>{% elif user_wallet_balance > 0 %}<span style=\"color:#38bdf8; font-size:0.65rem;\">(${{ '%.2f'|format(user_wallet_balance) }})</span>{% endif %}</div>
+        </div>
+      </div>
+
+      <a href="/logout" class="nav-item logout">
+        <span class="nav-icon-box" style="border-color:rgba(248,113,113,0.3); background:rgba(248,113,113,0.08);">⏻</span>
+        <span class="nav-label">Sign Out</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- PAGE HEADER BY ROLE -->
+    <div class="page-header">
+      <div>
+        <div style=" font-size:0.78rem; letter-spacing: 0.02em; text-transform:uppercase; margin-bottom:4px;">
+          {% if is_admin %}
+            <span style="color:var(--accent-gold)">// PLATFORM GOVERNANCE &amp; ADMIN SYSTEM</span>
+          {% elif role_category == 'prompt' %}
+            <span style="color:var(--accent-magenta)">// NEURAL PROMPT ARCHITECT CONTROL STATION</span>
+          {% elif role_category == 'integration' %}
+            <span style="color:var(--accent-green)">// PROTOCOL INTEGRATION &amp; MCP GATEWAY HUB</span>
+          {% else %}
+            <span style="color:var(--accent-cyan)">// AGENT DEVELOPER CODE WORKSTATION</span>
+          {% endif %}
+        </div>
+        <h1>WELCOME BACK, <span class="neon-text-gradient">{{ user.name }}</span></h1>
+      </div>
+      
+      {% if is_admin %}
+        <div class="status-badge admin-badge">
+          <span class="status-dot gold"></span> 👑 PLATFORM ADMIN OVERSEER
+        </div>
+      {% elif role_category == 'prompt' %}
+        <div class="status-badge prompt-badge">
+          <span class="status-dot magenta"></span> ✨ PROMPT ARCHITECT ACTIVE
+        </div>
+      {% elif role_category == 'integration' %}
+        <div class="status-badge integration-badge">
+          <span class="status-dot"></span> 🔗 INTEGRATION SPECIALIST ACTIVE
+        </div>
+      {% else %}
+        <div class="status-badge">
+          <span class="status-dot"></span> ⚙️ DEVELOPER SESSION ACTIVE
+        </div>
+      {% endif %}
+    </div>
+
+        <!-- ROLE SPECIFIC TOP STAT CARDS -->
+    <div class="grid">
+      <!-- Profile Card -->
+      <div class="card" style="text-align: center; position: relative; padding: 2.2rem 1.6rem; display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="position: absolute; top: 1.2rem; right: 1.2rem;">
+          <span style="display:inline-flex; align-items:center; gap:5px; font-size: 0.7rem; font-weight: 700; color: #34d399; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 4px 10px; border-radius: 12px; letter-spacing: 0.05em;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#10b981; box-shadow:0 0 6px #10b981;"></span> ONLINE
+          </span>
+        </div>
+        <div>
+          <div class="avatar-circle" style="width: 68px; height: 68px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #047857); color: #fff; font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.9rem; box-shadow: 0 0 24px rgba(16, 185, 129, 0.4); border: 2.5px solid rgba(52, 211, 153, 0.45);">
+            {% if user.profile_pic and user.profile_pic != 'default.png' %}
+              <img src="/static/uploads/{{ user.profile_pic }}" alt="Avatar" style="width:100%;height:100%;border-radius:50%;object-fit:cover;"
+                   onerror="this.style.display='none'; this.parentNode.innerText='{{ user.name[:2]|upper }}';">
+            {% else %}
+              {{ user.name[:2]|upper }}
+            {% endif %}
+          </div>
+          <h2 style="margin: 0 0 0.35rem; font-size: 1.35rem; color: #fff; font-weight: 700; letter-spacing: -0.01em;">{{ user.name }}</h2>
+          <div style="display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); color: #6ee7b7; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.7rem;">
+            STATION: {{ user.role|upper }}
+          </div>
+          <div style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 0.4rem;">{{ user.email }}</div>
+          {% if user.organization %}
+            <div style="color: #34d399; font-size: 0.82rem; font-weight: 600;">🏢 {{ user.organization }}</div>
+          {% endif %}
+        </div>
+        <div style="margin-top: 1.2rem; padding-top: 0.8rem; border-top: 1px solid rgba(16, 185, 129, 0.15); font-size: 0.75rem; color: #94a3b8; display:flex; justify-content:space-between;">
+          <span>Security Level:</span>
+          <span style="color:#34d399; font-weight:700;">Superuser Admin</span>
+        </div>
+      </div>
+
+      <!-- Stat Card 2 -->
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; text-align: left; padding: 2.2rem 1.8rem;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+            <span style="font-size: 0.75rem; color: #34d399; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">CAPABILITIES INVENTORY</span>
+            <span style="font-size: 1.5rem; background:rgba(16, 185, 129, 0.15); padding:6px; border-radius:8px;">⚡</span>
+          </div>
+          {% if is_admin %}
+            <div style="font-size: 3.2rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 25px rgba(16, 185, 129, 0.45);">{{ global_skill_count }}</div>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin: 0.7rem 0 0; font-weight: 500;">System-Wide Skills Deployed</p>
+          {% elif role_category == 'prompt' %}
+            <div style="font-size: 3.2rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 25px rgba(16, 185, 129, 0.45);">{{ sim_count }}</div>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin: 0.7rem 0 0; font-weight: 500;">Neural AI Playground Queries</p>
+          {% elif role_category == 'integration' %}
+            <div style="font-size: 3.2rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 25px rgba(16, 185, 129, 0.45);">{{ mcp_count }}</div>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin: 0.7rem 0 0; font-weight: 500;">Active MCP Tool Bridges</p>
+          {% else %}
+            <div style="font-size: 3.2rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 25px rgba(16, 185, 129, 0.45);">{{ skill_count }}</div>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin: 0.7rem 0 0; font-weight: 500;">Personal Agent Skills</p>
+          {% endif %}
+        </div>
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(16, 185, 129, 0.15); display: flex; justify-content: space-between; align-items: center;">
+          {% if is_admin %}
+            <a href="/skills" style="color: #34d399; font-size: 0.82rem; text-decoration: none; font-weight: 700; letter-spacing: 0.04em;">MANAGE ALL SKILLS →</a>
+            <span style="font-size: 0.72rem; color: #34d399; font-weight:700;">100% Operational</span>
+          {% elif role_category == 'prompt' %}
+            <a href="/simulator" style="color: #34d399; font-size: 0.82rem; text-decoration: none; font-weight: 700; letter-spacing: 0.04em;">OPEN AI SIMULATOR →</a>
+            <span style="font-size: 0.72rem; color: #94a3b8;">Gemini Flash</span>
+          {% elif role_category == 'integration' %}
+            <a href="/mcp" style="color: #34d399; font-size: 0.82rem; text-decoration: none; font-weight: 700; letter-spacing: 0.04em;">CONFIGURE BRIDGES →</a>
+            <span style="font-size: 0.72rem; color: #94a3b8;">MCP v2 JSON-RPC</span>
+          {% else %}
+            <a href="/skills" style="color: #34d399; font-size: 0.82rem; text-decoration: none; font-weight: 700; letter-spacing: 0.04em;">MANAGE SKILLS →</a>
+            <span style="font-size: 0.72rem; color: #94a3b8;">Ready to Deploy</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Stat Card 3 -->
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; text-align: left; padding: 2.2rem 1.8rem;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+            <span style="font-size: 0.75rem; color: #34d399; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">ACCESS &amp; GOVERNANCE</span>
+            <span style="font-size: 1.5rem; background:rgba(16, 185, 129, 0.15); padding:6px; border-radius:8px;">👥</span>
+          </div>
+          {% if is_admin %}
+            <div style="font-size: 3.2rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 25px rgba(16, 185, 129, 0.45);">{{ total_users_count }}</div>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin: 0.7rem 0 0; font-weight: 500;">Registered System Accounts</p>
+          {% elif role_category == 'prompt' %}
+            <div style="font-size: 2.2rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em;">{{ ai_provider }}</div>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin: 0.7rem 0 0; font-weight: 500;">AI Engine Provider</p>
+          {% elif role_category == 'integration' %}
+            <div style="font-size: 3.2rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 25px rgba(16, 185, 129, 0.45);">{{ deployment_count }}</div>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin: 0.7rem 0 0; font-weight: 500;">Freshworks Deployments</p>
+          {% else %}
+            <div style="font-size: 3.2rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 25px rgba(16, 185, 129, 0.45);">{{ mcp_count }}</div>
+            <p style="color: #94a3b8; font-size: 0.95rem; margin: 0.7rem 0 0; font-weight: 500;">Active MCP Bridges</p>
+          {% endif %}
+        </div>
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(16, 185, 129, 0.15); display: flex; justify-content: space-between; align-items: center;">
+          {% if is_admin %}
+            <button onclick="openAddModal()" style="background: none; border: none; color: #34d399; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; padding: 0;">+ ADD USER ACCOUNT →</button>
+            <span style="font-size: 0.72rem; color: #34d399; font-weight: 700;">ADMIN ACCESS</span>
+          {% elif role_category == 'prompt' %}
+            <span style="color: #34d399; font-size: 0.82rem; font-weight: 700;">PROMPT READY</span>
+            <span style="font-size: 0.72rem; color: #94a3b8;">Temp: 0.7</span>
+          {% elif role_category == 'integration' %}
+            <a href="/freshworks" style="color: #34d399; font-size: 0.82rem; text-decoration: none; font-weight: 700;">MANAGE DEPLOYMENTS →</a>
+            <span style="font-size: 0.72rem; color: #94a3b8;">REST Webhook</span>
+          {% else %}
+            <a href="/mcp" style="color: #34d399; font-size: 0.82rem; text-decoration: none; font-weight: 700;">CONFIGURE MCP →</a>
+            <span style="font-size: 0.72rem; color: #94a3b8;">3 Connected</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ===================================================================== -->
+    <!-- ⚡ INTERACTIVE END-TO-END AGENT ARCHITECTURE PIPELINE                 -->
+    <!-- ===================================================================== -->
+    <div class="pipeline-container">
+      <div class="pipeline-header">
+        <div>
+          <div style="font-size:0.75rem; color:#34d399; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px;">ARCHITECTURE WORKFLOW</div>
+          <h3 style="margin:0; font-size:1.25rem; font-weight:700; color:#fff; letter-spacing:-0.01em;">End-to-End Autonomous Agent Pipeline</h3>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.8rem;">
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:700; color:#34d399; background:rgba(16, 185, 129, 0.12); padding:5px 12px; border-radius:20px; border:1px solid rgba(16, 185, 129, 0.3);">
+            <span style="width:7px; height:7px; border-radius:50%; background:#10b981; box-shadow:0 0 8px #10b981;"></span> GEMINI 1.5 FLASH ONLINE</span>
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:700; color:#00f3ff; background:rgba(0,243,255,0.12); padding:5px 12px; border-radius:20px; border:1px solid rgba(0,243,255,0.35); margin-right:8px;"><span style="width:7px; height:7px; border-radius:50%; background:#00f3ff; box-shadow:0 0 8px #00f3ff;"></span> CORSAIR DB &amp; MCP SYNCED</span>
+          </span>
+        </div>
+      </div>
+      <div class="pipeline-flow">
+        <!-- Step 1 -->
+        <a href="/skills" class="pipeline-step">
+          <div class="step-badge-row">
+            <span class="step-num">STEP 01</span>
+            <span class="step-badge">14 ACTIVE</span>
+          </div>
+          <div class="step-icon">⚙️</div>
+          <div class="step-title">Skill Registry</div>
+          <div class="step-desc">Modular capabilities with regex triggers &amp; multi-turn execution prompts.</div>
+          <span style="color:#34d399; font-size:0.75rem; font-weight:700;">OPEN REGISTRY →</span>
+        </a>
+        <div class="pipeline-arrow">➔</div>
+
+        <!-- Step 2 -->
+        <a href="/mcp" class="pipeline-step">
+          <div class="step-badge-row">
+            <span class="step-num">STEP 02</span>
+            <span class="step-badge">3 BRIDGES</span>
+          </div>
+          <div class="step-icon">🔗</div>
+          <div class="step-title">MCP Tool Bridges</div>
+          <div class="step-desc">Model Context Protocol schemas connecting agent to live enterprise tools.</div>
+          <span style="color:#34d399; font-size:0.75rem; font-weight:700;">MANAGE BRIDGES →</span>
+        </a>
+        <div class="pipeline-arrow">➔</div>
+
+        <!-- Step 3 -->
+        <a href="/freshworks" class="pipeline-step">
+          <div class="step-badge-row">
+            <span class="step-num">STEP 03</span>
+            <span class="step-badge">REST GATEWAY</span>
+          </div>
+          <div class="step-icon">🚀</div>
+          <div class="step-title">Freshworks Deployer</div>
+          <div class="step-desc">Event listeners dispatching ticket resolutions and CRM actions in real-time.</div>
+          <span style="color:#34d399; font-size:0.75rem; font-weight:700;">VIEW DISPATCHER →</span>
+        </a>
+        <div class="pipeline-arrow">➔</div>
+
+        <!-- Step 4 -->
+        <a href="/simulator" class="pipeline-step">
+          <div class="step-badge-row">
+            <span class="step-num">STEP 04</span>
+            <span class="step-badge" style="background:rgba(52, 211, 153, 0.25); color:#6ee7b7;">LIVE SANDBOX</span>
+          </div>
+          <div class="step-icon">🤖</div>
+          <div class="step-title">AI Agent Simulator</div>
+          <div class="step-desc">Interactive reasoning console to test agent skills and prompt guardrails.</div>
+          <span style="color:#34d399; font-size:0.75rem; font-weight:700;">TEST IN SANDBOX →</span>
+        </a>
+      </div>
+    </div>
+
+
+
+    <!-- ===================================================================== -->
+    <!-- 👑 ROLE EXCLUSIVE PANEL 1: ADMIN PLATFORM GOVERNANCE & USER REGISTRY -->
+    <!-- ===================================================================== -->
+    {% if is_admin %}
+
+      <!-- Add User Modal -->
+      <div id="addUserModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.82); backdrop-filter:blur(8px); z-index:999; align-items:center; justify-content:center;">
+        <div style="background:#0b0f19; border:1px solid rgba(255,215,0,0.5); border-radius:20px; padding:2.5rem; max-width:500px; width:90%; position:relative; box-shadow:0 0 60px rgba(255,215,0,0.2);">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-gold),var(--accent-magenta));border-radius:20px 20px 0 0;"></div>
+          <h3 style=" color:#e2b144; margin-top:0; font-size:1.1rem; letter-spacing:0.06em;">➕ CREATE NEW USER ACCOUNT</h3>
+          <form id="addUserForm">
+            <div style="display:grid; gap:1rem;">
+              <div>
+                <label style="color:var(--text-gray);font-size:0.85rem;display:block;margin-bottom:6px;">FULL NAME *</label>
+                <input name="name" id="newName" required placeholder="e.g. Tanush Mathur" style="width:100%;background:rgba(5,8,17,0.9);border:1px solid rgba(251, 191, 36, 0.25);border-radius:8px;color:#fff;font-family:var(--font-body);font-size:0.95rem;padding:10px 14px;outline:none;box-sizing:border-box;">
+              </div>
+              <div>
+                <label style="color:var(--text-gray);font-size:0.85rem;display:block;margin-bottom:6px;">EMAIL ADDRESS *</label>
+                <input name="email" id="newEmail" type="email" required placeholder="user@agentx.ai" style="width:100%;background:rgba(5,8,17,0.9);border:1px solid rgba(251, 191, 36, 0.25);border-radius:8px;color:#fff;font-family:var(--font-body);font-size:0.95rem;padding:10px 14px;outline:none;box-sizing:border-box;">
+              </div>
+              <div>
+                <label style="color:var(--text-gray);font-size:0.85rem;display:block;margin-bottom:6px;">INITIAL PASSWORD *</label>
+                <input name="password" id="newPassword" type="password" required placeholder="Min. 6 characters" style="width:100%;background:rgba(5,8,17,0.9);border:1px solid rgba(251, 191, 36, 0.25);border-radius:8px;color:#fff;font-family:var(--font-body);font-size:0.95rem;padding:10px 14px;outline:none;box-sizing:border-box;">
+              </div>
+              <div>
+                <label style="color:var(--text-gray);font-size:0.85rem;display:block;margin-bottom:6px;">ROLE STATION *</label>
+                <select name="role" id="newRole" style="width:100%;background:rgba(5,8,17,0.9);border:1px solid rgba(251, 191, 36, 0.25);border-radius:8px;color:#fff;font-family:var(--font-body);font-size:0.95rem;padding:10px 14px;outline:none;box-sizing:border-box;">
+                  <option value="Developer">Agent Developer</option>
+                  <option value="Prompt Engineer">Prompt Engineer</option>
+                  <option value="Integration">Integration Specialist</option>
+                  <option value="Admin">Platform Admin</option>
+                </select>
+              </div>
+              <div>
+                <label style="color:var(--text-gray);font-size:0.85rem;display:block;margin-bottom:6px;">ORGANIZATION (optional)</label>
+                <input name="organization" id="newOrg" placeholder="AgentX Labs" style="width:100%;background:rgba(5,8,17,0.9);border:1px solid rgba(251, 191, 36, 0.25);border-radius:8px;color:#fff;font-family:var(--font-body);font-size:0.95rem;padding:10px 14px;outline:none;box-sizing:border-box;">
+              </div>
+            </div>
+            <div id="addUserMsg" style="min-height:1.5rem;margin-top:1rem;font-size:0.9rem;"></div>
+            <div style="display:flex;gap:1rem;margin-top:1.2rem;">
+              <button type="submit" style="flex:1;font-weight:700;font-size:0.88rem;letter-spacing:0.06em;text-transform:uppercase;padding:12px 20px;background:linear-gradient(135deg,var(--accent-gold),var(--accent-magenta));color:#050811;border:none;border-radius:10px;cursor:pointer;box-shadow:0 0 20px rgba(255,215,0,0.4);">✅ CREATE ACCOUNT</button>
+              <button type="button" onclick="closeAddModal()" style="font-weight:700;font-size:0.88rem;letter-spacing:0.06em;text-transform:uppercase;padding:12px 20px;background:rgba(255,77,77,0.15);color:#ff4d4d;border:1px solid rgba(255,77,77,0.4);border-radius:10px;cursor:pointer;">✕ CANCEL</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Admin User Registry Card -->
+      <div class="card admin-card" style="margin-bottom: 2.2rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;flex-wrap:wrap;gap:0.8rem;">
+          <h3 style="margin:0;color:#e2b144;font-size:1.2rem;letter-spacing:0.04em;">
+            👑 ADMIN GOVERNANCE — USER ACCOUNTS REGISTRY (<span id="userCount">{{ total_users_count }}</span> USERS)
+          </h3>
+          <button onclick="openAddModal()" style="font-weight:700;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;padding:10px 20px;background:linear-gradient(135deg,var(--accent-gold),var(--accent-magenta));color:#050811;border:none;border-radius:10px;cursor:pointer;box-shadow:0 0 18px rgba(255,215,0,0.35);display:flex;align-items:center;gap:6px;">
+            ➕ ADD NEW USER
+          </button>
+        </div>
+        <div id="adminFeedback" style="min-height:1.5rem;margin-bottom:0.5rem;font-size:0.9rem;"></div>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th><th>Full Name</th><th>Email Address</th><th>Role Station</th><th>Organization</th><th>Joined</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              {% for u in all_users %}
+                <tr id="user-row-{{ u.id }}">
+                  <td style="color:#38bdf8;font-weight:700;">#{{ u.id }}</td>
+                  <td style="color:#fff;font-weight:600;">{{ u.name }}</td>
+                  <td style="color:var(--text-gray);">{{ u.email }}</td>
+                  <td>
+                    {% set rlower = u.role.lower() %}
+                    <span class="role-badge {% if 'admin' in rlower %}admin{% elif 'prompt' in rlower %}prompt{% elif 'integration' in rlower %}integration{% else %}developer{% endif %}">
+                      {{ u.role }}
+                    </span>
+                  </td>
+                  <td style="color:#a5b4fc;">{{ u.organization or 'N/A' }}</td>
+                  <td style="color:var(--text-gray);font-size:0.8rem;">{{ u.created_at[:10] if u.created_at else '—' }}</td>
+                  <td>
+                    {% if u.id != user.id %}
+                      <button onclick="deleteUser({{ u.id }}, '{{ u.name|replace("'", "\\'") }}')"
+                        style="font-size:0.78rem;font-weight:700;letter-spacing:0.04em;padding:6px 14px;background:rgba(255,77,77,0.12);color:#ff4d4d;border:1px solid rgba(255,77,77,0.4);border-radius:8px;cursor:pointer;text-transform:uppercase;">
+                        🗑 DELETE
+                      </button>
+                    {% else %}
+                      <span style="color:#e2b144;font-size:0.78rem;">YOU (ADMIN)</span>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    <!-- ===================================================================== -->
+    <!-- ✨ ROLE EXCLUSIVE PANEL 2: PROMPT ARCHITECT NEURAL WORKBENCH          -->
+    <!-- ===================================================================== -->
+    {% elif role_category == 'prompt' %}
+      <div class="card prompt-card" style="margin-bottom: 2.2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.8rem;">
+          <h3 style="margin:0; color:#818cf8;  font-size:1.2rem; letter-spacing:0.04em;">
+            ✨ PROMPT ARCHITECT NEURAL PLAYGROUND &amp; SYSTEM TEMPLATES
+          </h3>
+          <span style="color:var(--text-gray);  font-size:0.8rem;">ENGINE: {{ ai_provider|upper }}</span>
+        </div>
+        <p style="color:var(--text-gray); font-size:0.95rem; margin-bottom:1.4rem;">
+          Select pre-configured system prompt presets below to tune agent behavior and test response latency in the sandbox:
+        </p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.2rem; margin-bottom:1.5rem;">
+          <div style="background:rgba(5,8,17,0.8); border:1px solid rgba(245, 158, 11, 0.35); border-radius:12px; padding:1.2rem;">
+            <div style="color:#818cf8;  font-weight:700; font-size:0.9rem; margin-bottom:6px;">🤖 Customer Support Auto-Responder</div>
+            <p style="color:var(--text-gray); font-size:0.85rem; margin:0 0 10px;">Configured to parse Freshdesk customer tickets and output empathetic 2-sentence resolution steps.</p>
+            <span class="role-badge prompt">PRESET ACTIVE</span>
+          </div>
+          <div style="background:rgba(5,8,17,0.8); border:1px solid rgba(251, 191, 36, 0.25); border-radius:12px; padding:1.2rem;">
+            <div style="color:#38bdf8;  font-weight:700; font-size:0.9rem; margin-bottom:6px;">🔍 Code Review &amp; Security Auditor</div>
+            <p style="color:var(--text-gray); font-size:0.85rem; margin:0 0 10px;">Scans Python and JS snippets for input sanitization, SQL injection, and API key leaks.</p>
+            <span class="role-badge developer">PRESET READY</span>
+          </div>
+          <div style="background:rgba(5,8,17,0.8); border:1px solid rgba(0,255,136,0.3); border-radius:12px; padding:1.2rem;">
+            <div style="color:#10b981;  font-weight:700; font-size:0.9rem; margin-bottom:6px;">⚡ Freshworks Ticket Categorizer</div>
+            <p style="color:var(--text-gray); font-size:0.85rem; margin:0 0 10px;">Extracts priority, urgency, and domain tags for automated routing into ITSM queues.</p>
+            <span class="role-badge integration">PRESET READY</span>
+          </div>
+        </div>
+        <a href="/simulator" class="btn btn-primary" style="background:linear-gradient(135deg, var(--accent-magenta), var(--accent-purple)); color:#fff;">LAUNCH NEURAL AI SIMULATOR 🤖</a>
+      </div>
+
+
+    <!-- ===================================================================== -->
+    <!-- 🔗 ROLE EXCLUSIVE PANEL 3: INTEGRATION SPECIALIST PROTOCOL CONTROL    -->
+    <!-- ===================================================================== -->
+    {% elif role_category == 'integration' %}
+      <div class="card integration-card" style="margin-bottom: 2.2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; flex-wrap:wrap; gap:0.8rem;">
+          <h3 style="margin:0; color:#10b981;  font-size:1.2rem; letter-spacing:0.04em;">
+            🔗 PROTOCOL INTEGRATION GATEWAY &amp; REST WEBHOOK MONITOR
+          </h3>
+          <span style="color:#10b981;  font-size:0.8rem;">HANDSHAKE ACTIVE</span>
+        </div>
+        <p style="color:var(--text-gray); font-size:0.95rem; margin-bottom:1.4rem;">
+          Live protocol connectivity matrix for active MCP tool context providers and Freshworks workspaces:
+        </p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1.2rem; margin-bottom:1.5rem;">
+          <div style="background:rgba(5,8,17,0.8); border:1px solid rgba(0,255,136,0.3); border-radius:12px; padding:1.2rem;">
+            <div style="color:#10b981;  font-weight:700; font-size:0.9rem;">Freshdesk CX Gateway</div>
+            <div style="color:var(--text-gray); font-size:0.85rem; margin-top:4px;">Status: Operational</div>
+          </div>
+          <div style="background:rgba(5,8,17,0.8); border:1px solid rgba(251, 191, 36, 0.25); border-radius:12px; padding:1.2rem;">
+            <div style="color:#38bdf8;  font-weight:700; font-size:0.9rem;">GitHub REST API MCP</div>
+            <div style="color:var(--text-gray); font-size:0.85rem; margin-top:4px;">Status: Connected</div>
+          </div>
+          <div style="background:rgba(5,8,17,0.8); border:1px solid rgba(245, 158, 11, 0.35); border-radius:12px; padding:1.2rem;">
+            <div style="color:#818cf8;  font-weight:700; font-size:0.9rem;">PostgreSQL Tool Context</div>
+            <div style="color:var(--text-gray); font-size:0.85rem; margin-top:4px;">Status: Synchronized</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="/mcp" class="btn btn-primary" style="background:linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); color:#050811;">CONNECT NEW MCP PROVIDER ⚡</a>
+          <a href="/freshworks" class="btn btn-primary" style="background:rgba(245, 158, 11, 0.35); color:#818cf8; border:1px solid var(--accent-magenta);">DEPLOY FRESHWORKS WORKSPACE 🚀</a>
+        </div>
+      </div>
+
+
+    <!-- ===================================================================== -->
+    <!-- ⚙️ ROLE EXCLUSIVE PANEL 4: DEVELOPER WORKSTATION & CODE SANDBOX      -->
+    <!-- ===================================================================== -->
+    {% else %}
+      <div class="card" style="border-color: rgba(251, 191, 36, 0.25); margin-bottom: 2.2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.8rem;">
+          <h3 style="margin:0; color:#38bdf8;  font-size:1.15rem; letter-spacing:0.04em;">
+            ⚙️ DEVELOPER AGENT SKILL BUILDER WORKSTATION
+          </h3>
+          <span style="color:var(--text-gray);  font-size:0.8rem;">PYTHON SDK SUPPORTED</span>
+        </div>
+        <p style="color:var(--text-gray); font-size:0.95rem; margin-bottom:1.2rem;">
+          Quickly register new agent skill endpoints or issue persistent API access tokens:
+        </p>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="/skills" class="btn btn-primary">+ REGISTER NEW SKILL ⚙️</a>
+          <a href="/api_keys" class="btn btn-primary" style="background:rgba(157, 78, 221, 0.2); color:#fff; border:1px solid var(--accent-purple);">GENERATE ACCESS KEY 🔑</a>
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Recent Skills List -->
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.4rem; flex-wrap:wrap; gap:0.8rem;">
+        <h3 style="margin:0; color:#fff;  font-size:1.1rem; letter-spacing:0.04em;">
+          {% if is_admin %}SYSTEM-WIDE RECENT SKILLS (ADMIN VIEW){% else %}RECENT REPOSITORY SKILLS{% endif %}
+        </h3>
+        <a href="/skills" style="color:#38bdf8; text-decoration:none;  font-size:0.82rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;">+ NEW SKILL</a>
+      </div>
+      
+      {% set target_skills = all_system_skills if is_admin and all_system_skills else recent_skills %}
+      {% if target_skills %}
+        <div style="display:flex; flex-direction:column; gap:0.8rem;">
+          {% for s in target_skills %}
+            <div class="skill-row">
+              <div>
+                <strong style="color:#fff; font-size:1.02rem;  letter-spacing:0.02em;">{{ s.name }}</strong>
+                {% if is_admin and s.user_name %}
+                  <span style="color:#e2b144; font-size:0.82rem;  margin-left:8px;">[Author: {{ s.user_name }}]</span>
+                {% endif %}
+                <p style="color:var(--text-gray); margin:0.3rem 0 0; font-size:0.9rem;">{{ s.description }}</p>
+              </div>
+              <span class="badge-green">{{ s.status }}</span>
+=======
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 260px;
+      background-color: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      text-align: center;
+      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 10px rgba(0,242,254,0.6));
+    }
+    .nav-item {
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+      color: var(--text-gray);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-item:hover, .nav-item.active {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--accent-ai);
+    }
+    .main-content {
+      flex: 1;
+      padding: 3rem;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,242,254,0.4);
+    }
+    .avatar-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f2fe, #f093fb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0F172A;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 0 25px rgba(0,242,254,0.5);
+      overflow: hidden;
+    }
+    .avatar-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo" style="text-align:center; margin-bottom: 2rem;"><a href="/dashboard"><img src="/static/logo.png" alt="AgentX Platform" style="max-width: 190px; height: auto; object-fit: contain; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6)); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a></div>
+    <a href="/dashboard" class="nav-item active">Dashboard</a>
+    <a href="/skills" class="nav-item">Skill Registry</a>
+    <a href="/mcp" class="nav-item">MCP Integrations</a>
+    <a href="/freshworks" class="nav-item">Freshworks Deployer</a>
+    <a href="/knowledge_graph" class="nav-item">Knowledge Graph</a>
+    <a href="/simulator" class="nav-item">Agent Simulator</a>
+    <a href="/analytics" class="nav-item">Analytics</a>
+    <a href="/api_keys" class="nav-item">API Keys</a>
+    <div style="flex:1"></div>
+    <a href="/logout" class="nav-item" style="color:#EF4444">Logout</a>
+  </div>
+
+  <div class="main-content">
+    <div class="header">
+      <h1 style="font-size:2.2rem;">Welcome back, <span style="background:linear-gradient(90deg, #00f2fe, #f093fb); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">{{ user.name }}</span></h1>
+      <span style="color:#22C55E; background:rgba(34,197,94,0.15); padding:6px 14px; border-radius:20px; font-size:0.85rem; font-weight:600;">● Live Session Verified</span>
+    </div>
+
+    <div class="grid">
+      <!-- Profile Card -->
+      <div class="card" style="text-align: center;">
+        <div class="avatar-circle">
+          {% if user.profile_pic and user.profile_pic != 'default.png' %}
+            <img src="/static/uploads/{{ user.profile_pic }}" alt="Avatar" onerror="this.style.display='none'; this.parentNode.innerText='{{ user.name[:2]|upper }}';">
+          {% else %}
+            {{ user.name[:2]|upper }}
+          {% endif %}
+        </div>
+        <h2 style="margin: 0 0 0.4rem; font-size: 1.4rem; color: #fff;">{{ user.name }}</h2>
+        <div style="color: #00f2fe; font-weight: 600; margin-bottom: 0.5rem;">Rank: {{ user.role }}</div>
+        <div style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 0.3rem;">{{ user.email }}</div>
+        {% if user.organization %}
+          <div style="color: #f093fb; font-size: 0.85rem;">🏢 {{ user.organization }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Skills Count -->
+      <div class="card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <div style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #00f2fe, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0;">
+          {{ skill_count }}
+        </div>
+        <p style="color: var(--text-gray); font-size: 1.1rem; margin: 0.5rem 0 0;">Agent Skills in Database</p>
+        <a href="/skills" style="color: #00f2fe; font-size: 0.9rem; margin-top: 1rem; text-decoration: none;">Manage Skills →</a>
+      </div>
+
+      <!-- MCP Integrations -->
+      <div class="card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <div style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #a855f7, #f093fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0;">
+          {{ mcp_count }}
+        </div>
+        <p style="color: var(--text-gray); font-size: 1.1rem; margin: 0.5rem 0 0;">Active MCP Bridges</p>
+        <a href="/mcp" style="color: #f093fb; font-size: 0.9rem; margin-top: 1rem; text-decoration: none;">Configure MCP →</a>
+      </div>
+    </div>
+
+    <!-- Recent Skills Stored in DB -->
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+        <h3 style="margin:0; color:#fff;">Recent Skills Saved in Database</h3>
+        <a href="/skills" style="color:#00f2fe; text-decoration:none; font-size:0.9rem;">+ Add New Skill</a>
+      </div>
+      {% if recent_skills %}
+        <div style="display:flex; flex-direction:column; gap:0.8rem;">
+          {% for s in recent_skills %}
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:0.9rem 1.2rem; background:rgba(15,23,42,0.6); border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
+              <div>
+                <strong style="color:#fff; font-size:1.05rem;">{{ s.name }}</strong>
+                <p style="color:var(--text-gray); margin:0.2rem 0 0; font-size:0.9rem;">{{ s.description }}</p>
+              </div>
+              <span style="background:rgba(34,197,94,0.15); color:#22C55E; padding:4px 10px; border-radius:12px; font-size:0.8rem;">{{ s.status }}</span>
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+<<<<<<< HEAD
+        <p style="color:var(--text-gray); margin:0;">No skills registered yet. Click <a href="/skills" style="color:#38bdf8;">here</a> to create your first agent skill!</p>
+      {% endif %}
+    </div>
+
+  </div><!-- /.main-content -->
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="/static/js/constellations.js?v=2.5"></script>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    });
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+
+    /* ── Admin User Management ────────────────────────────────────────────── */
+    function openAddModal() {
+      const modal = document.getElementById('addUserModal');
+      if (!modal) return;
+      modal.style.display = 'flex';
+      document.getElementById('addUserMsg').textContent = '';
+      document.getElementById('addUserForm').reset();
+    }
+
+    function closeAddModal() {
+      const modal = document.getElementById('addUserModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // Close modal on backdrop click
+    const addModal = document.getElementById('addUserModal');
+    if (addModal) {
+      addModal.addEventListener('click', (e) => {
+        if (e.target === addModal) closeAddModal();
+      });
+    }
+
+    function setAdminFeedback(msg, isError) {
+      const fb = document.getElementById('adminFeedback');
+      if (!fb) return;
+      fb.textContent = msg;
+      fb.style.color = isError ? '#ff4d4d' : 'var(--accent-green)';
+      fb.style.fontFamily = "var(--font-display)";
+      fb.style.fontSize = "0.88rem";
+      setTimeout(() => { fb.textContent = ''; }, 5000);
+    }
+
+    // Submit: Add User form
+    const addUserForm = document.getElementById('addUserForm');
+    if (addUserForm) {
+      addUserForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const msg = document.getElementById('addUserMsg');
+        msg.textContent = '⏳ Creating account…';
+        msg.style.color = 'var(--accent-cyan)';
+        msg.style.fontFamily = 'var(--font-display)';
+
+        const fd = new FormData(addUserForm);
+        try {
+          const res = await fetch('/admin/add_user', { method: 'POST', body: fd });
+          const data = await res.json();
+          if (!res.ok) {
+            msg.textContent = '❌ ' + (data.error || 'Failed to create user');
+            msg.style.color = '#ff4d4d';
+            return;
+          }
+          msg.textContent = '✅ ' + data.message;
+          msg.style.color = 'var(--accent-green)';
+          setTimeout(closeAddModal, 1000);
+          setTimeout(() => window.location.reload(), 1200);
+        } catch (err) {
+          msg.textContent = '❌ Network error — check the server';
+          msg.style.color = '#ff4d4d';
+        }
+      });
+    }
+
+    // Delete a user by ID
+    async function deleteUser(userId, userName) {
+      if (!confirm('⚠️ DELETE USER: "' + userName + '"\n\nThis will permanently delete their account and ALL associated data (skills, MCPs, deployments, simulator logs, API keys).\n\nThis action cannot be undone. Continue?')) {
+        return;
+      }
+      try {
+        const res = await fetch('/admin/delete_user/' + userId, { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok) {
+          setAdminFeedback('❌ ' + (data.error || 'Failed to delete user'), true);
+          return;
+        }
+        // Remove the row from the table immediately
+        const row = document.getElementById('user-row-' + userId);
+        if (row) {
+          row.style.transition = 'opacity 0.4s, transform 0.4s';
+          row.style.opacity = '0';
+          row.style.transform = 'translateX(-30px)';
+          setTimeout(() => row.remove(), 400);
+        }
+        // Update user count
+        const countEl = document.getElementById('userCount');
+        if (countEl) countEl.textContent = parseInt(countEl.textContent) - 1;
+        setAdminFeedback('✅ ' + data.message, false);
+      } catch (err) {
+        setAdminFeedback('❌ Network error — check the server', true);
+      }
+    }
+  </script>
+=======
+        <p style="color:var(--text-gray); margin:0;">No skills saved yet. Click <a href="/skills" style="color:#00f2fe;">here</a> to create your first agent skill!</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="/static/js/constellations.js"></script>
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+</body>
+</html>

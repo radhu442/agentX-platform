@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentX — Corsair Integration Engine (MCP Hub)</title>
+  <meta name="description" content="AgentX Corsair Integration Hub — 100% functional Corsair DB, MCP Protocol, Knowledge Base & Workflow Automation for Hack & Build 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #050811;
+      --card-bg: rgba(10, 16, 28, 0.88);
+      --card-hover: rgba(15, 24, 42, 0.94);
+      --border-subtle: rgba(56, 189, 248, 0.18);
+      --border-accent: rgba(56, 189, 248, 0.45);
+      --accent-cyan: #38bdf8;
+      --accent-blue: #0284c7;
+      --accent-green: #10b981;
+      --accent-mint: #34d399;
+      --accent-gold: #f59e0b;
+      --accent-coral: #fb923c;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sidebar-width: 270px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Sidebar styles matching AgentX */
+    .sidebar {
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      background: rgba(8, 12, 22, 0.96);
+      backdrop-filter: blur(24px);
+      border-right: 1px solid var(--border-subtle);
+      padding: 1.6rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    .logo { margin-bottom: 1.8rem; text-align: center; }
+    .logo img { max-width: 175px; height: auto; object-fit: contain; }
+    .nav-section { flex: 1; display: flex; flex-direction: column; gap: 0.35rem; }
+    .nav-category {
+      font-size: 0.66rem; font-weight: 700; color: var(--accent-cyan);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.8rem 0.6rem 0.3rem; opacity: 0.9;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: 0.8rem; padding: 0.65rem 0.85rem;
+      border-radius: 12px; color: #94a3b8; text-decoration: none; font-size: 0.9rem;
+      font-weight: 500; transition: all 0.2s ease; border: 1px solid transparent;
+    }
+    .nav-item:hover { background: rgba(255, 255, 255, 0.05); color: #fff; transform: translateX(3px); }
+    .nav-item.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.18) 0%, rgba(2, 132, 199, 0.12) 100%);
+      color: #38bdf8; font-weight: 700; border-color: rgba(56, 189, 248, 0.35);
+    }
+    .nav-icon-box {
+      width: 32px; height: 32px; border-radius: 9px; background: rgba(255, 255, 255, 0.04);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    }
+    .nav-item.active .nav-icon-box { background: #fff; color: #000; }
+    .nav-pill-mint {
+      font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 10px;
+      background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3);
+      margin-left: auto;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 2.2rem 3rem 4rem;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Top Page Header */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem;
+      font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 20px;
+      background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35);
+      margin-bottom: 6px;
+    }
+    .page-title {
+      font-size: 2rem; font-weight: 900; margin: 0; letter-spacing: -0.02em; color: #fff;
+    }
+    .page-subtitle {
+      color: var(--text-muted); font-size: 0.95rem; margin: 4px 0 0;
+    }
+
+    /* Action buttons */
+    .btn-sync-action {
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+      color: #fff; border: 1px solid rgba(56, 189, 248, 0.5);
+      padding: 12px 24px; border-radius: 12px; font-weight: 800; font-size: 0.92rem;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4); transition: all 0.2s ease;
+    }
+    .btn-sync-action:hover {
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      transform: translateY(-2px); box-shadow: 0 6px 25px rgba(14, 165, 233, 0.6);
+    }
+
+    /* 4-Tab Navigation Bar */
+    .corsair-tabs {
+      display: flex; gap: 8px; margin-bottom: 2rem; border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.8rem; overflow-x: auto;
+    }
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle);
+      color: var(--text-muted); padding: 11px 20px; border-radius: 12px; font-weight: 700;
+      font-size: 0.88rem; cursor: pointer; transition: all 0.2s ease; display: flex;
+      align-items: center; gap: 8px; white-space: nowrap;
+    }
+    .tab-btn:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(2, 132, 199, 0.15) 100%);
+      color: #38bdf8; border-color: rgba(56, 189, 248, 0.5); box-shadow: 0 4px 16px rgba(14, 165, 233, 0.2);
+    }
+
+    /* Cards & Grids */
+    .card {
+      background: var(--card-bg); backdrop-filter: blur(20px); border: 1px solid var(--border-subtle);
+      border-radius: 20px; padding: 1.8rem; margin-bottom: 1.8rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 1.8rem;
+    }
+    .metric-box {
+      background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-subtle); border-radius: 16px;
+      padding: 1.3rem; display: flex; align-items: center; gap: 1rem; transition: transform 0.2s;
+    }
+    .metric-box:hover { transform: translateY(-2px); border-color: var(--border-accent); }
+    .metric-icon {
+      width: 46px; height: 46px; border-radius: 12px; background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .metric-stat { font-size: 1.8rem; font-weight: 900; color: #fff; line-height: 1.1; }
+    .metric-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-top: 2px; }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; margin-top: 1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; color: var(--text-muted); }
+    th {
+      text-align: left; padding: 12px 14px; font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-dim); border-bottom: 1px solid var(--border-subtle);
+    }
+    td { padding: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); color: #e2e8f0; vertical-align: middle; }
+    .badge-service {
+      display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 8px;
+      font-size: 0.74rem; font-weight: 800; text-transform: uppercase;
+    }
+    .badge-service.github { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .badge-service.slack { background: rgba(74, 21, 75, 0.4); color: #e01e5a; border: 1px solid rgba(224, 30, 90, 0.4); }
+    .badge-service.gmail { background: rgba(234, 67, 53, 0.15); color: #f87171; border: 1px solid rgba(234, 67, 53, 0.3); }
+    .badge-service.calendar { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); }
+
+    .btn-inspect {
+      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-subtle); color: #38bdf8;
+      padding: 5px 12px; border-radius: 8px; font-size: 0.76rem; font-weight: 700; cursor: pointer;
+    }
+    .btn-inspect:hover { background: rgba(56, 189, 248, 0.15); }
+
+    /* Forms & Inputs */
+    .input-row { display: flex; gap: 10px; }
+    .input-box {
+      flex: 1; background: rgba(5, 8, 17, 0.85); border: 1px solid var(--border-subtle);
+      border-radius: 10px; padding: 12px 16px; color: #fff; font-family: var(--font-family);
+      font-size: 0.94rem; outline: none;
+    }
+    .input-box:focus { border-color: var(--accent-cyan); box-shadow: 0 0 15px rgba(56, 189, 248, 0.25); }
+
+    /* Tab content areas */
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* Workflow Timeline */
+    .timeline { position: relative; padding-left: 28px; margin: 1.5rem 0; }
+    .timeline::before {
+      content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(180deg, #38bdf8, #10b981);
+    }
+    .timeline-item { position: relative; margin-bottom: 1.4rem; }
+    .timeline-dot {
+      position: absolute; left: -28px; top: 3px; width: 20px; height: 20px; border-radius: 50%;
+      background: #0284c7; border: 3px solid #050811; display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; color: #fff; font-weight: 900;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center;
+    }
+    .modal-box {
+      background: #0c1220; border: 1px solid var(--border-accent); border-radius: 20px;
+      padding: 2.2rem; max-width: 650px; width: 90%; max-height: 85vh; overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body data-constellations="true">
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="logo">
+      <a href="/dashboard"><img src="/static/logo.png" alt="AgentX Platform"></a>
+    </div>
+
+    <nav class="nav-section">
+      <div class="nav-category">Command Console</div>
+      <a href="/dashboard" class="nav-item">
+        <span class="nav-icon-box">📊</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+
+      <div class="nav-category">Agent Engine</div>
+      <a href="/corsair" class="nav-item active">
+        <span class="nav-icon-box">⚡</span>
+        <span class="nav-label">Corsair Hub</span>
+        <span class="nav-pill-mint">DB SYNC</span>
+      </a>
+      <a href="/skills" class="nav-item">
+        <span class="nav-icon-box">⚙️</span>
+        <span class="nav-label">Skill Registry</span>
+      </a>
+      <a href="/mcp" class="nav-item">
+        <span class="nav-icon-box">🔗</span>
+        <span class="nav-label">MCP Bridges</span>
+      </a>
+      <a href="/freshworks" class="nav-item">
+        <span class="nav-icon-box">🚀</span>
+        <span class="nav-label">Freshworks Deployer</span>
+      </a>
+
+      <div class="nav-category">Runtime &amp; Intelligence</div>
+      <a href="/knowledge_graph" class="nav-item">
+        <span class="nav-icon-box">🧠</span>
+        <span class="nav-label">Knowledge Graph</span>
+      </a>
+      <a href="/simulator" class="nav-item">
+        <span class="nav-icon-box">💬</span>
+        <span class="nav-label">Agent Simulator</span>
+      </a>
+
+      <div class="nav-category">Security &amp; Governance</div>
+      <a href="/analytics" class="nav-item">
+        <span class="nav-icon-box">📈</span>
+        <span class="nav-label">Telemetry</span>
+      </a>
+      <a href="/api_keys" class="nav-item">
+        <span class="nav-icon-box">🔑</span>
+        <span class="nav-label">API Keys</span>
+      </a>
+      <a href="/billing" class="nav-item">
+        <span class="nav-icon-box">💳</span>
+        <span class="nav-label">Billing &amp; Credits</span>
+      </a>
+
+      <div style="margin-top:auto; padding: 0.8rem 0;">
+        <a href="/logout" class="nav-item" style="color:#f87171;">
+          <span class="nav-icon-box" style="border-color:rgba(248,113,113,0.3); background:rgba(248,113,113,0.08);">⏻</span>
+          <span class="nav-label">Sign Out</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Main Viewport -->
+  <div class="main-content">
+
+    <!-- Top Page Header -->
+    <div class="page-header">
+      <div>
+        <div class="header-badge">
+          ⚡ OFFICIAL CORSAIR INTEGRATION LAYER • HACK &amp; BUILD 2026
+        </div>
+        <h1 class="page-title">Corsair Command &amp; Sync Hub</h1>
+        <p class="page-subtitle">
+          5-Table Database Sync, MCP Protocol Adapters, Grounded Knowledge Base &amp; Cross-Service Workflows
+        </p>
+      </div>
+
+      <div>
+        <button class="btn-sync-action" onclick="triggerCorsairSync()" id="syncBtn">
+          ⚡ Sync Corsair DB Now
+        </button>
+      </div>
+    </div>
+
+    <!-- 4-Tab Navigation Bar -->
+    <div class="corsair-tabs">
+      <button class="tab-btn active" onclick="switchTab('dashboard')">
+        📊 1. Dashboards &amp; Live Sync
+      </button>
+      <button class="tab-btn" onclick="switchTab('agents')">
+        🤖 2. AI Agents (Corsair MCP)
+      </button>
+      <button class="tab-btn" onclick="switchTab('knowledge')">
+        🔍 3. Knowledge Bases (Search DB)
+      </button>
+      <button class="tab-btn" onclick="switchTab('workflows')">
+        ⚡ 4. Workflow Automations
+      </button>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: DASHBOARDS & LIVE CORSAIR SYNC                                -->
+    <!-- =================================================================== -->
+    <div id="pane-dashboard" class="tab-pane active">
+
+      <!-- Metrics Grid -->
+      <div class="metrics-grid">
+        <div class="metric-box">
+          <div class="metric-icon">🐙</div>
+          <div>
+            <div class="metric-stat" id="stat-gh">{{ telemetry.breakdown.github }}</div>
+            <div class="metric-label">GitHub Issues &amp; PRs</div>
+          </div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-icon">📢</div>
+          <div>
+            <div class="metric-stat" id="stat-sl">{{ telemetry.breakdown.slack }}</div>
+            <div class="metric-label">Slack Messages</div>
+          </div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-icon">✉️</div>
+          <div>
+            <div class="metric-stat" id="stat-gm">{{ telemetry.breakdown.gmail }}</div>
+            <div class="metric-label">Gmail Threads</div>
+          </div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-icon">📅</div>
+          <div>
+            <div class="metric-stat" id="stat-cal">{{ telemetry.breakdown.calendar }}</div>
+            <div class="metric-label">Calendar Events</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Synced Entities Table -->
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h3 style="margin:0; font-size:1.15rem; color:#fff;">
+              📁 Synced Entities in Corsair DB (<span id="total-entities-count">{{ telemetry.total_entities }}</span> Records)
+            </h3>
+            <p style="margin:2px 0 0; font-size:0.8rem; color:var(--text-muted);">
+              Read directly from <code style="color:#38bdf8;">corsair_entities</code> table in SQLite. Zero third-party API latency.
+            </p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <select id="entityFilter" class="input-box" style="padding:6px 12px; font-size:0.82rem;" onchange="fetchFilteredEntities()">
+              <option value="all">All Services</option>
+              <option value="github_issue">GitHub Issues</option>
+              <option value="github_pr">GitHub PRs</option>
+              <option value="slack_message">Slack Messages</option>
+              <option value="gmail_thread">Gmail Threads</option>
+              <option value="calendar_event">Calendar Events</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="entitiesTable">
+            <thead>
+              <tr>
+                <th>Entity ID</th>
+                <th>Service Plugin</th>
+                <th>Title / Content Summary</th>
+                <th>Version</th>
+                <th>Synced At</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="entitiesTbody">
+              {% for ent in entities %}
+              <tr>
+                <td style="font-family:monospace; color:#38bdf8; font-weight:700;">{{ ent.entity_id }}</td>
+                <td>
+                  <span class="badge-service {{ ent.entity_type.split('_')[0] }}">
+                    {{ ent.entity_type.replace('_', ' ') }}
+                  </span>
+                </td>
+                <td style="font-weight:600; color:#fff;">
+                  {{ ent.data.get('title') or ent.data.get('subject') or ent.data.get('text') or 'N/A' }}
+                </td>
+                <td style="font-family:monospace; font-size:0.75rem;">{{ ent.version }}</td>
+                <td style="font-size:0.78rem; color:var(--text-dim);">
+                  {{ ent.data.get('synced_at') or 'Live' }}
+                </td>
+                <td>
+                  <button class="btn-inspect" onclick='inspectEntity({{ ent.data|tojson }})'>
+                    View JSON
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: AI AGENTS & CORSAIR MCP TOOLS                                 -->
+    <!-- =================================================================== -->
+    <div id="pane-agents" class="tab-pane">
+      <div class="card">
+        <h3 style="margin:0 0 0.5rem; color:#fff; font-size:1.2rem;">
+          🤖 Corsair MCP Protocol Adapter (`list_operations`, `get_schema`, `run_script`)
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin:0 0 1.5rem;">
+          According to the official Corsair specification, LLMs interact with integrations through 3 standard tools.
+          Test them live below:
+        </p>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
+          <!-- Left: Operations & Schema -->
+          <div>
+            <label style="font-size:0.75rem; font-weight:800; color:var(--accent-cyan); text-transform:uppercase;">
+              1. Discovered Corsair Operations (`list_operations`)
+            </label>
+            <select id="mcpOpSelect" class="input-box" style="margin-top:6px; width:100%;" onchange="loadOpSchema()">
+              <option value="github.issues.create">github.issues.create — Create GitHub Issue</option>
+              <option value="slack.chat.postMessage">slack.chat.postMessage — Post Slack Message</option>
+              <option value="gmail.messages.send">gmail.messages.send — Send Gmail Message</option>
+              <option value="calendar.events.create">calendar.events.create — Schedule Calendar Event</option>
+              <option value="corsair.db.query">corsair.db.query — Query Corsair DB</option>
+            </select>
+
+            <label style="font-size:0.75rem; font-weight:800; color:var(--accent-cyan); text-transform:uppercase; margin-top:1.2rem; display:block;">
+              2. Parameter Schema (`get_schema`)
+            </label>
+            <pre id="schemaViewer" style="background:rgba(5,8,17,0.9); border:1px solid var(--border-subtle); padding:1rem; border-radius:10px; font-size:0.78rem; color:#a7f3d0; max-height:220px; overflow:auto;"></pre>
+          </div>
+
+          <!-- Right: Execution Runner -->
+          <div>
+            <label style="font-size:0.75rem; font-weight:800; color:var(--accent-cyan); text-transform:uppercase;">
+              3. Live Agent Execution (`run_script`)
+            </label>
+            <div style="margin-top:6px; display:flex; flex-direction:column; gap:10px;">
+              <input type="text" id="mcpParam1" class="input-box" placeholder="Title / Subject / Channel" value="Critical latency bottleneck in auth service">
+              <input type="text" id="mcpParam2" class="input-box" placeholder="Body / Text / Recipient" value="Investigate token expiration loop reported by team.">
+              <button class="btn-sync-action" style="justify-content:center;" onclick="executeMcpOperation()">
+                ⚡ Run Script via Corsair MCP
+              </button>
+            </div>
+
+            <div id="mcpOutputBox" style="display:none; margin-top:1rem; background:rgba(5,8,17,0.95); border:1px solid rgba(52,211,153,0.4); border-radius:10px; padding:1rem;">
+              <div style="font-size:0.75rem; font-weight:800; color:#34d399; margin-bottom:4px;">
+                ✓ MCP EXECUTION SUCCESSFUL
+              </div>
+              <pre id="mcpOutputJson" style="font-size:0.78rem; color:#f8fafc; margin:0; white-space:pre-wrap;"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 3: KNOWLEDGE BASES (SEARCH SYNCED DATA)                          -->
+    <!-- =================================================================== -->
+    <div id="pane-knowledge" class="tab-pane">
+      <div class="card">
+        <h3 style="margin:0 0 0.5rem; color:#fff; font-size:1.2rem;">
+          🔍 Corsair DB Grounded Knowledge Base
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin:0 0 1.2rem;">
+          Search across all synced enterprise records (GitHub issues, Slack messages, Gmail emails, Calendar events) in <code style="color:#38bdf8;">corsair_entities</code>.
+        </p>
+
+        <form onsubmit="handleKnowledgeSearch(event)" class="input-row" style="margin-bottom:1.2rem;">
+          <input type="text" id="kbQuery" class="input-box" placeholder="Ask a question, e.g.: 'What was the token bug on GitHub?' or 'When is Hack & Build mentoring?'" required>
+          <button type="submit" class="btn-sync-action">Search Corsair DB</button>
+        </form>
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem;">
+          <span style="font-size:0.75rem; color:var(--text-dim); align-self:center;">Try sample queries:</span>
+          <button type="button" class="btn-inspect" onclick="setKbQuery('authentication token timeout')">Bug #104 Token Timeout</button>
+          <button type="button" class="btn-inspect" onclick="setKbQuery('Hack and Build mentoring round')">Mentoring Schedule</button>
+          <button type="button" class="btn-inspect" onclick="setKbQuery('production deployment v2.5 verified')">Slack Deploy Notification</button>
+          <button type="button" class="btn-inspect" onclick="setKbQuery('Shortlisted Hack and Build')">Shortlisted Email</button>
+        </div>
+
+        <div id="kbResultArea" style="display:none;">
+          <div style="background:rgba(5,8,17,0.9); border:1px solid rgba(56,189,248,0.35); border-radius:14px; padding:1.4rem; margin-bottom:1.4rem;">
+            <div style="font-size:0.75rem; font-weight:800; color:var(--accent-cyan); text-transform:uppercase; margin-bottom:6px;">
+              🤖 Synthesized Answer from Corsair DB:
+            </div>
+            <div id="kbAnswerText" style="font-size:0.95rem; color:#fff; white-space:pre-wrap; line-height:1.6;"></div>
+          </div>
+
+          <h4 style="color:var(--text-muted); font-size:0.85rem; text-transform:uppercase; margin-bottom:8px;">
+            Verified Source Citations from <code style="color:#38bdf8;">corsair_entities</code>:
+          </h4>
+          <div id="kbSourcesList" style="display:grid; gap:8px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 4: WORKFLOW AUTOMATIONS                                         -->
+    <!-- =================================================================== -->
+    <div id="pane-workflows" class="tab-pane">
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.2rem;">
+          <div>
+            <h3 style="margin:0; color:#fff; font-size:1.2rem;">
+              ⚡ Cross-Service Workflow Automation
+            </h3>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin:3px 0 0;">
+              An event in one service triggers real actions in another, with full audit trail in <code style="color:#38bdf8;">corsair_events</code>.
+            </p>
+          </div>
+          <button class="btn-sync-action" onclick="runLiveWorkflow()" id="btnRunWf">
+            🚀 Test &amp; Execute Workflow Now
+          </button>
+        </div>
+
+        <!-- Visual Waterfall Workflow -->
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot">1</div>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); padding:1rem; border-radius:12px;">
+              <div style="font-weight:700; color:#fff; font-size:0.95rem;">
+                🐙 TRIGGER: GitHub Issue Created (P0 Critical Bug)
+              </div>
+              <div style="color:var(--text-muted); font-size:0.8rem; margin-top:2px;">
+                Incoming webhook parsed by Corsair API and upserted into <code>corsair_entities</code>.
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot">2</div>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); padding:1rem; border-radius:12px;">
+              <div style="font-weight:700; color:#fff; font-size:0.95rem;">
+                📢 ACTION 1: Slack Channel Broadcast
+              </div>
+              <div style="color:var(--text-muted); font-size:0.8rem; margin-top:2px;">
+                Dispatches high-priority alert to <code>#production-alerts</code> via Corsair MCP.
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot">3</div>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); padding:1rem; border-radius:12px;">
+              <div style="font-weight:700; color:#fff; font-size:0.95rem;">
+                ✉️ ACTION 2: Live Gmail Notification Dispatch
+              </div>
+              <div style="color:var(--text-muted); font-size:0.8rem; margin-top:2px;">
+                Sends authenticated carrier email to <code>crazyaayush777@gmail.com</code>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Execution Output Box -->
+        <div id="wfResultBox" style="display:none; background:rgba(6,14,24,0.95); border:1px solid rgba(16,185,129,0.4); border-radius:14px; padding:1.4rem; margin-top:1rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="color:#34d399; font-weight:800; font-size:0.86rem;">
+              ✓ WORKFLOW EXECUTION COMPLETED &amp; AUDITED
+            </span>
+            <span id="wfEventId" style="font-family:monospace; color:var(--text-dim); font-size:0.75rem;"></span>
+          </div>
+          <div id="wfStepsOutput" style="display:grid; gap:8px;"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JSON Inspection Modal -->
+  <div id="inspectModal" class="modal-overlay" onclick="closeInspectModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h3 style="margin:0; color:#38bdf8; font-size:1.1rem;">📄 Corsair Entity Record (JSON)</h3>
+        <button onclick="document.getElementById('inspectModal').style.display='none'" style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+      <pre id="inspectContent" style="background:#050811; border:1px solid var(--border-subtle); border-radius:10px; padding:1rem; font-size:0.8rem; color:#a7f3d0; overflow:auto; max-height:60vh;"></pre>
+    </div>
+  </div>
+
+  <!-- Background Constellations -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="/static/js/constellations.js?v=2.5"></script>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      
+      const btn = event.currentTarget;
+      if (btn) btn.classList.add('active');
+      const pane = document.getElementById('pane-' + tabId);
+      if (pane) pane.classList.add('active');
+
+      if (tabId === 'agents') loadOpSchema();
+    }
+
+    // 1. Live Sync
+    function triggerCorsairSync() {
+      const btn = document.getElementById('syncBtn');
+      btn.innerHTML = '⏳ Syncing with Corsair API...';
+      btn.disabled = true;
+
+      fetch('/api/corsair/sync', { method: 'POST' })
+        .then(r => r.json())
+        .then(d => {
+          btn.innerHTML = '⚡ Sync Corsair DB Now';
+          btn.disabled = false;
+          if (d.success) {
+            document.getElementById('stat-gh').textContent = d.metrics.github;
+            document.getElementById('stat-sl').textContent = d.metrics.slack;
+            document.getElementById('stat-gm').textContent = d.metrics.gmail;
+            document.getElementById('stat-cal').textContent = d.metrics.calendar;
+            document.getElementById('total-entities-count').textContent = d.total_entities;
+            fetchFilteredEntities();
+            alert('✓ Corsair DB Synced! Added ' + d.synced_new + ' new entities. Database is 100% up to date.');
+          }
+        })
+        .catch(err => {
+          btn.innerHTML = '⚡ Sync Corsair DB Now';
+          btn.disabled = false;
+          alert('Sync error: ' + err);
+        });
+    }
+
+    function fetchFilteredEntities() {
+      const val = document.getElementById('entityFilter').value;
+      fetch('/api/corsair/entities?type=' + encodeURIComponent(val))
+        .then(r => r.json())
+        .then(data => {
+          const tbody = document.getElementById('entitiesTbody');
+          tbody.innerHTML = '';
+          data.forEach(ent => {
+            const tr = document.createElement('tr');
+            const summary = ent.data.title || ent.data.subject || ent.data.text || 'N/A';
+            const sType = ent.entity_type.split('_')[0];
+            tr.innerHTML = `
+              <td style="font-family:monospace; color:#38bdf8; font-weight:700;">${ent.entity_id}</td>
+              <td><span class="badge-service ${sType}">${ent.entity_type.replace('_', ' ')}</span></td>
+              <td style="font-weight:600; color:#fff;">${escapeHtml(summary)}</td>
+              <td style="font-family:monospace; font-size:0.75rem;">${ent.version}</td>
+              <td style="font-size:0.78rem; color:var(--text-dim);">${ent.data.synced_at || 'Just now'}</td>
+              <td><button class="btn-inspect" onclick='inspectEntity(${JSON.stringify(ent.data).replace(/'/g, "&apos;")})'>View JSON</button></td>
+            `;
+            tbody.appendChild(tr);
+          });
+        });
+    }
+
+    function inspectEntity(dataObj) {
+      document.getElementById('inspectContent').textContent = JSON.stringify(dataObj, null, 2);
+      document.getElementById('inspectModal').style.display = 'flex';
+    }
+    function closeInspectModal(e) {
+      if (e.target.id === 'inspectModal') e.target.style.display = 'none';
+    }
+
+    // 2. MCP Schema & Execution
+    function loadOpSchema() {
+      const op = document.getElementById('mcpOpSelect').value;
+      fetch('/api/corsair/mcp/get_schema', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ operation: op })
+      })
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('schemaViewer').textContent = JSON.stringify(d.schema, null, 2);
+      });
+    }
+
+    function executeMcpOperation() {
+      const op = document.getElementById('mcpOpSelect').value;
+      const p1 = document.getElementById('mcpParam1').value;
+      const p2 = document.getElementById('mcpParam2').value;
+
+      let args = {};
+      if (op === 'github.issues.create') args = { repo: 'agentx-enterprise/core-agent', title: p1, body: p2 };
+      else if (op === 'slack.chat.postMessage') args = { channel: '#general', text: p1 + ' — ' + p2 };
+      else if (op === 'gmail.messages.send') args = { to: 'crazyaayush777@gmail.com', subject: p1, body: p2 };
+      else if (op === 'calendar.events.create') args = { title: p1, start_time: '2026-09-10 12:00:00' };
+      else args = { query: p1 };
+
+      fetch('/api/corsair/mcp/run_script', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ operation: op, args: args })
+      })
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('mcpOutputJson').textContent = JSON.stringify(d, null, 2);
+        document.getElementById('mcpOutputBox').style.display = 'block';
+      });
+    }
+
+    // 3. Knowledge Base
+    function setKbQuery(q) {
+      document.getElementById('kbQuery').value = q;
+      handleKnowledgeSearch(new Event('submit'));
+    }
+
+    function handleKnowledgeSearch(e) {
+      if (e) e.preventDefault();
+      const q = document.getElementById('kbQuery').value.trim();
+      if (!q) return;
+
+      fetch('/api/corsair/knowledge/search', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ query: q })
+      })
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('kbAnswerText').textContent = d.answer;
+        const sList = document.getElementById('kbSourcesList');
+        sList.innerHTML = '';
+        d.sources.forEach(s => {
+          const sDiv = document.createElement('div');
+          sDiv.style.background = 'rgba(255,255,255,0.03)';
+          sDiv.style.border = '1px solid var(--border-subtle)';
+          sDiv.style.padding = '8px 12px';
+          sDiv.style.borderRadius = '8px';
+          sDiv.style.fontSize = '0.82rem';
+          const title = s.data.title || s.data.subject || s.data.text || s.entity_id;
+          sDiv.innerHTML = `<span style="color:#38bdf8; font-weight:700;">[${s.entity_type.toUpperCase()}]</span> <strong style="color:#fff;">${escapeHtml(title)}</strong>`;
+          sList.appendChild(sDiv);
+        });
+        document.getElementById('kbResultArea').style.display = 'block';
+      });
+    }
+
+    // 4. Workflow Automations
+    function runLiveWorkflow() {
+      const btn = document.getElementById('btnRunWf');
+      btn.innerHTML = '⏳ Executing cross-service chain...';
+      btn.disabled = true;
+
+      fetch('/api/corsair/workflows/trigger', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          title: 'Critical DB Connection Saturation in Production',
+          repo: 'agentx-enterprise/core-agent',
+          slack_channel: '#production-alerts',
+          recipient_email: 'crazyaayush777@gmail.com'
+        })
+      })
+      .then(r => r.json())
+      .then(d => {
+        btn.innerHTML = '🚀 Test &amp; Execute Workflow Now';
+        btn.disabled = false;
+        if (d.success) {
+          document.getElementById('wfEventId').textContent = 'Audit ID: ' + d.workflow_event_id;
+          const stepsDiv = document.getElementById('wfStepsOutput');
+          stepsDiv.innerHTML = '';
+          d.steps.forEach(s => {
+            const stepRow = document.createElement('div');
+            stepRow.style.background = 'rgba(255,255,255,0.03)';
+            stepRow.style.border = '1px solid rgba(16,185,129,0.3)';
+            stepRow.style.padding = '10px 14px';
+            stepRow.style.borderRadius = '8px';
+            stepRow.innerHTML = `
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:700; color:#fff;">
+                <span>Step ${s.step}: ${s.action}</span>
+                <span style="color:#34d399;">✓ ${s.status}</span>
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">${s.output}</div>
+            `;
+            stepsDiv.appendChild(stepRow);
+          });
+          document.getElementById('wfResultBox').style.display = 'block';
+        }
+      })
+      .catch(err => {
+        btn.innerHTML = '🚀 Test &amp; Execute Workflow Now';
+        btn.disabled = false;
+        alert('Workflow error: ' + err);
+      });
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

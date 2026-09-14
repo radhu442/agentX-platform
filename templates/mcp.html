@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<<<<<<< HEAD
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentX — MCP Integrations</title>
+  <meta name="description" content="Connect and manage MCP tool context providers in AgentX.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #050a08;
+      --bg-secondary: #0a1410;
+      --card-bg: rgba(10, 22, 17, 0.82);
+      --card-hover: rgba(15, 32, 25, 0.92);
+      --accent-emerald: #10b981;
+      --accent-mint: #34d399;
+      --accent-green-glow: rgba(16, 185, 129, 0.35);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-subtle: rgba(16, 185, 129, 0.14);
+      --border-emerald: rgba(16, 185, 129, 0.35);
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --sidebar-width: 275px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+=======
+  <title>AgentX Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0F172A;
+      --bg-secondary: #111827;
+      --card-bg: #1E293B;
+      --accent-primary: #3B82F6;
+      --accent-ai: #8B5CF6;
+      --text-main: #FFFFFF;
+      --text-gray: #D1D5DB;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --font-family: 'Poppins', sans-serif;
+    }
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+<<<<<<< HEAD
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 90% 90%, rgba(5, 150, 105, 0.07) 0%, transparent 45%);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+    .sidebar {
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      background: linear-gradient(180deg, rgba(5, 12, 9, 0.97) 0%, rgba(8, 20, 15, 0.96) 100%);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-right: 1px solid var(--border-emerald);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+      box-shadow: 8px 0 35px rgba(0, 0, 0, 0.6);
+    }
+    .logo {
+      margin-bottom: 1.6rem;
+      text-align: center;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .logo::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px;
+      height: 80px;
+      background: radial-gradient(ellipse, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.15) 50%, transparent 80%);
+      filter: blur(16px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .logo img {
+      max-width: 180px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .logo img:hover {
+      transform: scale(1.04);
+      filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.5));
+    }
+    .nav-section { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+    
+    .nav-category {
+      font-size: 0.66rem;
+      font-weight: 700;
+      color: #34d399;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 0.6rem 0.35rem;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-category::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.35), transparent);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 10px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+      position: relative;
+    }
+    .nav-item:hover {
+      background: rgba(16, 185, 129, 0.08);
+      color: #ffffff;
+      transform: translateX(4px);
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+    .nav-item.active {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.22) 0%, rgba(6, 78, 59, 0.12) 100%);
+      color: #ffffff;
+      border: 1px solid rgba(16, 185, 129, 0.55);
+      border-left: 3.5px solid #10b981;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 16px rgba(16, 185, 129, 0.14);
+    }
+    .nav-item.active .nav-label {
+      color: #6ee7b7;
+      text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    }
+
+    .nav-icon-box {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      font-size: 1.05rem;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+    .nav-item:hover .nav-icon-box {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #34d399;
+      transform: scale(1.1);
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+    }
+    .nav-item.active .nav-icon-box {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.45), rgba(5, 150, 105, 0.35));
+      border-color: #34d399;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.55);
+      transform: scale(1.08);
+    }
+
+    .nav-pill-green {
+      margin-left: auto;
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: #6ee7b7;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.06em;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+    }
+    .nav-pill-mint {
+      margin-left: auto;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      color: #34d399;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-item.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .lock-icon { font-size: 0.75rem; margin-left: auto; opacity: 0.7; }
+    
+    .sidebar-user-card {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 11px 13px;
+      margin: 0.8rem 0 0.5rem;
+      border-radius: 11px;
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.18);
+      backdrop-filter: blur(12px);
+    }
+    .user-avatar-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981, #047857);
+      color: #ffffff;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+      flex-shrink: 0;
+    }
+    .user-info-text {
+      overflow: hidden;
+      line-height: 1.25;
+      flex: 1;
+    }
+    .user-display-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #f8fafc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-display-role {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #34d399;
+      margin-top: 2px;
+      letter-spacing: 0.04em;
+    }
+    .nav-item.logout {
+      color: #f87171;
+      border: 1px solid rgba(248, 113, 113, 0.2);
+      margin-top: 0.3rem;
+    }
+    .nav-item.logout:hover {
+      background: rgba(248, 113, 113, 0.12);
+      color: #ef4444;
+      border-color: rgba(248, 113, 113, 0.4);
+      transform: translateX(2px);
+    }
+
+    .main-content { flex: 1; padding: 2.2rem 3rem; min-width: 0; }
+    
+    .page-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;
+      flex-wrap: wrap; gap: 1rem; background: var(--card-bg); backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle); border-radius: 14px; padding: 1.4rem 1.8rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .page-tag {
+      font-size: 0.75rem; color: #34d399; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px;
+    }
+    .page-header h1 {
+      font-size: 1.7rem; font-weight: 700; margin: 0; letter-spacing: -0.02em; color: var(--text-main);
+    }
+    .page-subtitle {
+      font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;
+    }
+    .counter-pill {
+      background: rgba(16, 185, 129, 0.12); border: 1px solid var(--border-emerald);
+      color: #34d399; padding: 5px 13px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+
+    .card {
+      background: var(--card-bg); backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle); border-radius: 14px;
+      padding: 1.8rem; margin-bottom: 1.8rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .card-title {
+      font-size: 1.15rem; font-weight: 700; margin: 0 0 0.4rem; color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+    .card-desc {
+      font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.2rem;
+    }
+
+    .input-field, input[type="text"], input[type="password"], textarea, select {
+      width: 100%; box-sizing: border-box; padding: 11px 15px; border-radius: 8px;
+      background: rgba(6, 14, 10, 0.85); border: 1px solid var(--border-subtle);
+      color: #fff; font-size: 0.94rem; font-family: var(--font-family);
+      outline: none; transition: all 0.2s ease;
+    }
+    .input-field:focus, input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+      border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    }
+
+    .btn-royal, .btn-gradient, .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: linear-gradient(135deg, #10b981 0%, #047857 100%) !important;
+      color: #ffffff !important; font-weight: 700; font-size: 0.9rem;
+      padding: 11px 22px; border-radius: 8px; cursor: pointer;
+      text-decoration: none; border: 1px solid rgba(52, 211, 153, 0.3) !important;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35) !important;
+    }
+    .btn-royal:hover, .btn-gradient:hover, .btn-primary:hover {
+      background: linear-gradient(135deg, #34d399 0%, #059669 100%) !important;
+      box-shadow: 0 6px 24px rgba(16, 185, 129, 0.55) !important; transform: translateY(-1px);
+    }
+
+    .section-heading {
+      font-size: 1.15rem; font-weight: 700; color: var(--text-main);
+      margin: 2rem 0 1rem; letter-spacing: -0.01em;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* Simulator chat styles */
+    .ai-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .ai-badge.fallback { background: rgba(5, 150, 105, 0.15); color: #6ee7b7; border-color: rgba(5, 150, 105, 0.4); }
+    #chat-box { flex: 1; background: rgba(6, 14, 10, 0.92); border-radius: 14px; padding: 1.5rem; overflow-y: auto; margin-bottom: 1.4rem; border: 1px solid var(--border-subtle); min-height: 350px; display: flex; flex-direction: column; gap: 1.2rem; }
+    .msg-user { text-align: right; }
+    .msg-user .bubble { display: inline-block; background: linear-gradient(135deg, #047857 0%, #065f46 100%); border: 1px solid rgba(52, 211, 153, 0.3); padding: 13px 18px; border-radius: 16px 16px 3px 16px; color: #ffffff; font-weight: 500; font-size: 0.94rem; max-width: 78%; text-align: left; word-break: break-word; box-shadow: 0 4px 16px rgba(4, 120, 87, 0.25); line-height: 1.55; }
+    .msg-agent { text-align: left; }
+    .msg-agent .sender { color: #34d399; font-weight: 700; font-size: 0.8rem; margin-bottom: 6px; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+    .msg-agent .bubble { display: inline-block; background: rgba(10, 24, 18, 0.9); border: 1px solid rgba(16, 185, 129, 0.25); border-left: 3.5px solid #10b981; padding: 14px 18px; border-radius: 3px 16px 16px 16px; color: #f8fafc; font-size: 0.95rem; max-width: 80%; text-align: left; word-break: break-word; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); line-height: 1.6; }
+    .msg-system { color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 6px 0; }
+    .msg-system span { color: #34d399; font-weight: 600; }
+    .input-row { display: flex; gap: 12px; }
+    .sim-input { flex: 1; padding: 14px 18px; border-radius: 10px; background: rgba(6, 14, 10, 0.9); border: 1px solid rgba(16, 185, 129, 0.25); color: #fff; font-size: 0.96rem; font-family: var(--font-family); outline: none; transition: all 0.2s ease; }
+    .sim-input:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18); }
+    .btn-send { font-family: var(--font-family); font-size: 0.88rem; font-weight: 700; letter-spacing: 0.04em; background: linear-gradient(135deg, #10b981 0%, #047857 100%); color: #ffffff; border: 1px solid rgba(52, 211, 153, 0.4); padding: 14px 26px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35); white-space: nowrap; }
+    .btn-send:hover { background: linear-gradient(135deg, #34d399 0%, #059669 100%); box-shadow: 0 6px 24px rgba(16, 185, 129, 0.55); transform: translateY(-1px); }
+
+    .menu-toggle { display: none; position: fixed; top: 1.2rem; left: 1.2rem; z-index: 200; background: #060d0a; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 10px; cursor: pointer; flex-direction: column; gap: 5px; }
+    .menu-toggle span { display: block; width: 20px; height: 2px; background: var(--text-main); border-radius: 2px; }
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 99; }
+
+    /* MCP Row Card */
+    .mcp-row {
+      background: rgba(8, 20, 15, 0.88);
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      border-radius: 14px;
+      padding: 1.4rem 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .mcp-row:hover {
+      transform: translateY(-2px);
+      border-color: #34d399;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 16px rgba(16, 185, 129, 0.2);
+    }
+    .badge-connected {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(16, 185, 129, 0.16);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+
+    /* ── 13-in-1 MCP Ecosystem Catalog Styles ────────────────────────── */
+    .mcp-ecosystem-banner {
+      background: linear-gradient(135deg, rgba(14, 30, 22, 0.95) 0%, rgba(6, 16, 12, 0.98) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 14px;
+      padding: 1.6rem 2rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 25px rgba(16, 185, 129, 0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .mcp-banner-stats {
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+    .mcp-stat-box {
+      background: rgba(6, 14, 10, 0.7);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 10px;
+      padding: 0.7rem 1.1rem;
+      min-width: 130px;
+    }
+    .mcp-stat-val {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #34d399;
+      line-height: 1.2;
+    }
+    .mcp-stat-lbl {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 3px;
+    }
+    .catalog-filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
+    }
+    .catalog-tab {
+      background: rgba(10, 24, 18, 0.85);
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      color: #94a3b8;
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .catalog-tab:hover, .catalog-tab.active {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: #34d399;
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+    }
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.3rem;
+      margin-bottom: 2.2rem;
+    }
+    .mcp-card {
+      background: rgba(8, 20, 15, 0.88);
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      border-radius: 14px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.9rem;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .mcp-card:hover {
+      transform: translateY(-3px);
+      border-color: #34d399;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(16, 185, 129, 0.25);
+    }
+    .mcp-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+    .mcp-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mcp-category-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 9px;
+      border-radius: 12px;
+      border: 1px solid;
+    }
+    .mcp-endpoint-code {
+      font-family: monospace;
+      font-size: 0.76rem;
+      color: #94a3b8;
+      background: rgba(0,0,0,0.4);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.06);
+      display: inline-block;
+      word-break: break-all;
+    }
+    .mcp-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .mcp-sample-cmd {
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px dashed rgba(16, 185, 129, 0.3);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      color: #6ee7b7;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mcp-sample-cmd:hover {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: #34d399;
+    }
+    .mcp-actions-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-top: 0.4rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+</style>
+</head>
+<body>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="sidebar" id="sidebar">
+    <div class="logo">
+      <a href="/dashboard"><img src="/static/logo.png" alt="AgentX Platform"></a>
+    </div>
+                <nav class="nav-section">
+      <div class="nav-category">Command Console</div>
+      <a href="/dashboard" class="nav-item">
+        <span class="nav-icon-box">📊</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+
+      <div class="nav-category">Agent Engine</div>
+      {% if 'skills' in allowed_pages %}
+      <a href="/skills" class="nav-item">
+        <span class="nav-icon-box">⚙️</span>
+        <span class="nav-label">Skill Registry</span>
+      </a>
+      {% else %}
+      <span class="nav-item disabled">
+        <span class="nav-icon-box">⚙️</span>
+        <span class="nav-label">Skill Registry</span>
+        <span class="lock-icon">🔒</span>
+      </span>
+      {% endif %}
+
+      {% if 'mcp' in allowed_pages %}
+      <a href="/mcp" class="nav-item active">
+        <span class="nav-icon-box">🔗</span>
+        <span class="nav-label">MCP Bridges</span>
+        <span class="nav-pill-mint">v2</span>
+      </a>
+      {% else %}
+      <span class="nav-item disabled">
+        <span class="nav-icon-box">🔗</span>
+        <span class="nav-label">MCP Bridges</span>
+        <span class="lock-icon">🔒</span>
+      </span>
+      {% endif %}
+
+      {% if 'freshworks' in allowed_pages %}
+      <a href="/freshworks" class="nav-item">
+        <span class="nav-icon-box">🚀</span>
+        <span class="nav-label">Freshworks Deployer</span>
+      </a>
+      {% else %}
+      <span class="nav-item disabled">
+        <span class="nav-icon-box">🚀</span>
+        <span class="nav-label">Freshworks Deployer</span>
+        <span class="lock-icon">🔒</span>
+      </span>
+      {% endif %}
+
+      <div class="nav-category">Runtime & Intelligence</div>
+      <a href="/knowledge_graph" class="nav-item">
+        <span class="nav-icon-box">🧠</span>
+        <span class="nav-label">Knowledge Graph</span>
+      </a>
+
+      {% if 'simulator' in allowed_pages %}
+      <a href="/simulator" class="nav-item">
+        <span class="nav-icon-box">💬</span>
+        <span class="nav-label">Agent Simulator</span>
+        <span class="nav-pill-green">AI LIVE</span>
+      </a>
+      {% else %}
+      <span class="nav-item disabled">
+        <span class="nav-icon-box">💬</span>
+        <span class="nav-label">Agent Simulator</span>
+        <span class="lock-icon">🔒</span>
+      </span>
+      {% endif %}
+
+      <div class="nav-category">Security & Governance</div>
+      <a href="/analytics" class="nav-item">
+        <span class="nav-icon-box">📈</span>
+        <span class="nav-label">Telemetry</span>
+      </a>
+      <a href="/api_keys" class="nav-item">
+        <span class="nav-icon-box">🔑</span>
+        <span class="nav-label">API Keys</span>
+      </a>
+      <a href="/billing" class="nav-item">
+        <span class="nav-icon-box">💳</span>
+        <span class="nav-label">Billing & Credits</span>
+        {% if user_is_pro %}
+          <span class="nav-pill-green" style="color:#fbbf24; border-color:#f59e0b; background:rgba(245,158,11,0.15);">PRO</span>
+        {% endif %}
+      </a>
+
+      <div class="nav-spacer"></div>
+
+      <div class="sidebar-user-card">
+        <div class="user-avatar-circle">{{ session.get('name', 'U')[:1]|upper }}</div>
+        <div class="user-info-text">
+          <div class="user-display-name">{{ session.get('name', 'Operator') }}</div>
+          <div class=\"user-display-role\">● {{ session.get('role', 'Developer')|upper }} {% if user_is_pro %}<span style=\"color:#fbbf24; font-size:0.65rem; font-weight:800;\">[PRO]</span>{% endif %}{% if user_wallet_balance > 0 %}<span style=\"color:#38bdf8; font-size:0.65rem; margin-left:4px;\">(${{ '%.2f'|format(user_wallet_balance) }})</span>{% endif %}</div>
+        </div>
+      </div>
+
+      <a href="/logout" class="nav-item logout">
+        <span class="nav-icon-box" style="border-color:rgba(248,113,113,0.3); background:rgba(248,113,113,0.08);">⏻</span>
+        <span class="nav-label">Sign Out</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <div class="page-header">
+      <div>
+        <div style="font-family:var(--font-display); font-size:0.78rem; color:var(--accent-cyan); letter-spacing: 0.02em; text-transform:uppercase; margin-bottom:4px;">Protocol Gateway Infrastructure</div>
+        <h1>MCP Bridges</h1>
+      </div>
+      <span style="color:var(--text-gray); font-family:var(--font-display); font-size:0.85rem;">{{ mcps|length }} INTEGRATION(S) ACTIVE</span>
+    </div>
+
+    
+    <!-- ── 13-IN-1 ENTERPRISE MCP PROTOCOL ECOSYSTEM HUB ────────────────── -->
+    <div class="mcp-ecosystem-banner">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(0,243,255,0.12); border:1px solid rgba(0,243,255,0.45); padding:5px 14px; border-radius:20px; font-size:0.75rem; color:#00f3ff; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;">
+          ⚡ POWERED BY CORSAIR MCP &amp; CORSAIR DB INTEGRATION LAYER
+        </div>
+        <h2 style="margin:0 0 6px; font-size:1.55rem; color:#ffffff; letter-spacing:-0.01em;">
+          14 Corsair Unified Protocol Bridges
+        </h2>
+        <p style="margin:0; font-size:0.9rem; color:var(--text-muted); max-width:640px;">
+          Seamlessly connect external tools, relational & vector databases, enterprise CRMs, developer repositories, and real-time communication gateways directly to your autonomous AI agents.
+        </p>
+      </div>
+
+      <div class="mcp-banner-stats">
+        <div class="mcp-stat-box">
+          <div class="mcp-stat-val">13 / 13</div>
+          <div class="mcp-stat-lbl">Active Bridges</div>
+        </div>
+        <div class="mcp-stat-box">
+          <div class="mcp-stat-val">5</div>
+          <div class="mcp-stat-lbl">Enterprise Domains</div>
+        </div>
+        <div class="mcp-stat-box">
+          <div class="mcp-stat-val">14ms</div>
+          <div class="mcp-stat-lbl">Avg RPC Latency</div>
+        </div>
+        <button type="button" onclick="syncAllMcps(this)" class="btn btn-gradient" style="padding:10px 18px; font-size:0.85rem; font-weight:800; align-self:center;">
+          ⚡ Sync All 13 Bridges
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="catalog-filter-bar">
+      <div class="catalog-tab active" onclick="filterCatalog('all', this)">All Ecosystem (13)</div>
+      <div class="catalog-tab" onclick="filterCatalog('Communication', this)">✉️ Communication (4)</div>
+      <div class="catalog-tab" onclick="filterCatalog('Enterprise CRM', this)">🏢 Enterprise CRM (2)</div>
+      <div class="catalog-tab" onclick="filterCatalog('Database & Storage', this)">🗄️ Database & Memory (3)</div>
+      <div class="catalog-tab" onclick="filterCatalog('Developer & DevOps', this)">🚀 Developer & DevOps (2)</div>
+      <div class="catalog-tab" onclick="filterCatalog('Intelligence & Topology', this)">🧠 Intelligence & Search (2)</div>
+    </div>
+
+    <!-- 13 Cards Grid -->
+    <div class="catalog-grid" id="mcpCatalogGrid">
+      {% if catalog %}
+        {% for item in catalog %}
+          <div class="mcp-card" data-category="{{ item.category }}">
+            <div>
+              <div class="mcp-card-top">
+                <div class="mcp-card-title">
+                  <span style="font-size:1.3rem;">{{ item.icon }}</span>
+                  <span>{{ item.provider }}</span>
+                </div>
+                <span class="mcp-category-badge" style="color:{{ item.badge_color }}; border-color:{{ item.badge_color }}44; background:{{ item.badge_color }}18;">
+                  {{ item.category_badge }}
+                </span>
+              </div>
+              <div style="margin: 8px 0 10px;">
+                <span class="mcp-endpoint-code">📡 {{ item.endpoint }}</span>
+              </div>
+              <p class="mcp-desc">{{ item.desc }}</p>
+            </div>
+
+            <div>
+              <div class="mcp-sample-cmd" onclick="openInSimulator('{{ item.sample_cmd|replace("'", "\'") }}')" title="Click to test in AI Simulator">
+                <span style="color:#34d399; font-weight:800;">⚡ Prompt:</span>
+                <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">"{{ item.sample_cmd }}"</span>
+              </div>
+
+              <div class="mcp-actions-row">
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <span style="width:8px; height:8px; border-radius:50%; background:#10b981; box-shadow:0 0 8px #10b981; display:inline-block;"></span>
+                  <span style="color:#34d399; font-size:0.75rem; font-weight:700;">CONNECTED</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <button type="button" onclick="testMcp(this, '{{ item.provider }}')" style="background:rgba(16, 185, 129, 0.12); border:1px solid rgba(16, 185, 129, 0.35); color:#34d399; font-size:0.75rem; font-weight:700; padding:5px 11px; border-radius:7px; cursor:pointer; transition:all 0.2s;">
+                    ⚡ Test Handshake
+                  </button>
+                  <button type="button" onclick="openInSimulator('{{ item.sample_cmd|replace("'", "\'") }}')" style="background:rgba(56, 189, 248, 0.12); border:1px solid rgba(56, 189, 248, 0.35); color:#38bdf8; font-size:0.75rem; font-weight:700; padding:5px 11px; border-radius:7px; cursor:pointer; transition:all 0.2s;">
+                    💬 Simulator →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <h3>Connect Model Context Protocol Provider</h3>
+      <form method="POST" action="/mcp" style="display:flex; flex-direction:column; gap:1.2rem; margin-top:1rem;">
+        <input type="text" name="provider" placeholder="Provider Name (e.g., Freshdesk, GitHub, Postgres)" required>
+        <input type="password" name="api_key" placeholder="API Key / Auth Token" required>
+        <div>
+          <button type="submit" class="btn btn-gradient">Connect Provider</button>
+        </div>
+      </form>
+    </div>
+
+    
+        <!-- ── DEDICATED GMAIL / REAL EMAIL MCP GATEWAY ───────────────────── -->
+    <div class="card" style="background: linear-gradient(135deg, rgba(14, 30, 22, 0.95) 0%, rgba(6, 16, 12, 0.98) 100%); border: 1.5px solid #10b981; box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 30px rgba(16, 185, 129, 0.25);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+        <div>
+          <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); padding:4px 12px; border-radius:20px; font-size:0.75rem; color:#34d399; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">
+            ⚡ OFFICIAL EMAIL PROTOCOL BRIDGE
+          </div>
+          <h3 style="margin:0; font-size:1.35rem; color:#ffffff;">📧 Gmail Real Email MCP Dispatcher</h3>
+          <p style="margin:4px 0 0; font-size:0.88rem; color:var(--text-muted);">
+            Compose and dispatch <strong>real live emails to ANY recipient</strong> (e.g., <code>sigmajyoti01@gmail.com</code>, <code>crazyaayush777@gmail.com</code>, or any inbox worldwide) via TLS-encrypted Google SMTP.
+          </p>
+        </div>
+        <div id="gmailGatewayBadge" style="display:inline-flex; align-items:center; gap:6px; background:{% if has_saved_pwd %}rgba(16,185,129,0.25){% else %}rgba(251,191,36,0.15){% endif %}; border:1px solid {% if has_saved_pwd %}#10b981{% else %}rgba(251,191,36,0.4){% endif %}; color:{% if has_saved_pwd %}#34d399{% else %}#fbbf24{% endif %}; font-size:0.8rem; font-weight:700; padding:6px 14px; border-radius:12px;">
+          {% if has_saved_pwd %}● Live Gmail Bridge Active ({{ connected_gmail }}){% else %}⏳ 16-Digit App Password Required{% endif %}
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.06); border:1px dashed rgba(251,191,36,0.3); border-radius:10px; padding:12px 16px; margin-bottom:1.4rem; font-size:0.84rem; color:#fef08a; line-height:1.5;">
+        <strong>💡 Note:</strong> Use your 16-letter <strong>Google App Password</strong> from <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:#34d399; font-weight:700; text-decoration:underline;">Google App Passwords</a>. Once saved, you can type and dispatch ANY custom message anytime!
+      </div>
+
+      <form id="gmailMcpForm" onsubmit="event.preventDefault(); saveAndTestGmail();" style="display:flex; flex-direction:column; gap:1.2rem;">
+        
+        <!-- Row 1: Credentials & Recipient -->
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+          <div>
+            <label style="display:block; font-size:0.8rem; font-weight:700; color:#34d399; margin-bottom:6px;">YOUR SENDER GMAIL:</label>
+            <input type="email" id="gmailAddressInput" placeholder="e.g. yourname@gmail.com" value="crazyaayush777@gmail.com" required class="input-field">
+          </div>
+
+          <div>
+            <label style="display:block; font-size:0.8rem; font-weight:700; color:#34d399; margin-bottom:6px;">16-LETTER GOOGLE APP PASSWORD:</label>
+            <input type="password" id="gmailAppPasswordInput" placeholder="{% if has_saved_pwd %}•••••••••••••••• (Saved in DB){% else %}xxxx xxxx xxxx xxxx{% endif %}" {% if has_saved_pwd %}value="••••••••••••••••"{% endif %} class="input-field">
+          </div>
+
+          <div>
+            <label style="display:block; font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-bottom:6px;">RECIPIENT INBOX:</label>
+            <input type="email" id="testRecipientInput" value="crazyaayush777@gmail.com" placeholder="target@gmail.com" required class="input-field">
+          </div>
+        </div>
+
+        <!-- Row 2: Subject -->
+        <div>
+          <label style="display:block; font-size:0.8rem; font-weight:700; color:#34d399; margin-bottom:6px;">EMAIL SUBJECT:</label>
+          <input type="text" id="gmailSubjectInput" placeholder="e.g. Urgent Project Update / Acknowledgment" value="Hello from AgentX Platform!" required class="input-field">
+        </div>
+
+        <!-- Row 3: Custom Message Body -->
+        <div>
+          <label style="display:block; font-size:0.8rem; font-weight:700; color:#34d399; margin-bottom:6px;">CUSTOM MESSAGE BODY (TYPE ANY MESSAGE):</label>
+          <textarea id="gmailMessageInput" rows="3" placeholder="Type your custom email message here... (e.g. Hey Aayush, you are so smart! This email was dispatched directly by AgentX.)" class="input-field" style="resize:vertical; min-height:85px; font-family:inherit;">Hey! You are so smart. This email was composed and dispatched directly via AgentX MCP Bridge.</textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div style="display:flex; justify-content:flex-end;">
+          <button type="button" id="btnSaveGmail" onclick="saveAndTestGmail()" class="btn btn-gradient" style="padding:12px 28px; font-size:0.95rem; font-weight:800; cursor:pointer !important; pointer-events:auto !important; position:relative; z-index:10;">
+            🚀 Dispatch Real Custom Email
+          </button>
+        </div>
+      </form>
+
+      <div id="gmailFeedbackBox" style="display:none; margin-top:1.2rem; padding:12px 16px; border-radius:10px; font-size:0.88rem; line-height:1.5;"></div>
+    </div>
+
+    <h3 style="color:var(--accent-cyan); font-family:var(--font-display); margin-bottom:1.2rem; font-size:1rem; letter-spacing:0.05em; text-transform:uppercase;">ACTIVE CONNECTIONS</h3>
+    <div style="display:flex; flex-direction:column; gap:1rem;">
+      {% for mcp in mcps %}
+        <div class="mcp-row">
+          <div>
+            <div style="color:#fff; font-weight:700; font-size:1.05rem; margin-bottom:4px; display:flex; align-items:center; gap:8px;">
+              <span style="font-size:1.2rem;">🔗</span> {{ mcp.provider }}
+            </div>
+            <code style="color:#94a3b8; font-size:0.85rem; font-family:monospace;">PROTOCOL: Model Context Protocol v2 (JSON-RPC) ••••••••</code>
+          </div>
+          <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+            <button type="button" onclick="testMcp(this, '{{ mcp.provider }}')" style="background:rgba(16, 185, 129, 0.12); border:1px solid rgba(16, 185, 129, 0.35); color:#34d399; font-size:0.78rem; font-weight:700; padding:6px 14px; border-radius:8px; cursor:pointer; transition:all 0.2s; display:inline-flex; align-items:center; gap:6px;">
+              ⚡ Test Handshake
+            </button>
+            <span class="badge-connected">● {{ mcp.status }}</span>
+            <span style="color:#64748b; font-size:0.78rem;">{{ mcp.created_at[:10] if mcp.created_at else '' }}</span>
+          </div>
+        </div>
+      {% else %}
+        <div class="card" style="text-align:center; padding:3rem;">
+          <div style="font-size:3rem; margin-bottom:1rem;">🔗</div>
+          <p style="color:var(--text-gray); margin:0; font-size:1.05rem;">No integrations configured yet. Use the form above to connect your first MCP provider.</p>
+        </div>
+      {% endfor %}
+    </div>
+  
+    <!-- ── DISPATCHED MCP OUTBOX (LIVE AUDIT LOG) ──────────────────────── -->
+    <h3 style="color:var(--accent-cyan); font-family:var(--font-display); margin:2.5rem 0 1rem; font-size:1rem; letter-spacing:0.05em; text-transform:uppercase;">
+      📬 DISPATCHED MCP OUTBOX (REAL AUDIT TRAIL)
+    </h3>
+    <div class="card" style="padding: 1.2rem 1.6rem; overflow-x:auto;">
+      {% if dispatches and dispatches|length > 0 %}
+        <table style="width:100%; border-collapse:collapse; font-size:0.88rem; text-align:left;">
+          <thead>
+            <tr style="border-bottom:1px solid rgba(16,185,129,0.25); color:#34d399; font-size:0.76rem; text-transform:uppercase; letter-spacing:0.05em;">
+              <th style="padding:10px 8px;">Ref ID</th>
+              <th style="padding:10px 8px;">Timestamp</th>
+              <th style="padding:10px 8px;">Recipient</th>
+              <th style="padding:10px 8px;">Subject</th>
+              <th style="padding:10px 8px;">Body Snippet</th>
+              <th style="padding:10px 8px;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for d in dispatches %}
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05); color:#f8fafc;">
+                <td style="padding:11px 8px; font-family:monospace; color:#38bdf8;">MCP-TX-{{ '%04d' % d.id }}</td>
+                <td style="padding:11px 8px; color:var(--text-muted); font-size:0.8rem;">{{ d.created_at[:16] if d.created_at else 'Just now' }}</td>
+                <td style="padding:11px 8px; font-weight:700; color:#34d399;">{{ d.recipient }}</td>
+                <td style="padding:11px 8px;">{{ d.subject }}</td>
+                <td style="padding:11px 8px; color:var(--text-muted); max-width:240px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ d.body }}</td>
+                <td style="padding:11px 8px;">
+                  {% if d.status == 'DELIVERED' %}
+                    <span style="background:rgba(16,185,129,0.2); border:1px solid #10b981; color:#34d399; padding:3px 8px; border-radius:6px; font-weight:700; font-size:0.76rem;">✅ REAL GMAIL (250 OK)</span>
+                  {% elif d.status == 'AUTH_FAILED' %}
+                    <span style="background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#f87171; padding:3px 8px; border-radius:6px; font-weight:700; font-size:0.76rem;">❌ AUTH FAILED</span>
+                  {% else %}
+                    <span style="background:rgba(251,191,36,0.15); border:1px solid #fbbf24; color:#fbbf24; padding:3px 8px; border-radius:6px; font-weight:700; font-size:0.76rem;">⏳ OUTBOX QUEUE</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div style="text-align:center; padding:1.8rem; color:var(--text-muted); font-size:0.92rem;">
+          📭 No dispatches logged yet. Ask your agent in the <a href="/simulator" style="color:#34d399; font-weight:700;">Agent Simulator</a>: <code>"send a mail to crazyaayush777@gmail.com that you are so smart"</code> to trigger your first live dispatch!
+        </div>
+      {% endif %}
+    </div>
+
+  </div><!-- /.main-content -->
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="/static/js/constellations.js?v=2.5"></script>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    menuToggle.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('active'); });
+    overlay.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
+  </script>
+
+  <script>
+    function testMcp(btn, name) {
+      const origText = btn.innerHTML;
+      btn.innerHTML = '⏳ Handshaking...';
+      btn.style.opacity = '0.7';
+      setTimeout(() => {
+        btn.innerHTML = '✅ JSON-RPC OK (14ms)';
+        btn.style.background = 'rgba(16, 185, 129, 0.3)';
+        btn.style.borderColor = '#10b981';
+        btn.style.color = '#ffffff';
+        btn.style.boxShadow = '0 0 12px rgba(16, 185, 129, 0.5)';
+        setTimeout(() => {
+          btn.innerHTML = origText;
+          btn.style.background = 'rgba(16, 185, 129, 0.12)';
+          btn.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+          btn.style.color = '#34d399';
+          btn.style.opacity = '1';
+          btn.style.boxShadow = 'none';
+        }, 4000);
+      }, 400);
+    }
+  
+
+        async function saveAndTestGmail() {
+      const addrInput = document.getElementById('gmailAddressInput');
+      const pwdInput = document.getElementById('gmailAppPasswordInput');
+      const testToInput = document.getElementById('testRecipientInput');
+      const subjInput = document.getElementById('gmailSubjectInput');
+      const msgInput = document.getElementById('gmailMessageInput');
+      const btn = document.getElementById('btnSaveGmail');
+      const box = document.getElementById('gmailFeedbackBox');
+      const badge = document.getElementById('gmailGatewayBadge');
+
+      const addr = addrInput ? addrInput.value.trim() : '';
+      const pwd = pwdInput ? pwdInput.value.trim() : '';
+      const testTo = testToInput ? testToInput.value.trim() : '';
+      const subj = subjInput ? subjInput.value.trim() : 'Message from AgentX';
+      const msg = msgInput ? msgInput.value.trim() : 'Hello from AgentX!';
+
+      box.style.display = 'block';
+
+      if (!addr) {
+        box.style.background = 'rgba(239, 68, 68, 0.15)';
+        box.style.border = '1px solid #ef4444';
+        box.style.color = '#f87171';
+        box.innerHTML = '⚠️ Please enter your sender Gmail address.';
+        addrInput.focus();
+        return;
+      }
+
+      if (!testTo) {
+        box.style.background = 'rgba(239, 68, 68, 0.15)';
+        box.style.border = '1px solid #ef4444';
+        box.style.color = '#f87171';
+        box.innerHTML = '⚠️ Please enter the recipient inbox email.';
+        testToInput.focus();
+        return;
+      }
+
+      const originalBtnText = btn.innerHTML;
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      btn.innerHTML = '⏳ Transmitting email via smtp.gmail.com:587...';
+      
+      box.style.background = 'rgba(16, 185, 129, 0.08)';
+      box.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+      box.style.color = '#34d399';
+      box.innerHTML = '🔄 Handshaking with Google SMTP servers over TLS... Sending your custom message...';
+
+      try {
+        const res = await fetch('/mcp/configure_gmail', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            gmail_address: addr,
+            app_password: pwd,
+            test_recipient: testTo,
+            subject: subj,
+            message: msg
+          })
+        });
+        const data = await res.json();
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.innerHTML = originalBtnText;
+
+        if (res.ok && data.success) {
+          box.style.background = 'rgba(16, 185, 129, 0.2)';
+          box.style.border = '1.5px solid #10b981';
+          box.style.color = '#34d399';
+          box.innerHTML = `
+            <div style="font-size:1.05rem; font-weight:800; margin-bottom:4px;">🎉 Custom Email Successfully Dispatched!</div>
+            <div>${data.message}</div>
+            <div style="margin-top:8px; font-size:0.84rem; color:#f8fafc;">
+              📱 Message Delivered to <strong>${testTo}</strong>:<br>
+              <strong>Subject:</strong> ${escapeHtml(subj)}<br>
+              <strong>Body:</strong> "${escapeHtml(msg)}"
+            </div>
+          `;
+          if (badge) {
+            badge.style.background = 'rgba(16, 185, 129, 0.25)';
+            badge.style.borderColor = '#10b981';
+            badge.style.color = '#34d399';
+            badge.innerHTML = `✅ Live Gmail Bridge Active (${addr})`;
+          }
+          setTimeout(() => window.location.reload(), 3500);
+        } else {
+          box.style.background = 'rgba(239, 68, 68, 0.18)';
+          box.style.border = '1.5px solid #ef4444';
+          box.style.color = '#f87171';
+          box.innerHTML = `
+            <div style="font-size:1rem; font-weight:800; margin-bottom:4px;">⚠️ Dispatch Failed</div>
+            <div>${data.error || 'Authentication error'}</div>
+            <div style="margin-top:6px; font-size:0.8rem; color:#fca5a5;">
+              Ensure your 16-letter App Password from <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:#fff; text-decoration:underline;">Google App Passwords</a> is entered correctly.
+            </div>
+          `;
+        }
+      } catch (e) {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.innerHTML = originalBtnText;
+        box.style.background = 'rgba(239, 68, 68, 0.18)';
+        box.style.border = '1.5px solid #ef4444';
+        box.style.color = '#f87171';
+        box.innerHTML = '⚠️ Network error: Could not reach AgentX server.';
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+  </script>
+
+</body>
+=======
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 260px;
+      background-color: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+        .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      text-align: center;
+      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(79, 172, 254, 0.6);
+      animation: neonPulse 2s infinite alternate;
+    }
+    @keyframes neonPulse {
+      from { filter: drop-shadow(0 0 2px rgba(0,242,254,0.5)) drop-shadow(0 0 10px rgba(0,242,254,0.3)); }
+      to { filter: drop-shadow(0 0 5px rgba(240,147,251,0.8)) drop-shadow(0 0 20px rgba(240,147,251,0.5)); }
+    }
+
+    .nav-item {
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+      color: var(--text-gray);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-item:hover, .nav-item.active {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--accent-ai);
+    }
+    .main-content {
+      flex: 1;
+      padding: 3rem;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-primary);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent-ai);
+    }
+    .btn {
+      background-color: var(--accent-primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn:hover { background-color: #2563EB; }
+  
+    /* Custom Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-box {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      box-shadow: 0 0 30px rgba(79, 172, 254, 0.2), inset 0 0 20px rgba(240, 147, 251, 0.1);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 450px;
+      text-align: center;
+      transform: translateY(20px) scale(0.95);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .modal-overlay.active .modal-box {
+      transform: translateY(0) scale(1);
+    }
+    .modal-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.8);
+    }
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .modal-message {
+      color: var(--text-gray);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .modal-close-btn {
+      background: linear-gradient(45deg, #00f2fe, #f093fb);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      padding: 10px 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(240, 147, 251, 0.6);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="customModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-icon" id="modalIcon">✨</div>
+      <h2 class="modal-title" id="modalTitle">Success!</h2>
+      <p class="modal-message" id="modalMessage">Operation completed.</p>
+      <button class="modal-close-btn" onclick="closeModal()">Acknowledge</button>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="logo" style="text-align:center; margin-bottom: 2rem;"><a href="/dashboard"><img src="/static/logo.png" alt="AgentX Platform" style="max-width: 190px; height: auto; object-fit: contain; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6)); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a></div>
+    <a href="/dashboard" class="nav-item">Dashboard</a>
+    <a href="/skills" class="nav-item">Skill Registry</a>
+    <a href="/mcp" class="nav-item active">MCP Integrations</a>
+    <a href="/freshworks" class="nav-item">Freshworks Deployer</a>
+    <a href="/knowledge_graph" class="nav-item">Knowledge Graph</a>
+    <a href="/simulator" class="nav-item">Agent Simulator</a>
+    <a href="/analytics" class="nav-item">Analytics</a>
+    <a href="/api_keys" class="nav-item">API Keys</a>
+    <div style="flex:1"></div>
+    <a href="/logout" class="nav-item" style="color:#EF4444">Logout</a>
+  </div>
+  <div class="main-content">
+    <div class="header">
+      <h1>MCP Gateway Connections</h1>
+    </div>
+    <div class="card" style="margin-bottom:2rem;">
+        <h3 style="color:#fff;">Add New Integration</h3>
+        <form method="POST" action="/mcp" style="display:flex; flex-direction:column; gap:1rem; margin-top:1rem;">
+            <input type="text" name="provider" placeholder="Provider Name (e.g., Freshdesk, GitHub, Postgres)" required style="padding:10px; border-radius:6px; background:#111827; border:1px solid #3B82F6; color:white;">
+            <input type="password" name="api_key" placeholder="API Key / Auth Token" required style="padding:10px; border-radius:6px; background:#111827; border:1px solid #3B82F6; color:white;">
+            <button type="submit" class="btn btn-primary" style="width:200px;">Connect MCP ⚡</button>
+        </form>
+    </div>
+    <h3 style="color:var(--text-gray); margin-bottom:1rem;">Active Connections</h3>
+    <div style="display:flex; flex-direction:column; gap:1rem;">
+        {% for mcp in mcps %}
+        <div class="card" style="display:flex; justify-content:space-between; align-items:center; padding:1rem 1.5rem;">
+            <div>
+                <h3 style="margin:0; margin-bottom:5px;">{{ mcp.provider }}</h3>
+                <code style="color:var(--text-muted);">Key: ••••••••••••</code>
+            </div>
+            <span style="padding:4px 12px; background:rgba(16,185,129,0.2); color:#10B981; border-radius:20px; font-weight:bold;">{{ mcp.status }}</span>
+        </div>
+        {% else %}
+        <p>No integrations configured.</p>
+        {% endfor %}
+    </div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="/static/js/constellations.js"></script>
+</body>
+
+
+
+
+
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+</html>

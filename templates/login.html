@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — AgentX Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07050f;
+      --bg2: #0d0a1a;
+      --ink: #130e25;
+      --imperial: #4b1fa8;
+      --crown: #c9963a;
+      --crown-lt: #f5d98a;
+      --crown-dk: #7a5a1c;
+      --amethyst: #9b6dff;
+      --crimson: #c0294a;
+      --iceblue: #5898e8;
+      --silver: #d4ccee;
+      --fog: #7c6ea8;
+      --mist: #3b3060;
+      --border: rgba(201, 150, 58, .18);
+      --border-hi: rgba(201, 150, 58, .55);
+      --card: #0f0b1e;
+    }
+
+    @property --rot {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 0deg;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--silver);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── Celestial BG ── */
+    .cosmos {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* Deep star field via box-shadow trick on pseudo */
+    .cosmos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, .55) 0%, transparent 100%),
+        radial-gradient(1px 1px at 38% 7%, rgba(255, 255, 255, .4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 72% 14%, rgba(255, 255, 255, .6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 91% 22%, rgba(255, 255, 255, .35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 56% 31%, rgba(255, 255, 255, .4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 4% 45%, rgba(255, 255, 255, .5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 83% 55%, rgba(255, 255, 255, .3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 27% 68%, rgba(255, 255, 255, .45) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 64% 73%, rgba(255, 255, 255, .55) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 82%, rgba(255, 255, 255, .35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 49% 88%, rgba(255, 255, 255, .4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 95% 91%, rgba(255, 255, 255, .5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 33% 95%, rgba(255, 255, 255, .3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 3%, rgba(255, 255, 255, .45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 21% 42%, rgba(255, 255, 255, .35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 59%, rgba(255, 255, 255, .4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 8% 72%, rgba(255, 255, 255, .45) 0%, transparent 100%);
+      animation: starfield-drift 60s linear infinite;
+    }
+
+    @keyframes starfield-drift {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-6px);
+      }
+    }
+
+    /* Large colour nebulae */
+    .nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      animation: nebula-float ease-in-out infinite;
+    }
+
+    .n1 {
+      width: 600px;
+      height: 600px;
+      background: var(--imperial);
+      opacity: .22;
+      top: -200px;
+      left: -160px;
+      animation-duration: 22s;
+    }
+
+    .n2 {
+      width: 480px;
+      height: 480px;
+      background: var(--crown-dk);
+      opacity: .18;
+      bottom: -180px;
+      right: -140px;
+      animation-duration: 27s;
+      animation-delay: -8s;
+    }
+
+    .n3 {
+      width: 300px;
+      height: 300px;
+      background: var(--crimson);
+      opacity: .12;
+      top: 40%;
+      left: 58%;
+      animation-duration: 31s;
+      animation-delay: -14s;
+    }
+
+    .n4 {
+      width: 220px;
+      height: 220px;
+      background: var(--amethyst);
+      opacity: .14;
+      top: 20%;
+      right: 10%;
+      animation-duration: 19s;
+      animation-delay: -5s;
+    }
+
+    @keyframes nebula-float {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(30px, -24px) scale(1.05);
+      }
+    }
+
+    /* Horizontal scan line */
+    .scanline {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg,
+          transparent,
+          transparent 3px,
+          rgba(0, 0, 0, .06) 3px,
+          rgba(0, 0, 0, .06) 4px);
+    }
+
+    /* Fine grid */
+    .grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(201, 150, 58, .04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201, 150, 58, .04) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    }
+
+    /* ── Floating runes ── */
+    .rune {
+      position: fixed;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: rgba(201, 150, 58, .12);
+      pointer-events: none;
+      animation: rune-drift linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes rune-drift {
+      from {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 1;
+      }
+
+      95% {
+        opacity: .6;
+      }
+
+      to {
+        transform: translateY(-10vh) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    /* ── Card Shell ── */
+    .stage {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    /* Animated conic border */
+    .frame {
+      padding: 1.5px;
+      border-radius: 24px;
+      background: conic-gradient(from var(--rot),
+          var(--crown),
+          var(--amethyst) 30%,
+          var(--crimson) 50%,
+          var(--iceblue) 65%,
+          var(--crown-dk) 80%,
+          var(--crown));
+      animation: spin-border 8s linear infinite;
+      box-shadow:
+        0 0 80px rgba(75, 31, 168, .35),
+        0 0 160px rgba(75, 31, 168, .15),
+        0 40px 80px rgba(0, 0, 0, .7);
+    }
+
+    @keyframes spin-border {
+      to {
+        --rot: 360deg;
+      }
+    }
+
+    .card {
+      position: relative;
+      background:
+        radial-gradient(ellipse 130% 80% at 50% -20%, rgba(155, 109, 255, .12), transparent 65%),
+        radial-gradient(ellipse 80% 40% at 50% 110%, rgba(201, 150, 58, .08), transparent 60%),
+        linear-gradient(170deg, #12082a 0%, var(--card) 100%);
+      border-radius: 22.5px;
+      padding: 3rem 2.6rem 2.8rem;
+      overflow: hidden;
+    }
+
+    /* Inner vignette top glow */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 150, 58, .6), transparent);
+      border-radius: 50%;
+      box-shadow: 0 0 30px 6px rgba(201, 150, 58, .2);
+    }
+
+    /* ── Corner filigree ── */
+    .filigree {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      opacity: .5;
+    }
+
+    .filigree svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .filigree.tl {
+      top: 10px;
+      left: 10px;
+    }
+
+    .filigree.tr {
+      top: 10px;
+      right: 10px;
+      transform: scaleX(-1);
+    }
+
+    .filigree.bl {
+      bottom: 10px;
+      left: 10px;
+      transform: scaleY(-1);
+    }
+
+    .filigree.br {
+      bottom: 10px;
+      right: 10px;
+      transform: scale(-1, -1);
+    }
+
+    /* ── Crest / Sigil ── */
+    .sigil-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.6rem;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, rgba(245, 217, 138, .2), transparent 65%);
+      border: 1px solid var(--border-hi);
+      position: relative;
+      animation: sigil-pulse 4s ease-in-out infinite;
+    }
+
+    .sigil-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 150, 58, .12);
+      animation: sigil-ring 4s ease-in-out infinite;
+    }
+
+    @keyframes sigil-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 rgba(201, 150, 58, 0), 0 0 40px rgba(155, 109, 255, .1);
+      }
+
+      50% {
+        box-shadow: 0 0 36px rgba(201, 150, 58, .3), 0 0 60px rgba(155, 109, 255, .2);
+      }
+    }
+
+    @keyframes sigil-ring {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .5;
+      }
+
+      50% {
+        transform: scale(1.12);
+        opacity: 0;
+      }
+    }
+
+    .sigil-wrap svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    /* ── Typography ── */
+        .eyebrow {
+      font-family: 'Fira Code', monospace;
+      color: #00f2fe;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      text-align: center;
+<<<<<<< HEAD
+      text-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+      animation: pulseText 2s infinite alternate;
+    }
+    @keyframes pulseText {
+      from { text-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+      to { text-shadow: 0 0 20px rgba(245, 158, 11, 0.3), 0 0 30px rgba(240,147,251,0.6); }
+=======
+      text-shadow: 0 0 15px rgba(0,242,254,0.8);
+      animation: pulseText 2s infinite alternate;
+    }
+    @keyframes pulseText {
+      from { text-shadow: 0 0 10px rgba(0,242,254,0.5); }
+      to { text-shadow: 0 0 20px rgba(0,242,254,1), 0 0 30px rgba(240,147,251,0.6); }
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+    }
+
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      letter-spacing: .04em;
+      text-align: center;
+      line-height: 1.1;
+      background: linear-gradient(125deg, var(--crown-lt) 0%, var(--crown) 40%, var(--amethyst) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: .4rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: .84rem;
+      color: var(--fog);
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      margin-bottom: 2.4rem;
+    }
+
+    /* Decorative divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      margin: 0 auto 2.2rem;
+      max-width: 260px;
+      opacity: .5;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--crown));
+    }
+
+    .divider::after {
+      background: linear-gradient(90deg, var(--crown), transparent);
+    }
+
+    .divider span {
+      font-size: .55rem;
+      color: var(--crown);
+      letter-spacing: .2em;
+      font-family: 'Fira Code', monospace;
+      white-space: nowrap;
+    }
+
+    /* ── Form ── */
+    .field {
+      margin-bottom: 1.4rem;
+    }
+
+    label {
+      display: block;
+      font-size: .67rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--crown);
+      opacity: .8;
+      margin-bottom: .5rem;
+    }
+
+    .input-shell {
+      position: relative;
+      border-radius: 10px;
+      background: rgba(7, 5, 15, .7);
+      border: 1px solid var(--border);
+      transition: border-color .25s, box-shadow .25s;
+    }
+
+    .input-shell:focus-within {
+      border-color: var(--border-hi);
+      box-shadow: 0 0 0 3px rgba(201, 150, 58, .1), 0 0 22px rgba(155, 109, 255, .18);
+    }
+
+    .input-shell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201, 150, 58, .06), transparent 70%);
+      pointer-events: none;
+    }
+
+    .icon {
+      position: absolute;
+      left: .85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .icon svg {
+      width: 15px;
+      height: 15px;
+      display: block;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: .78rem .9rem .78rem 2.5rem;
+      background: transparent;
+      border: none;
+      color: var(--silver);
+      font-family: 'Inter', sans-serif;
+      font-size: .93rem;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: var(--mist);
+      font-size: .88rem;
+    }
+
+    /* Eye toggle */
+    .eye-btn {
+      position: absolute;
+      right: .85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--fog);
+      padding: 0;
+      line-height: 0;
+      transition: color .2s;
+    }
+
+    .eye-btn:hover {
+      color: var(--crown);
+    }
+
+    /* Forgot link */
+    .forgot {
+      text-align: right;
+      margin-top: .4rem;
+    }
+
+    .forgot a {
+      font-size: .74rem;
+      color: var(--fog);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .forgot a:hover {
+      color: var(--crown);
+    }
+
+    /* ── Submit ── */
+    .btn-wrap {
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .glow-ring {
+      position: absolute;
+      inset: -3px;
+      border-radius: 13px;
+      background: conic-gradient(from var(--rot),
+          var(--crown), var(--amethyst), var(--crimson), var(--crown));
+      animation: spin-border 5s linear infinite;
+      opacity: 0;
+      transition: opacity .3s;
+      filter: blur(4px);
+      z-index: 0;
+    }
+
+    .btn-wrap:hover .glow-ring {
+      opacity: .7;
+    }
+
+    button[type="submit"] {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: .88rem;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: #110825;
+      cursor: pointer;
+      background: linear-gradient(110deg, var(--crown-lt) 0%, var(--crown) 45%, var(--amethyst) 120%);
+      background-size: 200% 100%;
+      background-position: 0% 50%;
+      transition: background-position .5s, transform .1s, box-shadow .3s;
+      box-shadow: 0 6px 28px rgba(201, 150, 58, .22), 0 2px 8px rgba(0, 0, 0, .5);
+      overflow: hidden;
+    }
+
+    button[type="submit"]:hover {
+      background-position: 100% 50%;
+      box-shadow: 0 8px 36px rgba(201, 150, 58, .38), 0 0 30px rgba(155, 109, 255, .3);
+    }
+
+    button[type="submit"]:active {
+      transform: scale(.98);
+    }
+
+    /* Shimmer sweep */
+    button[type="submit"]::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -80%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .45), transparent);
+      transform: skewX(-20deg);
+      animation: sweep 3.5s ease-in-out infinite;
+    }
+
+    @keyframes sweep {
+      0% {
+        left: -80%;
+      }
+
+      40% {
+        left: 150%;
+      }
+
+      100% {
+        left: 150%;
+      }
+    }
+
+    .btn-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+    }
+
+    .btn-text svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Spinner */
+    .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(17, 8, 37, .4);
+      border-top-color: #110825;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── Message ── */
+    .msg {
+      margin-top: 1.1rem;
+      padding: .75rem 1rem;
+      border-radius: 8px;
+      font-size: .82rem;
+      line-height: 1.4;
+      display: none;
+      animation: pop-in .3s ease both;
+    }
+
+    @keyframes pop-in {
+      from {
+        opacity: 0;
+        transform: translateY(-5px) scale(.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .msg.error {
+      background: rgba(80, 10, 20, .55);
+      color: #ffb3c0;
+      border: 1px solid rgba(192, 41, 74, .3);
+    }
+
+    /* ── Footer ── */
+    .footer-link {
+      margin-top: 1.8rem;
+      text-align: center;
+      font-size: .82rem;
+      color: var(--fog);
+    }
+
+    .footer-link a {
+      color: var(--crown);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+    }
+
+    .footer-link a:hover {
+      border-bottom-color: var(--crown);
+    }
+
+    .security-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      margin-top: 1rem;
+      font-size: .68rem;
+      color: var(--mist);
+      letter-spacing: .04em;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .security-note svg {
+      width: 11px;
+      height: 11px;
+      opacity: .7;
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="cosmos"></div>
+  <div class="nebula n1"></div>
+  <div class="nebula n2"></div>
+  <div class="nebula n3"></div>
+  <div class="nebula n4"></div>
+  <div class="scanline"></div>
+  <div class="grid"></div>
+  <div id="runes"></div>
+
+  <div class="stage">
+    <div class="frame">
+      <div class="card">
+
+        <!-- Corner filigree -->
+        <div class="filigree tl">
+          <svg viewBox="0 0 48 48" fill="none">
+            <path d="M4 44 L4 10 Q4 4 10 4 L44 4" stroke="var(--crown)" stroke-width="1.2" />
+            <path d="M4 36 L4 18 Q4 12 10 12 L36 12" stroke="var(--amethyst)" stroke-width=".7" opacity=".6" />
+            <circle cx="44" cy="4" r="2" fill="var(--crown)" opacity=".8" />
+            <circle cx="4" cy="44" r="2" fill="var(--amethyst)" opacity=".8" />
+          </svg>
+        </div>
+        <div class="filigree tr">
+          <svg viewBox="0 0 48 48" fill="none">
+            <path d="M4 44 L4 10 Q4 4 10 4 L44 4" stroke="var(--crown)" stroke-width="1.2" />
+            <path d="M4 36 L4 18 Q4 12 10 12 L36 12" stroke="var(--amethyst)" stroke-width=".7" opacity=".6" />
+            <circle cx="44" cy="4" r="2" fill="var(--crown)" opacity=".8" />
+            <circle cx="4" cy="44" r="2" fill="var(--amethyst)" opacity=".8" />
+          </svg>
+        </div>
+        <div class="filigree bl">
+          <svg viewBox="0 0 48 48" fill="none">
+            <path d="M4 44 L4 10 Q4 4 10 4 L44 4" stroke="var(--crown)" stroke-width="1.2" />
+            <path d="M4 36 L4 18 Q4 12 10 12 L36 12" stroke="var(--amethyst)" stroke-width=".7" opacity=".6" />
+            <circle cx="44" cy="4" r="2" fill="var(--crown)" opacity=".8" />
+            <circle cx="4" cy="44" r="2" fill="var(--amethyst)" opacity=".8" />
+          </svg>
+        </div>
+        <div class="filigree br">
+          <svg viewBox="0 0 48 48" fill="none">
+            <path d="M4 44 L4 10 Q4 4 10 4 L44 4" stroke="var(--crown)" stroke-width="1.2" />
+            <path d="M4 36 L4 18 Q4 12 10 12 L36 12" stroke="var(--amethyst)" stroke-width=".7" opacity=".6" />
+            <circle cx="44" cy="4" r="2" fill="var(--crown)" opacity=".8" />
+            <circle cx="4" cy="44" r="2" fill="var(--amethyst)" opacity=".8" />
+          </svg>
+        </div>
+
+        <!-- Crest -->
+        <div class="sigil-wrap">
+          <svg viewBox="0 0 36 36" fill="none">
+            <!-- Crown -->
+            <path d="M6 24 L6 14 L11 19 L18 9 L25 19 L30 14 L30 24 Z" stroke="url(#sg1)" stroke-width="1.5"
+              stroke-linejoin="round" fill="rgba(201,150,58,.06)" />
+            <!-- Gems on crown -->
+            <circle cx="6" cy="14" r="1.8" fill="var(--crimson)" />
+            <circle cx="30" cy="14" r="1.8" fill="var(--iceblue)" />
+            <circle cx="18" cy="9" r="2" fill="var(--crown-lt)" />
+            <!-- Base band -->
+            <rect x="5" y="24" width="26" height="3" rx="1.5" fill="url(#sg2)" opacity=".8" />
+            <defs>
+              <linearGradient id="sg1" x1="6" y1="9" x2="30" y2="27">
+                <stop offset="0%" stop-color="var(--crown-lt)" />
+                <stop offset="100%" stop-color="var(--amethyst)" />
+              </linearGradient>
+              <linearGradient id="sg2" x1="5" y1="0" x2="31" y2="0">
+                <stop offset="0%" stop-color="var(--crown-dk)" />
+                <stop offset="50%" stop-color="var(--crown-lt)" />
+                <stop offset="100%" stop-color="var(--crown-dk)" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <p class="eyebrow">⌬ AgentX Platform ⌬</p>
+        <h1>Welcome !!! </h1>
+        <p class="subtitle">Present your seal to enter the court.</p>
+
+        <div class="divider"><span>✦ Secured Portal ✦</span></div>
+
+        <form id="login-form" onsubmit="handleLogin(event)">
+
+          <!-- Email -->
+          <div class="field">
+            <label for="email">Email Address</label>
+            <div class="input-shell">
+              <span class="icon">
+                <svg viewBox="0 0 15 15" fill="none" stroke="var(--crown)" stroke-width="1.3">
+                  <rect x="1" y="3" width="13" height="9" rx="2" />
+                  <path d="M1 5l6.5 4L14 5" />
+                </svg>
+              </span>
+              <input id="email" type="email" placeholder="herald@domain.com" maxlength="254" required
+                autocomplete="email" />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-shell">
+              <span class="icon">
+                <svg viewBox="0 0 15 15" fill="none" stroke="var(--crown)" stroke-width="1.3">
+                  <rect x="3" y="7" width="9" height="7" rx="1.5" />
+                  <path d="M5 7V5a2.5 2.5 0 015 0v2" />
+                  <circle cx="7.5" cy="10.5" r="1" fill="var(--crown)" />
+                </svg>
+              </span>
+              <input id="password" type="password" placeholder="Your secret passphrase" maxlength="128" required
+                autocomplete="current-password" />
+              <button type="button" class="eye-btn" id="eye-btn" aria-label="Toggle password visibility"
+                onclick="togglePw()">
+                <svg id="eye-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" width="16"
+                  height="16">
+                  <ellipse cx="8" cy="8" rx="6" ry="4" />
+                  <circle cx="8" cy="8" r="1.8" fill="currentColor" stroke="none" />
+                </svg>
+              </button>
+            </div>
+            <div class="forgot"><a href="/forgot-password">Forgot passphrase?</a></div>
+          </div>
+
+          <div class="btn-wrap">
+            <div class="glow-ring"></div>
+            <button type="submit" id="submit-btn">
+              <span id="btn-label" class="btn-text">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M2 8h9M8 5l3 3-3 3" />
+                </svg>
+                Enter the Chamber
+              </span>
+              <div class="spinner" id="spinner"></div>
+            </button>
+          </div>
+
+        </form>
+
+        <div class="msg error" id="msg"></div>
+
+        <div class="footer-link">
+          No seal yet? <a href="/register">Forge your credentials</a>
+        </div>
+
+        <div class="security-note">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M6 1L2 3v4c0 2.2 1.8 3.8 4 4.5C8.2 10.8 10 9.2 10 7V3L6 1z" />
+            <path d="M4 6l1.5 1.5L8 4.5" />
+          </svg>
+          256-bit encrypted · Zero-knowledge session
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ── Floating runes ── */
+    (function () {
+      const glyphs = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', 'ᚾ', 'ᛁ', 'ᛃ', 'ᛇ', 'ᛈ', 'ᛉ', 'ᛊ', 'ᛏ', 'ᛒ', 'ᛖ', 'ᛗ', 'ᛚ', 'ᛜ', 'ᛞ', 'ᛟ'];
+      const wrap = document.getElementById('runes');
+      for (let i = 0; i < 16; i++) {
+        const el = document.createElement('div');
+        el.className = 'rune';
+        el.textContent = glyphs[i % glyphs.length];
+        el.style.left = (Math.random() * 100) + '%';
+        el.style.animationDelay = (Math.random() * 18) + 's';
+        el.style.animationDuration = (14 + Math.random() * 12) + 's';
+        el.style.fontSize = (.7 + Math.random() * .8) + 'rem';
+        wrap.appendChild(el);
+      }
+    })();
+
+    /* ── Password toggle ── */
+    function togglePw() {
+      const inp = document.getElementById('password');
+      const ico = document.getElementById('eye-icon');
+      const show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+      ico.innerHTML = show
+        ? `<path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="currentColor" stroke-width="1.4"/>
+         <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.4"/>`
+        : `<ellipse cx="8" cy="8" rx="6" ry="4"/>
+         <circle cx="8" cy="8" r="1.8" fill="currentColor" stroke="none"/>`;
+    }
+
+    /* ── Login handler ── */
+    async function handleLogin(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('submit-btn');
+      const label = document.getElementById('btn-label');
+      const spinner = document.getElementById('spinner');
+      const msg = document.getElementById('msg');
+
+      msg.style.display = 'none';
+      btn.disabled = true;
+      label.style.display = 'none';
+      spinner.style.display = 'block';
+
+      const fd = new FormData();
+      fd.append('email', document.getElementById('email').value);
+      fd.append('password', document.getElementById('password').value);
+
+      try {
+        const res = await fetch('/login', { method: 'POST', body: fd });
+        const data = await res.json().catch(() => ({ error: 'Login failed.' }));
+
+        if (res.ok && data.user) {
+          // Store the session the same way the main site (static/index.html)
+          // expects it, so the dashboard recognises this user on redirect.
+          const userObj = {
+            email: data.user.email,
+            name: data.user.full_name,
+            role: data.user.role,
+            phone: data.user.phone || "",
+            org: data.user.organization || "",
+            avatar: data.user.profile_image || ""
+          };
+          localStorage.setItem('hackops_user', JSON.stringify(userObj));
+          localStorage.setItem('hackops_token', data.token || '');
+          window.location.href = '/dashboard';
+          return;
+        }
+
+        msg.textContent = `⚔ ${data.error || 'The seal was not recognised.'}`;
+        msg.style.display = 'block';
+      } catch (err) {
+        msg.textContent = '⚔ Network failure. Please try again.';
+        msg.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        label.style.display = 'flex';
+        spinner.style.display = 'none';
+      }
+    }
+  </script>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<<<<<<< HEAD
+<script src="/static/js/constellations.js?v=2.5"></script>
+=======
+<script src="/static/js/constellations.js"></script>
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+</body>
+
+
+</html>

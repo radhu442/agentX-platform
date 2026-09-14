@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentX — Upgrade Your Plan &amp; Billing</title>
+  <meta name="description" content="Upgrade your AgentX plan with Plus, Pro, and Enterprise tiers for autonomous AI agent workflows.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #090d14;
+      --bg-secondary: #0f141f;
+      --card-bg: rgba(15, 22, 35, 0.72);
+      --card-hover: rgba(22, 32, 50, 0.88);
+      --accent-emerald: #10b981;
+      --accent-mint: #34d399;
+      --accent-blue: #3b82f6;
+      --accent-indigo: #4f46e5;
+      --accent-purple: #6366f1;
+      --accent-gold: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-emerald: rgba(16, 185, 129, 0.35);
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --sidebar-width: 275px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(79, 70, 229, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 90%, rgba(16, 185, 129, 0.06) 0%, transparent 45%);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Sidebar - Exact Harmonized Theme */
+    .sidebar {
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      background: linear-gradient(180deg, rgba(5, 12, 9, 0.97) 0%, rgba(8, 20, 15, 0.96) 100%);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-right: 1px solid var(--border-emerald);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+      box-shadow: 8px 0 35px rgba(0, 0, 0, 0.6);
+    }
+    .logo {
+      margin-bottom: 1.6rem;
+      text-align: center;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .logo::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px; height: 80px;
+      background: radial-gradient(ellipse, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.15) 50%, transparent 80%);
+      filter: blur(16px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .logo img {
+      max-width: 180px; height: auto; object-fit: contain;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .logo img:hover {
+      transform: scale(1.04);
+      filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.5));
+    }
+    .nav-section { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+    
+    .nav-category {
+      font-size: 0.66rem; font-weight: 700; color: #94a3b8; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.85rem 0.6rem 0.35rem; opacity: 0.85;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-category::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.35), transparent);
+    }
+
+    .nav-item {
+      display: flex; align-items: center; gap: 0.8rem; padding: 0.65rem 0.85rem;
+      border-radius: 10px; color: #94a3b8; text-decoration: none;
+      font-size: 0.92rem; font-weight: 500; transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent; position: relative;
+    }
+    .nav-item:hover {
+      background: rgba(16, 185, 129, 0.08); color: #ffffff;
+      transform: translateX(4px); border-color: rgba(16, 185, 129, 0.25);
+    }
+    .nav-item.active {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.22) 0%, rgba(6, 78, 59, 0.12) 100%);
+      color: #ffffff; border: 1px solid rgba(16, 185, 129, 0.55);
+      border-left: 3.5px solid #10b981; font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 16px rgba(16, 185, 129, 0.14);
+    }
+    .nav-item.active .nav-label {
+      color: #6ee7b7; text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    }
+    .nav-icon-box {
+      width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 9px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2);
+      font-size: 1.05rem; flex-shrink: 0;
+    }
+    .nav-label { flex: 1; }
+    .nav-pill-gold {
+      margin-left: auto; background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24;
+      font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+    }
+
+    .sidebar-user-card {
+      display: flex; align-items: center; gap: 11px; padding: 11px 13px;
+      margin: 0.8rem 0 0.5rem; border-radius: 11px;
+      background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.18);
+      backdrop-filter: blur(12px);
+    }
+    .user-avatar-circle {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, #10b981, #047857);
+      color: #ffffff; font-weight: 800; display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem; box-shadow: 0 0 12px rgba(16, 185, 129, 0.4); flex-shrink: 0;
+    }
+    .user-info-text { overflow: hidden; line-height: 1.25; flex: 1; }
+    .user-display-name {
+      font-size: 0.88rem; font-weight: 600; color: #f8fafc;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .user-display-role {
+      font-size: 0.7rem; font-weight: 600; color: #34d399; margin-top: 2px;
+    }
+    .nav-item.logout {
+      color: #f87171; border: 1px solid rgba(248, 113, 113, 0.2); margin-top: 0.3rem;
+    }
+    .nav-item.logout:hover {
+      background: rgba(248, 113, 113, 0.12); color: #ef4444; border-color: rgba(248, 113, 113, 0.4);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 2.2rem 3.2rem;
+      min-width: 0;
+      position: relative;
+    }
+
+    /* Page Header */
+    .page-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.8rem; flex-wrap: wrap; gap: 1.2rem;
+      background: linear-gradient(135deg, rgba(15, 22, 35, 0.88) 0%, rgba(10, 15, 24, 0.94) 100%);
+      backdrop-filter: blur(20px); border: 1px solid var(--border-subtle);
+      border-radius: 18px; padding: 1.4rem 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .page-tag {
+      font-size: 0.72rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
+    }
+    .page-header h1 {
+      font-family: var(--font-display); font-size: 1.9rem; font-weight: 800;
+      margin: 0; color: #ffffff; letter-spacing: -0.02em;
+    }
+    .page-subtitle { font-size: 0.88rem; color: var(--text-muted); margin-top: 4px; }
+
+    .tier-badge-glow {
+      padding: 8px 18px; border-radius: 30px; font-weight: 800; font-size: 0.84rem;
+      letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .tier-badge-pro {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(180, 83, 9, 0.3) 100%);
+      border: 1px solid #fbbf24; color: #fbbf24; box-shadow: 0 0 25px rgba(251, 191, 36, 0.45);
+    }
+    .tier-badge-free {
+      background: rgba(16, 185, 129, 0.14); border: 1px solid var(--accent-emerald);
+      color: #34d399; box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+    }
+
+    /* Admin Developer Controls */
+    .admin-terminal {
+      background: rgba(15, 22, 35, 0.65);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 0.9rem 1.4rem;
+      margin-bottom: 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .admin-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #e2e8f0; font-family: var(--font-mono); font-size: 0.76rem;
+      font-weight: 700; padding: 6px 12px; border-radius: 8px; cursor: pointer;
+      transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .admin-btn:hover {
+      background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.3); color: #fff;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════
+       REFERENCE DESIGN COMPONENT 1: TOP PROMOTION HERO BANNER
+       ══════════════════════════════════════════════════════════════════════ */
+    .promo-hero-banner {
+      background: linear-gradient(135deg, #5364f7 0%, #4656ee 45%, #6a77ff 100%);
+      border-radius: 24px;
+      padding: 2.8rem 3.5rem;
+      margin-bottom: 2.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 45px rgba(79, 70, 229, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .promo-hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: 15%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .promo-left {
+      max-width: 620px;
+      z-index: 2;
+    }
+    .promo-discount-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+      backdrop-filter: blur(10px);
+    }
+    .promo-title {
+      font-family: var(--font-display);
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 10px;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+    }
+    .promo-sub {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.02rem;
+      margin: 0 0 26px;
+      line-height: 1.5;
+    }
+    .promo-cta-btn {
+      background: #0b0f19;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 13px 26px;
+      border-radius: 12px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .promo-cta-btn:hover {
+      background: #172033;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+      color: #38bdf8;
+    }
+
+    .promo-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mascot-img-wrap {
+      width: 220px;
+      height: 220px;
+      position: relative;
+      animation: floatMascot 4s ease-in-out infinite;
+    }
+    .promo-mascot-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 28px;
+      filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.45));
+    }
+    @keyframes floatMascot {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════
+       REFERENCE DESIGN COMPONENT 2: "UPGRADE YOUR PLAN" & TOGGLE
+       ══════════════════════════════════════════════════════════════════════ */
+    .upgrade-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+    .upgrade-title {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .billing-switcher-pill {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 4px;
+      border-radius: 12px;
+      display: inline-flex;
+      gap: 4px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+    .billing-switch-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-family);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 9px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .billing-switch-btn.active {
+      background: #5b6cf9;
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(91, 108, 249, 0.45);
+    }
+    .billing-switch-btn:hover:not(.active) {
+      color: #ffffff;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════
+       REFERENCE DESIGN COMPONENT 3: THREE CLEAN PRICING CARDS
+       ══════════════════════════════════════════════════════════════════════ */
+    .modern-pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-bottom: 2.8rem;
+    }
+    @media (max-width: 1100px) {
+      .modern-pricing-grid { grid-template-columns: 1fr; }
+      .promo-hero-banner { flex-direction: column; text-align: center; gap: 2rem; padding: 2.2rem 1.8rem; }
+      .promo-sub { margin-left: auto; margin-right: auto; }
+      .mascot-img-wrap { width: 170px; height: 170px; }
+    }
+
+    .modern-plan-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 2.4rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      color: #0f172a;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .modern-plan-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(91, 108, 249, 0.25);
+      border-color: #5b6cf9;
+    }
+    
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+    .card-plan-title {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .card-top-row .card-plan-title {
+      margin-bottom: 0;
+    }
+    .pro-badge-tag {
+      background: #5b6cf9;
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 4px 12px rgba(91, 108, 249, 0.35);
+    }
+    
+    .card-starts-at {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    
+    .card-price-display {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+    .card-price-val {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .card-price-period {
+      font-size: 0.88rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .card-plan-description {
+      color: #64748b;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin: 0 0 1.8rem;
+      min-height: 48px;
+    }
+
+    .card-subscribe-btn {
+      width: 100%;
+      background: #5b6cf9;
+      color: #ffffff;
+      border: none;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      font-family: var(--font-family);
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(91, 108, 249, 0.35);
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 1.8rem;
+    }
+    .card-subscribe-btn:hover {
+      background: #4656ee;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(91, 108, 249, 0.5);
+    }
+
+    .card-plan-divider {
+      height: 1px;
+      background: #f1f5f9;
+      margin-bottom: 1.5rem;
+    }
+    .card-section-label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .card-feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #334155;
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+    .feat-check-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #5b6cf9;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════
+       ACTIVE COMPUTE RUNWAY STRIP (Retaining Existing Functionality)
+       ══════════════════════════════════════════════════════════════════════ */
+    .wallet-fueling-bar {
+      background: linear-gradient(135deg, rgba(15, 22, 35, 0.9) 0%, rgba(10, 15, 24, 0.95) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 1.4rem 2rem;
+      margin-bottom: 2.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .chip-neon {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.84rem;
+      padding: 9px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .chip-neon:hover {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #34d399;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Transaction Ledger */
+    .ledger-card {
+      background: linear-gradient(135deg, rgba(15, 22, 35, 0.88) 0%, rgba(10, 15, 24, 0.94) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 1.8rem 2.2rem;
+      overflow-x: auto;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+    }
+    .ledger-table {
+      width: 100%; border-collapse: collapse; text-align: left;
+    }
+    .ledger-table th {
+      padding: 12px 14px; font-size: 0.74rem; font-weight: 800;
+      color: #94a3b8; letter-spacing: 0.08em; text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .ledger-table td {
+      padding: 14px; font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.78); backdrop-filter: blur(14px);
+      display: none; align-items: center; justify-content: center; z-index: 1000;
+    }
+    .modal-card {
+      background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 22px; padding: 2.2rem; color: #ffffff;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8); width: 92%; max-width: 480px;
+      position: relative;
+    }
+  
+        /* ── STEP 2 OTP VERIFICATION MODAL STYLES ── */
+    .verification-shield-box {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.35);
+      animation: shieldFloat 3s ease-in-out infinite;
+    }
+    @keyframes shieldFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .msg-incoming-hint {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      display: inline-block;
+      animation: pulseAnim 1.2s infinite;
+    }
+    @keyframes pulseAnim {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .otp-inputs-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .otp-digit {
+      width: 44px;
+      height: 52px;
+      border-radius: 10px;
+      background: rgba(20, 27, 41, 0.9);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-family: var(--font-mono, monospace);
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-align: center;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .otp-digit:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+      background: rgba(20, 27, 41, 0.98);
+    }
+
+  </style>
+</head>
+<body>
+
+  
+
+
+
+  <!-- ── SIDEBAR ──────────────────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="/static/logo.png" alt="AgentX Logo">
+    </div>
+
+    <nav class="nav-section">
+      <div class="nav-category">Command Console</div>
+      <a href="/dashboard" class="nav-item">
+        <span class="nav-icon-box">📊</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+
+      <div class="nav-category">Agent Engine</div>
+      <a href="/skills" class="nav-item">
+        <span class="nav-icon-box">⚙️</span>
+        <span class="nav-label">Skill Registry</span>
+      </a>
+      <a href="/mcp" class="nav-item">
+        <span class="nav-icon-box">🔗</span>
+        <span class="nav-label">MCP Bridges</span>
+        <span class="nav-pill-gold" style="background:rgba(52,211,153,0.15); border-color:#34d399; color:#34d399;">v2</span>
+      </a>
+      <a href="/freshworks" class="nav-item">
+        <span class="nav-icon-box">🚀</span>
+        <span class="nav-label">Freshworks Deployer</span>
+      </a>
+
+      <div class="nav-category">Runtime &amp; Intelligence</div>
+      <a href="/knowledge_graph" class="nav-item">
+        <span class="nav-icon-box">🧠</span>
+        <span class="nav-label">Knowledge Graph</span>
+      </a>
+      <a href="/simulator" class="nav-item">
+        <span class="nav-icon-box">💬</span>
+        <span class="nav-label">Agent Simulator</span>
+      </a>
+
+      <div class="nav-category">Security &amp; Governance</div>
+      <a href="/analytics" class="nav-item">
+        <span class="nav-icon-box">📈</span>
+        <span class="nav-label">Telemetry</span>
+      </a>
+      <a href="/api_keys" class="nav-item">
+        <span class="nav-icon-box">🔑</span>
+        <span class="nav-label">API Keys</span>
+      </a>
+      <a href="/billing" class="nav-item active">
+        <span class="nav-icon-box">💳</span>
+        <span class="nav-label">Billing &amp; Credits</span>
+        <span class="nav-pill-gold">PRO</span>
+      </a>
+    </nav>
+
+    <!-- User Profile Footer -->
+    <div class="sidebar-user-card">
+      <div class="user-avatar-circle">
+        {{ session.get('name', 'O')[0]|upper }}
+      </div>
+      <div class="user-info-text">
+        <div class="user-display-name">{{ session.get('name', 'Operator') }}</div>
+        <div class="user-display-role">
+          ● {{ user.role|upper if user else 'ADMIN' }} 
+          {% if user and user.is_pro %}
+            <span style="color:#fbbf24; font-weight:800;">[PRO]</span>
+          {% endif %}
+          <span style="color:#38bdf8; font-family:var(--font-mono); margin-left:4px;">(${{ "%.2f"|format(user.wallet_balance or 0.0) }})</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="/logout" class="nav-item logout">
+      <span class="nav-icon-box" style="border-color:rgba(248,113,113,0.3); background:rgba(248,113,113,0.1);">🚪</span>
+      <span class="nav-label">Sign Out</span>
+    </a>
+  </aside>
+
+  <!-- ── MAIN CONTENT ────────────────────────────────────────────────── -->
+  <div class="main-content">
+    
+    <!-- Top Header -->
+    <div class="page-header">
+      <div>
+        <div class="page-tag">
+          <span>✦ ENTERPRISE BILLING &amp; RUNWAY</span>
+        </div>
+        <h1>Billing &amp; Subscription Plans</h1>
+        <div class="page-subtitle">Manage your autonomous agent capability plans, team seat licenses, and credit runway.</div>
+      </div>
+      <div>
+        {% if user.is_pro %}
+          <div class="tier-badge-glow tier-badge-pro">
+            <span>👑 1-YEAR VIP PRO LICENSE ACTIVE</span>
+          </div>
+        {% elif prompts_used >= 10 %}
+          <div class="tier-badge-glow" style="background:rgba(239,68,68,0.18); border:1px solid #ef4444; color:#f87171;">
+            <span>🔒 EVALUATION LIMIT LOCKED ({{ prompts_used }}/10)</span>
+          </div>
+        {% else %}
+          <div class="tier-badge-glow tier-badge-free">
+            <span>⚡ FREE EVALUATION TIER ({{ prompts_used }}/10 PROMPTS)</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Admin Sandbox Controls -->
+    <div class="admin-terminal">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#10b981; box-shadow:0 0 10px #10b981;"></span>
+        <div>
+          <strong style="color:#fbbf24; font-size:0.88rem; font-family:var(--font-mono);">
+            🛠️ DEVELOPER SANDBOX CONTROLS
+          </strong>
+          <span style="font-size:0.75rem; color:var(--text-muted); margin-left:8px;">
+            Instant credit funding &amp; VIP license override for live testing.
+          </span>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="admin-btn" onclick="executeAdminAction('add_funds')">
+          <span>⚡</span> +$50.00 Test Credits
+        </button>
+        <button class="admin-btn" onclick="executeAdminAction('toggle_pro')">
+          <span>👑</span> Toggle 1-Year Pro Pass
+        </button>
+        <button class="admin-btn" onclick="executeAdminAction('reset_prompts')">
+          <span>🔄</span> Reset Prompts (0/10)
+        </button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         REFERENCE COMPONENT 1: TOP HERO PROMOTION BANNER
+         ══════════════════════════════════════════════════════════════════ -->
+    <div class="promo-hero-banner">
+      <div class="promo-left">
+        <div class="promo-discount-badge">25% OFF</div>
+        <h2 class="promo-title">Get 2 Team Seats Free With Pro</h2>
+        <p class="promo-sub">Set up your team for free with the first 3 seats included in the Pro plan</p>
+        <a href="/simulator" class="promo-cta-btn">
+          <span>Try AgentX For Free</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+      <div class="promo-right">
+        <div class="mascot-img-wrap">
+          <img src="/static/ai_mascot.jpg" alt="AgentX 3D AI Mascot" class="promo-mascot-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         REFERENCE COMPONENT 2: "UPGRADE YOUR PLAN" & BILLING CYCLE TOGGLE
+         ══════════════════════════════════════════════════════════════════ -->
+    <div class="upgrade-header-row">
+      <h2 class="upgrade-title">Upgrade Your Plan</h2>
+      <div class="billing-switcher-pill">
+        <button type="button" class="billing-switch-btn" id="btnAnnual" onclick="setBillingCycle('annual')">Annual Billing</button>
+        <button type="button" class="billing-switch-btn active" id="btnMonthly" onclick="setBillingCycle('monthly')">Monthly Billing</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         REFERENCE COMPONENT 3: THREE CLEAN PRICING CARDS (Plus, Pro, Enterprise)
+         ══════════════════════════════════════════════════════════════════ -->
+    <div class="modern-pricing-grid">
+      
+      <!-- Card 1: Plus -->
+      <div class="modern-plan-card">
+        <div class="card-plan-title">Plus</div>
+        <div class="card-starts-at">STARTS AT</div>
+        <div class="card-price-display">
+          <span class="card-price-val" id="plusPriceNum">$20.00</span>
+          <span class="card-price-period" id="plusPricePeriod">/USD.Month</span>
+        </div>
+        <p class="card-plan-description">
+          For professionals looking to make data-driven decisions quickly without specialized staff.
+        </p>
+        <button type="button" class="card-subscribe-btn" onclick="handlePlusSubscribe()">
+          Subscribe
+        </button>
+        
+        <div class="card-plan-divider"></div>
+        <div class="card-section-label">EVERYTHING IN FREE</div>
+        <ul class="card-feature-list">
+          <li>
+            <span class="feat-check-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span>250 Messages/Month</span>
+          </li>
+          <li>
+            <span class="feat-check-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span>AI Custom Settings</span>
+          </li>
+          <li>
+            <span class="feat-check-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span>Advanced Reasoning</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 2: Pro (Featured with Get Pro Badge) -->
+      <div class="modern-plan-card">
+        <div class="card-top-row">
+          <div class="card-plan-title">Pro</div>
+          <div class="pro-badge-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:2px;"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            Get Pro
+          </div>
+        </div>
+        <div class="card-starts-at">STARTS AT</div>
+        <div class="card-price-display">
+          <span class="card-price-val" id="proPriceNum">$45.00</span>
+          <span class="card-price-period" id="proPricePeriod">/USD. month per member</span>
+        </div>
+        <p class="card-plan-description">
+          For companies that need to collaborate and departments automate manual workflows.
+        </p>
+        <button type="button" class="card-subscribe-btn" onclick="openSubscribeModal()">
+          Subscribe
+        </button>
+        
+        <div class="card-plan-divider"></div>
+        <div class="card-section-label">EVERYTHING IN PLUS</div>
+        <ul class="card-feature-list">
+          <li>
+            <span class="feat-check-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span>Unlimited Messages</span>
+          </li>
+          <li>
+            <span class="feat-check-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span>10-Day File Storage</span>
+          </li>
+          <li>
+            <span class="feat-check-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span>User Roles &amp; Permissions</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 3: Enterprise -->
+      <div class="modern-plan-card">
+        <div class="card-plan-title">Enterprise</div>
+        <div class="card-starts-at">STARTS AT</div>
+        <div class="card-price-display">
+          <span class="card-price-val" style="font-size:2.8rem;">Custom</span>
+        </div>
+        <p class="card-plan-description">
+          For organizations requiring customization, compliance, and advanced security at scale.
+        </p>
+        <button type="button" class="card-subscribe-btn" onclick="openEnterpriseModal()">
+          Contact Us
+        </button>
+        
+        <div class="card-plan-divider"></div>
+        <div class="card-section-label">EVERYTHING IN PRO</div>
+        <ul class="card-feature-list">
+          <li>
+            <span class="feat-check-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span>Dedicated Deployments</span>
+          </li>
+          <li>
+            <span class="feat-check-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span>Custom Data Integrations</span>
+          </li>
+          <li>
+            <span class="feat-check-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span>Tailored Onboarding</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         ACTIVE COMPUTE BALANCE & MICRO-FUELING STRIP
+         ══════════════════════════════════════════════════════════════════ -->
+    <div class="wallet-fueling-bar">
+      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:0.74rem; color:#94a3b8; font-weight:800; text-transform:uppercase; letter-spacing:0.06em;">Available Compute Vault</div>
+          <div style="font-size:1.8rem; font-weight:800; color:#fff; font-family:var(--font-mono);">${{ "%.2f"|format(user.wallet_balance or 0.0) }} <span style="font-size:0.85rem; color:#94a3b8;">USD</span></div>
+        </div>
+        <div style="border-left:1px solid rgba(255,255,255,0.14); padding-left:20px;">
+          <div style="font-size:0.74rem; color:#94a3b8; font-weight:800; text-transform:uppercase; letter-spacing:0.06em;">Prompt Runway</div>
+          <div style="font-size:1.2rem; font-weight:800; color:#34d399; font-family:var(--font-mono);">
+            ~{{ ((user.wallet_balance or 0) / 1.00)|int }} PROMPTS <span style="font-size:0.76rem; color:#94a3b8;">($1.00 / prompt)</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span style="font-size:0.76rem; color:var(--text-muted); font-weight:700; margin-right:4px;">QUICK TOP-UP:</span>
+        <button class="chip-neon" onclick="openCheckoutModal(1.00)">+$1.00</button>
+        <button class="chip-neon" onclick="openCheckoutModal(5.00)">+$5.00</button>
+        <button class="chip-neon" onclick="openCheckoutModal(10.00)">+$10.00</button>
+        <button class="chip-neon" onclick="openSubscribeModal()" style="color:#fbbf24; border-color:rgba(251,191,36,0.4); background:rgba(251,191,36,0.1);">👑 $50.00 VIP</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         QUANTUM TRANSACTION AUDIT LEDGER (Preserved for Judges)
+         ══════════════════════════════════════════════════════════════════ -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; flex-wrap:wrap; gap:10px;">
+      <div>
+        <h2 style="font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:#fff; margin:0 0 0.3rem;">
+          Transaction Audit Ledger &amp; Records
+        </h2>
+        <p style="color:var(--text-muted); margin:0; font-size:0.88rem;">
+          Cryptographically verified test transactions, credit top-ups, and per-prompt deductions.
+        </p>
+      </div>
+    </div>
+
+    <div class="ledger-card">
+      {% if transactions %}
+        <table class="ledger-table">
+          <thead>
+            <tr>
+              <th>Timestamp (UTC)</th>
+              <th>Transaction Type</th>
+              <th>Description</th>
+              <th style="text-align:right;">Credit Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for t in transactions %}
+              <tr>
+                <td style="color:var(--text-muted); font-size:0.82rem; font-family:var(--font-mono);">
+                  {{ t.created_at[:19] if t.created_at else 'N/A' }}
+                </td>
+                <td>
+                  {% if t.type == 'topup' %}
+                    <span style="background:rgba(16,185,129,0.2); border:1px solid #10b981; color:#34d399; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-family:var(--font-mono);">⚡ TOP-UP</span>
+                  {% elif t.type == 'subscription' %}
+                    <span style="background:rgba(245,158,11,0.2); border:1px solid #f59e0b; color:#fbbf24; font-weight:800; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-family:var(--font-mono);">👑 PRO PASS</span>
+                  {% else %}
+                    <span style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.4); color:#38bdf8; font-weight:700; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-family:var(--font-mono);">📉 USAGE</span>
+                  {% endif %}
+                </td>
+                <td style="font-weight:600;">{{ t.description }}</td>
+                <td style="text-align:right; font-weight:800; font-family:var(--font-mono); font-size:1rem; color:{% if t.amount > 0 %}#34d399{% else %}#f87171{% endif %};">
+                  {{ "+" if t.amount > 0 else "" }}${{ "%.2f"|format(t.amount) }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div style="text-align:center; padding:3rem 1rem; color:var(--text-muted);">
+          <div style="font-size:2.4rem; margin-bottom:0.6rem;">💳</div>
+          <div style="font-size:1rem; font-weight:700; color:#fff; margin-bottom:4px;">No Transactions Recorded</div>
+          <div style="font-size:0.85rem;">Top up test credits above to generate live cryptographic ledger records!</div>
+        </div>
+      {% endif %}
+    </div>
+
+  </div><!-- /.main-content -->
+
+    <!-- ── SIMULATED CHECKOUT MODAL (2-STEP 2FA FLOW) ────────────────── -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-card" style="max-width: 500px; max-height: 90vh; overflow-y: auto;">
+
+      <!-- ── STEP 1: CARD & AMOUNT CONFIRMATION ──────────────────────── -->
+      <div id="checkoutStep1">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.2rem;">
+          <div>
+            <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.35); padding:3px 10px; border-radius:20px; font-size:0.72rem; color:#34d399; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px;">
+              <span>🛡️ Sandbox Test Mode Active</span>
+            </div>
+            <h3 style="margin:0; font-size:1.35rem; font-weight:800; color:#fff;" id="modalTitle">⚡ Fund Compute Vault</h3>
+            <p style="color:var(--text-muted); font-size:0.84rem; margin:4px 0 0;" id="modalSub">
+              Zero real money required. Pre-filled with standard test card.
+            </p>
+          </div>
+          <button onclick="closeCheckoutModal()" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:var(--text-muted); font-size:1.2rem; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;">✕</button>
+        </div>
+
+        <!-- Topup amount input -->
+        <div id="topupSection" style="margin-bottom:1.2rem;">
+          <label style="display:block; font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; margin-bottom:6px;">
+            Amount to Authorize (USD)
+          </label>
+          <div style="position:relative;">
+            <input type="number" id="topupAmountInput" value="20.00" min="1" step="1"
+                   style="width:100%; box-sizing:border-box; padding:11px 14px 11px 32px; border-radius:10px; background:rgba(20,27,41,0.85); border:1px solid rgba(255,255,255,0.15); color:#fff; font-family:var(--font-mono); font-size:1.15rem; font-weight:700; outline:none;">
+            <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#34d399; font-weight:700; font-size:1.1rem;">$</span>
+          </div>
+        </div>
+
+        <div id="subscribeSection" style="display:none; background:linear-gradient(135deg, rgba(251,191,36,0.1) 0%, rgba(20,27,41,0.9) 100%); border:1px solid rgba(251,191,36,0.4); border-radius:12px; padding:1.2rem; margin-bottom:1.2rem;">
+          <div style="font-weight:800; color:#fbbf24; font-size:1.05rem; margin-bottom:4px;">👑 1-Year VIP Pro Pass</div>
+          <div style="font-size:0.84rem; color:#fef08a;">365 Days Unmetered AI Agent Simulator + All 14 MCP Gateways</div>
+          <div style="font-size:1.4rem; font-weight:800; color:#fff; margin-top:8px;">$50.00 <span style="font-size:0.8rem; color:#94a3b8;">/ year</span></div>
+        </div>
+
+        <!-- Test Card Display -->
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:12px 16px; margin-bottom:1.4rem; display:flex; justify-content:space-between; align-items:center;">
+          <div style="font-family:var(--font-mono); font-size:0.9rem; color:#f1f5f9;">
+            💳 4242 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242 (12/28)
+          </div>
+          <span style="font-size:0.75rem; color:#34d399; font-weight:700;">TEST CARD ACTIVE</span>
+        </div>
+
+        <button id="confirmPayBtn" onclick="startVerificationFlow()"
+                style="width:100%; background:linear-gradient(135deg, #10b981, #059669); color:#fff; border:none; padding:14px; border-radius:12px; font-weight:800; font-size:1rem; cursor:pointer; box-shadow:0 6px 20px rgba(16,185,129,0.4);">
+          Authorize $20.00 Test Credits (Proceed to 2FA) ⚡
+        </button>
+      </div>
+
+      <!-- ── STEP 2: 2-STEP PHONE & GOOGLE OTP VERIFICATION ───────────── -->
+      <div id="checkoutStep2" style="display:none; text-align:center;">
+        <div class="verification-shield-box">
+          <span style="font-size:2.2rem;">🛡️</span>
+        </div>
+
+        <h3 style="margin:0 0 6px; font-size:1.4rem; font-weight:800; color:#fff;">
+          2-Step Security Verification
+        </h3>
+        
+        <p style="color:var(--text-muted); font-size:0.86rem; margin:0 0 1.2rem; line-height:1.5;">
+          A security verification prompt has been sent to your registered phone:<br>
+          <strong id="displayTargetPhone" style="color:#34d399; font-family:var(--font-mono); font-size:1.05rem; letter-spacing:0.04em;">+91 ••••• ••210</strong>
+        </p>
+
+        <!-- Simulated Incoming Prompt Hint -->
+        <div class="msg-incoming-hint" id="msgIncomingHint">
+          <span class="pulse-dot"></span>
+          <span id="hintText">📲 Security Passcode dispatched via Fast2SMS &amp; Google Push to your mobile phone. Enter the 6 digits below:</span>
+        </div>
+
+        <!-- 6-Digit Individual OTP Input Boxes -->
+        <div style="margin:1.4rem 0;">
+          <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; margin-bottom:8px;">
+            Enter 6-Digit One-Time Passcode (OTP):
+          </div>
+          <div class="otp-inputs-grid">
+            <input type="text" maxlength="1" class="otp-digit" id="otp1" oninput="handleOtpDigit(this, 1)" onkeydown="handleOtpBackspace(event, 1)">
+            <input type="text" maxlength="1" class="otp-digit" id="otp2" oninput="handleOtpDigit(this, 2)" onkeydown="handleOtpBackspace(event, 2)">
+            <input type="text" maxlength="1" class="otp-digit" id="otp3" oninput="handleOtpDigit(this, 3)" onkeydown="handleOtpBackspace(event, 3)">
+            <span style="color:var(--text-dim); font-size:1.4rem; font-family:var(--font-mono); font-weight:700;">&bull;</span>
+            <input type="text" maxlength="1" class="otp-digit" id="otp4" oninput="handleOtpDigit(this, 4)" onkeydown="handleOtpBackspace(event, 4)">
+            <input type="text" maxlength="1" class="otp-digit" id="otp5" oninput="handleOtpDigit(this, 5)" onkeydown="handleOtpBackspace(event, 5)">
+            <input type="text" maxlength="1" class="otp-digit" id="otp6" oninput="handleOtpDigit(this, 6)" onkeydown="handleOtpBackspace(event, 6)">
+          </div>
+        </div>
+
+        <!-- Fast2SMS Status Notice & Fallback -->
+        <div id="smsNoticeBox" style="display:none; background:rgba(245,158,11,0.12); border:1.5px solid rgba(245,158,11,0.4); border-radius:12px; padding:12px 14px; margin:14px 0; text-align:left; font-size:0.82rem; color:#fef08a;">
+          <div style="font-weight:800; color:#fbbf24; margin-bottom:4px; font-size:0.86rem; display:flex; align-items:center; gap:6px;">
+            <span>⚠️</span> <span>Fast2SMS Cellular Dispatch Notice:</span>
+          </div>
+          <div id="smsNoticeDetail" style="line-height:1.45; color:#fef08a; font-size:0.8rem;">
+            Fast2SMS requires 1-time Website Verification in your dashboard to deliver SMS via API.
+          </div>
+          <div style="margin-top:10px; padding-top:8px; border-top:1px solid rgba(245,158,11,0.25); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.75rem; color:#94a3b8;">Email also sent to registered Gmail.</span>
+            <button type="button" onclick="revealBackupOtp()" style="background:linear-gradient(135deg, #10b981, #059669); color:#fff; border:none; padding:5px 12px; border-radius:8px; font-weight:700; font-size:0.78rem; cursor:pointer; box-shadow:0 3px 10px rgba(16,185,129,0.35);">
+              👁️ Auto-Fill Test Passcode
+            </button>
+          </div>
+        </div>
+
+        <!-- Expiry countdown & resend -->
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; color:var(--text-muted); margin-bottom:1.4rem;">
+          <span>Code expires in: <strong id="otpTimerText" style="color:#fbbf24; font-family:var(--font-mono);">0:59s</strong></span>
+          <button type="button" onclick="resendOtpCode()" style="background:none; border:none; color:#34d399; font-weight:700; cursor:pointer; text-decoration:underline;">
+            Resend Passcode 🔄
+          </button>
+        </div>
+
+        <!-- Verification Action Buttons -->
+        <div style="display:flex; gap:10px;">
+          <button class="btn-toast-approve" id="btnVerifyOtp" style="flex:1; padding:12px;" onclick="submitManualOtp()">
+            Verify &amp; Authorize Payment ✓
+          </button>
+          <button type="button" onclick="cancelVerificationFlow()" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:11px 18px; border-radius:12px; font-weight:700; cursor:pointer;">
+            Back
+          </button>
+        </div>
+
+        <div style="text-align:center; margin-top:12px; font-size:0.72rem; color:var(--text-dim);">
+          🔒 Google / Bank 3D-Secure 2.0 Identity Protocol Verified
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ── ENTERPRISE CONTACT MODAL ────────────────────────────────────── -->
+  <div class="modal-overlay" id="enterpriseModal">
+    <div class="modal-card" style="text-align:center;">
+      <div style="font-size:2.8rem; margin-bottom:0.6rem;">🏢</div>
+      <h3 style="font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:8px;">Enterprise Dedicated Deployments</h3>
+      <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5; margin-bottom:1.4rem;">
+        Custom agent clustering, on-premise model execution, dedicated Freshworks ITSM bridges, and 99.99% SLA guarantees.
+      </p>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:1.1rem; margin-bottom:1.5rem; font-family:var(--font-mono); font-size:0.9rem; color:#38bdf8;">
+        📧 enterprise@agentx.ai &bull; 📞 +1 (800) AGENTX-AI
+      </div>
+      <div style="display:flex; gap:10px; justify-content:center;">
+        <button type="button" onclick="closeEnterpriseModal()" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:10px 20px; border-radius:10px; font-weight:700; cursor:pointer;">
+          Close
+        </button>
+        <button type="button" onclick="alert('Enterprise deployment consultation request logged! Our enterprise solutions lead will reach out within 2 hours.'); closeEnterpriseModal();" style="background:linear-gradient(135deg, #5b6cf9, #4656ee); border:none; color:#fff; padding:10px 22px; border-radius:10px; font-weight:700; cursor:pointer;">
+          Request Solutions Architecture Call
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── BILLING CYCLE SWITCHER ──────────────────────────────────────────
+    let currentBillingCycle = 'monthly';
+    function setBillingCycle(cycle) {
+      currentBillingCycle = cycle;
+      const btnAnnual = document.getElementById('btnAnnual');
+      const btnMonthly = document.getElementById('btnMonthly');
+      const plusPrice = document.getElementById('plusPriceNum');
+      const plusPeriod = document.getElementById('plusPricePeriod');
+      const proPrice = document.getElementById('proPriceNum');
+      const proPeriod = document.getElementById('proPricePeriod');
+
+      if (cycle === 'annual') {
+        if (btnAnnual) btnAnnual.classList.add('active');
+        if (btnMonthly) btnMonthly.classList.remove('active');
+        if (plusPrice) plusPrice.textContent = '$16.00';
+        if (plusPeriod) plusPeriod.textContent = '/USD.Month (billed annually)';
+        if (proPrice) proPrice.textContent = '$36.00';
+        if (proPeriod) proPeriod.textContent = '/USD. month per member (billed annually)';
+      } else {
+        if (btnMonthly) btnMonthly.classList.add('active');
+        if (btnAnnual) btnAnnual.classList.remove('active');
+        if (plusPrice) plusPrice.textContent = '$20.00';
+        if (plusPeriod) plusPeriod.textContent = '/USD.Month';
+        if (proPrice) proPrice.textContent = '$45.00';
+        if (proPeriod) proPeriod.textContent = '/USD. month per member';
+      }
+    }
+
+    function handlePlusSubscribe() {
+      const amt = (currentBillingCycle === 'annual') ? 16.00 : 20.00;
+      openCheckoutModal(amt);
+    }
+
+    // ── CHECKOUT MODAL LOGIC ────────────────────────────────────────────
+    let checkoutType = 'topup';
+
+    function openCheckoutModal(amount) {
+      checkoutType = 'topup';
+      const val = (typeof amount === 'number') ? amount : 20.00;
+      
+      const modalTitle = document.getElementById('modalTitle');
+      const modalSub = document.getElementById('modalSub');
+      const topupSection = document.getElementById('topupSection');
+      const subscribeSection = document.getElementById('subscribeSection');
+      const amtInput = document.getElementById('topupAmountInput');
+      const confirmBtn = document.getElementById('confirmPayBtn');
+      const step1 = document.getElementById('checkoutStep1');
+      const step2 = document.getElementById('checkoutStep2');
+
+      if (modalTitle) modalTitle.textContent = '⚡ Fund Compute Vault';
+      if (modalSub) modalSub.textContent = 'Instant test credit funding (Min $1.00). Zero real money required.';
+      if (topupSection) topupSection.style.display = 'block';
+      if (subscribeSection) subscribeSection.style.display = 'none';
+      if (amtInput) {
+        amtInput.value = val.toFixed(2);
+        amtInput.oninput = () => {
+          const curVal = parseFloat(amtInput.value) || 1.0;
+          if (confirmBtn) confirmBtn.textContent = `Authorize $${curVal.toFixed(2)} Test Credits (Proceed to 2FA) ⚡`;
+        };
+      }
+      if (confirmBtn) {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = `Authorize $${val.toFixed(2)} Test Credits (Proceed to 2FA) ⚡`;
+      }
+      if (step1) step1.style.display = 'block';
+      if (step2) step2.style.display = 'none';
+
+      const modal = document.getElementById('checkoutModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function openSubscribeModal() {
+      checkoutType = 'subscribe';
+      const modalTitle = document.getElementById('modalTitle');
+      const modalSub = document.getElementById('modalSub');
+      const topupSection = document.getElementById('topupSection');
+      const subscribeSection = document.getElementById('subscribeSection');
+      const confirmBtn = document.getElementById('confirmPayBtn');
+      const step1 = document.getElementById('checkoutStep1');
+      const step2 = document.getElementById('checkoutStep2');
+
+      if (modalTitle) modalTitle.textContent = '👑 1-Year VIP Pro Pass';
+      if (modalSub) modalSub.textContent = 'Activate 365 Days of unmetered AI simulator access.';
+      if (topupSection) topupSection.style.display = 'none';
+      if (subscribeSection) subscribeSection.style.display = 'block';
+      if (confirmBtn) {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'Authorize 1-Year Pass ($50.00) 🚀';
+      }
+      if (step1) step1.style.display = 'block';
+      if (step2) step2.style.display = 'none';
+
+      const modal = document.getElementById('checkoutModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkoutModal');
+      if (modal) modal.style.display = 'none';
+      clearInterval(otpTimerInterval);
+      const step1 = document.getElementById('checkoutStep1');
+      const step2 = document.getElementById('checkoutStep2');
+      if (step1) step1.style.display = 'block';
+      if (step2) step2.style.display = 'none';
+    }
+
+    function openEnterpriseModal() {
+      const modal = document.getElementById('enterpriseModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeEnterpriseModal() {
+      const modal = document.getElementById('enterpriseModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // Close modals on clicking backdrop
+    window.addEventListener('click', function(e) {
+      const checkoutModal = document.getElementById('checkoutModal');
+      if (e.target === checkoutModal) closeCheckoutModal();
+      const enterpriseModal = document.getElementById('enterpriseModal');
+      if (e.target === enterpriseModal) closeEnterpriseModal();
+    });
+
+    // ── 2-STEP 2FA PHONE OTP FLOW (CARRIER DISPATCH) ───────────────────
+    let currentAmountFormatted = '$20.00';
+    let otpTimerInterval = null;
+
+    let currentBackupOtp = '';
+
+    function revealBackupOtp() {
+      if (!currentBackupOtp) return;
+      const digits = currentBackupOtp.split('');
+      digits.forEach((d, idx) => {
+        const inp = document.getElementById('otp' + (idx + 1));
+        if (inp) {
+          inp.value = d;
+          inp.style.background = 'rgba(16,185,129,0.25)';
+          inp.style.borderColor = '#10b981';
+        }
+      });
+      const vBtn = document.getElementById('btnVerifyOtp');
+      if (vBtn) vBtn.focus();
+    }
+
+    async function startVerificationFlow() {
+      const btn = document.getElementById('confirmPayBtn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Contacting Security Core... ⏳';
+      }
+
+      const amtInput = document.getElementById('topupAmountInput');
+      const amt = (checkoutType === 'topup')
+        ? (parseFloat(amtInput ? amtInput.value : 1.0) || 1.0)
+        : 50.0;
+      currentAmountFormatted = `$${amt.toFixed(2)}`;
+
+      try {
+        const res = await fetch('/billing/send_otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: checkoutType, amount: amt.toFixed(2) })
+        });
+        const data = await res.json();
+        
+        if (!data.success) {
+          alert(data.error || 'Could not dispatch security verification code.');
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = (checkoutType === 'topup') 
+              ? `Authorize ${currentAmountFormatted} Test Credits (Proceed to 2FA) ⚡` 
+              : 'Authorize 1-Year Pass ($50.00) 🚀';
+          }
+          return;
+        }
+
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = (checkoutType === 'topup') 
+            ? `Authorize ${currentAmountFormatted} Test Credits (Proceed to 2FA) ⚡` 
+            : 'Authorize 1-Year Pass ($50.00) 🚀';
+        }
+
+        // Switch Modal View to Step 2
+        const step1 = document.getElementById('checkoutStep1');
+        const step2 = document.getElementById('checkoutStep2');
+        if (step1) step1.style.display = 'none';
+        if (step2) step2.style.display = 'block';
+
+        const phoneTarget = document.getElementById('displayTargetPhone');
+        const displayPhone = data.phone || '+91 ••••• ••353';
+        if (phoneTarget) phoneTarget.textContent = displayPhone;
+
+        currentBackupOtp = data.backup_otp || '';
+        const noticeBox = document.getElementById('smsNoticeBox');
+        const noticeDetail = document.getElementById('smsNoticeDetail');
+        if (noticeBox) {
+          if (!data.sms_sent) {
+            noticeBox.style.display = 'block';
+            if (noticeDetail && data.sms_msg) {
+              noticeDetail.textContent = data.sms_msg;
+            }
+          } else {
+            noticeBox.style.display = 'none';
+          }
+        }
+
+        // Clear previous OTP inputs
+        for (let i = 1; i <= 6; i++) {
+          const inp = document.getElementById('otp' + i);
+          if (inp) {
+            inp.value = '';
+            inp.style.background = 'rgba(20, 27, 41, 0.9)';
+            inp.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+          }
+        }
+        setTimeout(() => {
+          const firstInp = document.getElementById('otp1');
+          if (firstInp) firstInp.focus();
+        }, 250);
+
+        // Start Countdown Timer
+        startOtpCountdown(60);
+
+      } catch (e) {
+        alert('Network error initiating 2-step verification: ' + e.message);
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = (checkoutType === 'topup') 
+            ? `Authorize ${currentAmountFormatted} Test Credits (Proceed to 2FA) ⚡` 
+            : 'Authorize 1-Year Pass ($50.00) 🚀';
+        }
+      }
+    }
+
+    function startOtpCountdown(seconds) {
+      clearInterval(otpTimerInterval);
+      let left = seconds;
+      const timerEl = document.getElementById('otpTimerText');
+      
+      otpTimerInterval = setInterval(() => {
+        left--;
+        if (timerEl) {
+          const s = left < 10 ? '0' + left : left;
+          timerEl.textContent = `0:${s}s`;
+        }
+        if (left <= 0) {
+          clearInterval(otpTimerInterval);
+          if (timerEl) timerEl.textContent = 'Expired';
+        }
+      }, 1000);
+    }
+
+    function handleOtpDigit(input, index) {
+      input.value = input.value.replace(/[^0-9]/g, '');
+      if (input.value && index < 6) {
+        const next = document.getElementById('otp' + (index + 1));
+        if (next) next.focus();
+      }
+      let code = '';
+      for (let i = 1; i <= 6; i++) {
+        code += document.getElementById('otp' + i)?.value || '';
+      }
+      if (code.length === 6) {
+        const vBtn = document.getElementById('btnVerifyOtp');
+        if (vBtn) vBtn.focus();
+      }
+    }
+
+    function handleOtpBackspace(event, index) {
+      if (event.key === 'Backspace' && !event.target.value && index > 1) {
+        const prev = document.getElementById('otp' + (index - 1));
+        if (prev) {
+          prev.focus();
+          prev.value = '';
+        }
+      }
+    }
+
+    function submitManualOtp() {
+      let code = '';
+      for (let i = 1; i <= 6; i++) {
+        code += document.getElementById('otp' + i)?.value || '';
+      }
+      if (code.length < 6) {
+        alert('Please enter all 6 digits of the verification code sent to your phone.');
+        return;
+      }
+      processFinalPayment(code);
+    }
+
+    function cancelVerificationFlow() {
+      clearInterval(otpTimerInterval);
+      const s1 = document.getElementById('checkoutStep1');
+      const s2 = document.getElementById('checkoutStep2');
+      if (s2) s2.style.display = 'none';
+      if (s1) s1.style.display = 'block';
+    }
+
+    function resendOtpCode() {
+      startVerificationFlow();
+    }
+
+    async function processFinalPayment(otpCode) {
+      const verifyBtn = document.getElementById('btnVerifyOtp');
+      if (verifyBtn) {
+        verifyBtn.disabled = true;
+        verifyBtn.textContent = 'Verifying Passcode & Authorizing... ⏳';
+      }
+
+      try {
+        if (checkoutType === 'topup') {
+          const amt = parseFloat(document.getElementById('topupAmountInput')?.value || 1.0) || 1.0;
+          const res = await fetch('/billing/topup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: amt, otp: otpCode })
+          });
+          const data = await res.json();
+          if (data.success) {
+            if (verifyBtn) verifyBtn.textContent = '✓ 2FA Verified! Credits Added!';
+            const addedAmt = Number(data.amount !== undefined ? data.amount : (data.amount_added !== undefined ? data.amount_added : (amt || 0)));
+            alert(`✅ Payment Authorized! Successfully added $${addedAmt.toFixed(2)} test compute credits.`);
+            setTimeout(() => window.location.reload(), 600);
+          } else {
+            alert(data.error || 'Payment verification failed. Please check the code received on your phone.');
+            if (verifyBtn) {
+              verifyBtn.disabled = false;
+              verifyBtn.textContent = 'Verify & Authorize Payment ✓';
+            }
+          }
+        } else {
+          const res = await fetch('/billing/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ plan: '1-year-pro', otp: otpCode })
+          });
+          const data = await res.json();
+          if (data.success) {
+            if (verifyBtn) verifyBtn.textContent = '👑 2FA Verified! 1-Year Pass Active!';
+            alert('🎉 Congratulations! 1-Year VIP Pro Pass has been activated with unmetered access!');
+            setTimeout(() => window.location.reload(), 600);
+          } else {
+            alert(data.error || 'Subscription verification failed. Please check the code received on your phone.');
+            if (verifyBtn) {
+              verifyBtn.disabled = false;
+              verifyBtn.textContent = 'Verify & Authorize Payment ✓';
+            }
+          }
+        }
+      } catch (e) {
+        alert('Network error connecting to payment gateway: ' + e.message);
+        if (verifyBtn) {
+          verifyBtn.disabled = false;
+          verifyBtn.textContent = 'Verify & Authorize Payment ✓';
+        }
+      }
+    }
+
+    // ── ADMIN SANDBOX ACTIONS ───────────────────────────────────────────
+    async function executeAdminAction(action) {
+      try {
+        const res = await fetch('/billing/admin_bypass', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: action })
+        });
+        const data = await res.json();
+        if (data.success) {
+          window.location.reload();
+        } else {
+          alert('Action failed: ' + (data.error || 'Server error'));
+        }
+      } catch (err) {
+        alert('Request failed: ' + err.message);
+      }
+    }
+  </script>
+</body>
+</html>

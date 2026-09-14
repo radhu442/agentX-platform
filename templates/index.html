@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentX Platform | Freshworks & MCP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+<<<<<<< HEAD
+            --bg-primary: #070514;
+            --bg-card: rgba(26, 16, 48, 0.6);
+            --border-color: rgba(168, 85, 247, 0.2);
+            --accent-cyan: #38bdf8;
+            --accent-purple: #a855f7;
+            --accent-violet: #8b5cf6;
+            --accent-indigo: #6366f1;
+            --accent-glow: #d946ef;
+            --accent-pink: #ec4899;
+            --accent-blue: #818cf8;
+=======
+            --bg-primary: #0a0a1a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-cyan: #00f2fe;
+            --accent-purple: #a855f7;
+            --accent-indigo: #6366f1;
+            --accent-glow: #38bdf8;
+            --accent-blue: #38bdf8;
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Top Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3.5rem;
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        @keyframes neonGlow {
+<<<<<<< HEAD
+            0% { filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.3)); }
+            100% { filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3)) drop-shadow(0 0 35px rgba(240, 147, 251, 0.7)); }
+=======
+            0% { filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6)); }
+            100% { filter: drop-shadow(0 0 20px rgba(0, 242, 254, 1)) drop-shadow(0 0 35px rgba(240, 147, 251, 0.7)); }
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .btn {
+            padding: 0.65rem 1.4rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary {
+<<<<<<< HEAD
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%) !important;
+            border: 1px solid rgba(244, 114, 182, 0.4) !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 22px rgba(236, 72, 153, 0.45) !important;
+=======
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: #090d16;
+            box-shadow: 0 4px 24px rgba(255, 255, 255, 0.25);
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.45); transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 7rem 1.5rem 4rem;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.4rem 1.1rem;
+            border-radius: 9999px;
+<<<<<<< HEAD
+            background: rgba(168, 85, 247, 0.12) !important;
+            border: 1px solid rgba(168, 85, 247, 0.35) !important;
+            color: #e879f9 !important;
+            font-size: 0.85rem;
+            font-weight: 600;
+=======
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            color: #7dd3fc;
+            font-size: 0.85rem;
+            font-weight: 500;
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+            letter-spacing: 0.3px;
+            margin-bottom: 1.8rem;
+            backdrop-filter: blur(12px);
+        }
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+<<<<<<< HEAD
+            background: #ec4899 !important;
+            box-shadow: 0 0 12px #ec4899 !important;
+=======
+            background: #38bdf8;
+            box-shadow: 0 0 10px #38bdf8;
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+        .hero-headline {
+            font-size: 3.6rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.12;
+            margin-bottom: 1.4rem;
+            color: #f8fafc;
+        }
+        .hero-subtext {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            max-width: 680px;
+            line-height: 1.65;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            max-width: 900px;
+        }
+
+        .gradient-text {
+<<<<<<< HEAD
+            background: linear-gradient(135deg, #f472b6 0%, #c084fc 50%, #818cf8 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            filter: drop-shadow(0 0 25px rgba(217, 70, 239, 0.45));
+=======
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 60%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 720px;
+            margin-bottom: 2.2rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-val {
+            font-size: 1.8rem;
+            font-weight: 700;
+<<<<<<< HEAD
+            background: linear-gradient(135deg, #f472b6 0%, #c084fc 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+=======
+            background: linear-gradient(135deg, #00f2fe, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.2rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+<<<<<<< HEAD
+            border-color: rgba(168, 85, 247, 0.45);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(217, 70, 239, 0.3);
+=======
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 254, 0.15);
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+        }
+
+        .glass-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+
+        .glass-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            margin-top: 1.2rem;
+        }
+
+        .feature-list li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-list li span {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--border-color);
+            background: rgba(10, 10, 26, 0.9);
+            backdrop-filter: blur(16px);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 1rem 1.5rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .stats-row { gap: 2rem; flex-wrap: wrap; justify-content: center; }
+            .nav-links { display: none; }
+        }
+    
+        /* Antigravity-style Infinite Floating Tool Icons with Deep Wave Motion (~1.5cm / 58px) */
+        .marquee-section {
+            width: 100%;
+            overflow: hidden;
+            padding: 6.5rem 0;
+            position: relative;
+            background: rgba(10, 10, 26, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin: 2.5rem 0;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: scrollMarquee 26s linear infinite;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .icon-bubble {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.85rem;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            flex-shrink: 0;
+            animation: deepWaveMotion 2.8s ease-in-out infinite alternate;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s, border-color 0.3s, box-shadow 0.3s, color 0.3s;
+        }
+
+        /* Continuous Up & Down Sinusoidal Wave Staggering (~1.5cm displacement) */
+        .icon-bubble:nth-child(1), .icon-bubble:nth-child(16) { animation-delay: 0.0s; }
+        .icon-bubble:nth-child(2), .icon-bubble:nth-child(17) { animation-delay: 0.2s; }
+        .icon-bubble:nth-child(3), .icon-bubble:nth-child(18) { animation-delay: 0.4s; }
+        .icon-bubble:nth-child(4), .icon-bubble:nth-child(19) { animation-delay: 0.6s; }
+        .icon-bubble:nth-child(5), .icon-bubble:nth-child(20) { animation-delay: 0.8s; }
+        .icon-bubble:nth-child(6), .icon-bubble:nth-child(21) { animation-delay: 1.0s; }
+        .icon-bubble:nth-child(7), .icon-bubble:nth-child(22) { animation-delay: 1.2s; }
+        .icon-bubble:nth-child(8), .icon-bubble:nth-child(23) { animation-delay: 1.4s; }
+        .icon-bubble:nth-child(9), .icon-bubble:nth-child(24) { animation-delay: 1.6s; }
+        .icon-bubble:nth-child(10), .icon-bubble:nth-child(25) { animation-delay: 1.8s; }
+        .icon-bubble:nth-child(11), .icon-bubble:nth-child(26) { animation-delay: 2.0s; }
+        .icon-bubble:nth-child(12), .icon-bubble:nth-child(27) { animation-delay: 2.2s; }
+        .icon-bubble:nth-child(13), .icon-bubble:nth-child(28) { animation-delay: 2.4s; }
+        .icon-bubble:nth-child(14), .icon-bubble:nth-child(29) { animation-delay: 2.6s; }
+        .icon-bubble:nth-child(15), .icon-bubble:nth-child(30) { animation-delay: 2.8s; }
+
+        @keyframes deepWaveMotion {
+            0% {
+                transform: translateY(-58px) rotate(-6deg);
+            }
+            50% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(58px) rotate(6deg);
+            }
+        }
+
+        .icon-bubble:hover {
+            transform: scale(1.25) translateY(-20px) !important;
+<<<<<<< HEAD
+            background: rgba(245, 158, 11, 0.3);
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 0 0 35px rgba(245, 158, 11, 0.3), 0 10px 30px rgba(0, 0, 0, 0.6);
+=======
+            background: rgba(0, 242, 254, 0.2);
+            border-color: rgba(0, 242, 254, 0.8);
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.7), 0 10px 30px rgba(0, 0, 0, 0.6);
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+            color: #00f2fe;
+            animation-play-state: paused;
+        }
+
+        /* Fade gradient masks on edges */
+        .marquee-section::before,
+        .marquee-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 180px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-section::before {
+            left: 0;
+            background: linear-gradient(90deg, #0a0a1a, transparent);
+        }
+
+        .marquee-section::after {
+            right: 0;
+            background: linear-gradient(-90deg, #0a0a1a, transparent);
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="/" class="logo" style="text-decoration:none;"><img src="/static/logo.png" alt="AgentX Platform" style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5)); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Reusable Skills</a>
+            <a href="#mcp">MCP Integrations</a>
+            <a href="/login" class="btn btn-outline" style="margin-left: 1.5rem;">Login</a>
+            <a href="/register" class="btn btn-primary">Register</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="badge"><span class="badge-dot"></span> Next-Gen Agentic Architecture</div>
+        <h1 class="hero-headline">
+            Orchestrate Intelligent Agents with<br>
+            <span class="gradient-text" id="typing-text">Freshworks Studio</span>
+        </h1>
+        <p class="hero-subtext">
+            A unified developer hub to create modular agent skills, bridge live enterprise data via Model Context Protocol, and deploy automated CX & EX workflows directly into Freshworks.
+        </p>
+        <div class="cta-group">
+            <a href="/register" class="btn" style="background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%); color: #ffffff; padding: 0.85rem 2.2rem; font-size: 1rem; font-weight: 600; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);">Get Started Free →</a>
+            <a href="#skills" class="btn btn-outline" style="padding: 0.85rem 2.2rem; font-size: 1rem; border-radius: 10px;">Explore Platform</a>
+        </div>
+        <div class="stats-row">
+            <div class="stat-item">
+                <span class="stat-val">100+</span>
+                <span class="stat-label">Reusable Skills</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-val">∞</span>
+                <span class="stat-label">MCP Integrations</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-val">10x</span>
+                <span class="stat-label">Faster Deployment</span>
+            </div>
+        </div>
+    </main>
+
+    
+    <!-- Antigravity-Style Floating Tool Icons Ribbon -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <!-- Set 1 -->
+            <div class="icon-bubble" title="Code Primitives">{ }</div>
+            <div class="icon-bubble" title="AI Sparkle">✦</div>
+            <div class="icon-bubble" title="Skill Directory">📁</div>
+            <div class="icon-bubble" title="Tool Calling">&lt; &gt;</div>
+            <div class="icon-bubble" title="Semantic Search">🔍</div>
+            <div class="icon-bubble" title="Terminal Prompt">⌨️</div>
+            <div class="icon-bubble" title="Verification & Test">✔</div>
+            <div class="icon-bubble" title="Model Context Protocol">⚯</div>
+            <div class="icon-bubble" title="Agent Studio">⚙️</div>
+            <div class="icon-bubble" title="Documentation">📄</div>
+            <div class="icon-bubble" title="Knowledge Cube">⬡</div>
+            <div class="icon-bubble" title="Deploy Pipeline">🚀</div>
+            <div class="icon-bubble" title="Telemetry Loop">⟳</div>
+            <div class="icon-bubble" title="Freshworks Ecosystem">⚡</div>
+            <div class="icon-bubble" title="Multi-Agent Mesh">⊞</div>
+
+            <!-- Set 2 (Duplicate for Seamless Infinite Loop) -->
+            <div class="icon-bubble" title="Code Primitives">{ }</div>
+            <div class="icon-bubble" title="AI Sparkle">✦</div>
+            <div class="icon-bubble" title="Skill Directory">📁</div>
+            <div class="icon-bubble" title="Tool Calling">&lt; &gt;</div>
+            <div class="icon-bubble" title="Semantic Search">🔍</div>
+            <div class="icon-bubble" title="Terminal Prompt">⌨️</div>
+            <div class="icon-bubble" title="Verification & Test">✔</div>
+            <div class="icon-bubble" title="Model Context Protocol">⚯</div>
+            <div class="icon-bubble" title="Agent Studio">⚙️</div>
+            <div class="icon-bubble" title="Documentation">📄</div>
+            <div class="icon-bubble" title="Knowledge Cube">⬡</div>
+            <div class="icon-bubble" title="Deploy Pipeline">🚀</div>
+            <div class="icon-bubble" title="Telemetry Loop">⟳</div>
+            <div class="icon-bubble" title="Freshworks Ecosystem">⚡</div>
+            <div class="icon-bubble" title="Multi-Agent Mesh">⊞</div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2>Why AgentX Platform?</h2>
+            <p>Purpose-built infrastructure for next-generation enterprise agents</p>
+        </div>
+        <div class="grid-cards">
+            <div class="glass-card">
+                <div class="card-icon">🧠</div>
+                <h3>Reusable Skills</h3>
+                <p>Modular, version-controlled skill primitives that AI agents can dynamically call based on context and intent.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">🔌</div>
+                <h3>MCP Integrations</h3>
+                <p>Leverage the Model Context Protocol (MCP) to standardize how agents securely connect to external tools and enterprise databases.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">🛠️</div>
+                <h3>Freshworks Native</h3>
+                <p>Deploy directly to Freshdesk, Freshservice, and Freshsales with zero friction using serverless app runtimes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Capabilities -->
+    <section id="skills" class="section">
+        <div class="section-header">
+            <h2>Core Platform Capabilities</h2>
+            <p>Everything you need to build, test, and ship production agents</p>
+        </div>
+        <div class="grid-cards">
+            <div class="glass-card">
+                <div class="card-icon">📦</div>
+                <h3>Skill Registry</h3>
+                <p>Centralized hub to publish, discover, and test skills with instant parameter schema validation.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">🌐</div>
+                <h3>Universal MCP Gateway</h3>
+                <p>Manage all Model Context Protocol connections, rate limits, and secure token stores in one place.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">🧩</div>
+                <h3>Semantic Knowledge Graph</h3>
+                <p>Real-time enterprise graph linking customers, tickets, employees, and assets for deep context.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">💬</div>
+                <h3>Agent Simulator</h3>
+                <p>Safe sandbox chat environment to test agent reasoning, skill triggers, and MCP tool execution.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive -->
+    <section id="mcp" class="section">
+        <div class="section-header">
+            <h2>MCP & Freshworks Ecosystem</h2>
+            <p>Connecting intelligence to action</p>
+        </div>
+        <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+            <div class="glass-card">
+                <div class="card-icon">🔗</div>
+                <h3>Model Context Protocol (MCP)</h3>
+                <p>Standardized protocol for AI models to discover tools, resources, and contextual prompts securely.</p>
+                <ul class="feature-list">
+                    <li><span>✓</span> Dynamic Tool & Prompt Discovery</li>
+                    <li><span>✓</span> Enterprise Token & Secret Isolation</li>
+                    <li><span>✓</span> Universal LLM Interoperability</li>
+                </ul>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">💼</div>
+                <h3>Freshworks Developer Platform</h3>
+                <p>Seamlessly integrate agents into customer and employee support workflows.</p>
+                <ul class="feature-list">
+                    <li><span>✓</span> Native Freshdesk & Freshservice Bridge</li>
+                    <li><span>✓</span> Omnichannel Ticket Resolution</li>
+                    <li><span>✓</span> Automated IT & HR Onboarding Workflows</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="/" class="logo" style="text-decoration:none;"><img src="/static/logo.png" alt="AgentX Platform" style="height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5)); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a>
+            <p style="color: var(--text-muted);">The developer platform for context-aware, highly-skilled AI agents.</p>
+            <div>
+                <a href="/login" class="btn btn-outline" style="margin-right: 0.8rem;">Login</a>
+                <a href="/register" class="btn btn-primary">Start Building</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AgentX Platform. Built for Freshworks & MCP Agent Hackathon.</p>
+        </div>
+    </footer>
+
+    <!-- Dynamic Typing Script -->
+    <script>
+        const words = ["Freshworks Studio", "Reusable Skills", "Model Context Protocol", "Multi-Agent Workflows"];
+        let i = 0, timer;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typing-text').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 70);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typing-text').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    setTimeout(typingEffect, 400);
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 40);
+            };
+            loopDeleting();
+        }
+
+        typingEffect();
+    </script>
+
+    <!-- Constellations Background Scripts (Particles.js) -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<<<<<<< HEAD
+    <script src="/static/js/constellations.js?v=2.5"></script>
+=======
+    <script src="/static/js/constellations.js"></script>
+>>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
+</body>
+</html>
