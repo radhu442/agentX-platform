@@ -7,12 +7,9 @@ CREATE TABLE IF NOT EXISTS users (
     profile_pic TEXT DEFAULT 'default.png',
     phone TEXT,
     organization TEXT,
-<<<<<<< HEAD
     wallet_balance REAL DEFAULT 0.00,
     is_pro INTEGER DEFAULT 0,
     subscription_expiry DATETIME,
-=======
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -58,7 +55,6 @@ CREATE TABLE IF NOT EXISTS simulator_logs (
     response TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-<<<<<<< HEAD
 
 CREATE TABLE IF NOT EXISTS transactions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -68,5 +64,3 @@ CREATE TABLE IF NOT EXISTS transactions (
     description TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-=======
->>>>>>> 70348e341f47bba4657b70688d9be21d0fa5d075
