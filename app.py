@@ -1326,6 +1326,7 @@ def login():
 
         if user and password_ok:
             _clear_attempts(ip)
+            session.clear()           # ← Wipe any stale session from previous user
             session.permanent = True
             session['user_id'] = user['id']
             session['name']    = user['name']
@@ -1393,6 +1394,7 @@ def register():
             conn.commit()
 
             new_user = conn.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+            session.clear()           # ← Wipe stale session before new registration
             session.permanent = True
             session['user_id'] = new_user['id']
             session['name']    = new_user['name']
