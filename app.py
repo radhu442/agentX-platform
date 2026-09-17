@@ -1711,7 +1711,15 @@ def knowledge_graph():
     is_admin = check_is_admin(user['role'] if user else '')
 
     skills = conn.execute('SELECT * FROM skills WHERE user_id = ?', (session['user_id'],)).fetchall()
-    mcps = conn.execute('SELECT * FROM mcp WHERE user_id = ?', (session['user_id'],)).fetchall()
+
+    # ── Role-Based MCP Visibility ─────────────────────────────────────────────
+    # Only show MCP bridges in the graph if the user's role allows MCP page access
+    allowed_pages = get_allowed_pages(user['role'] if user else '')
+    if 'mcp' in allowed_pages:
+        mcps = conn.execute('SELECT * FROM mcp WHERE user_id = ?', (session['user_id'],)).fetchall()
+    else:
+        mcps = []  # Developer/Prompt roles cannot see MCP nodes in the graph
+
     all_users = []
     if is_admin:
         all_users = conn.execute('SELECT id, name, email, role, organization FROM users').fetchall()
