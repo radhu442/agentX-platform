@@ -1361,7 +1361,7 @@ def register():
                         request.form.get('name', 'Agent Developer').strip())[:100]
         email        = request.form.get('email', '').strip()[:254]
         password     = request.form.get('password', '').strip()[:128]
-        role         = request.form.get('role', 'Agent Developer').strip()[:60]
+        role         = 'Agent Developer'  # ← Always default; only admins can elevate roles
         phone        = request.form.get('phone', '').strip()[:20]
         organization = request.form.get('organization', '').strip()[:100]
 
