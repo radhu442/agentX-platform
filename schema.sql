@@ -64,3 +64,17 @@ CREATE TABLE IF NOT EXISTS transactions (
     description TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS mcp_dispatches (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    sender TEXT,
+    recipient TEXT,
+    subject TEXT,
+    body TEXT,
+    status TEXT,
+    delivery_mode TEXT,
+    error_message TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
