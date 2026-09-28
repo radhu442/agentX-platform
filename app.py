@@ -1361,7 +1361,9 @@ def register():
                         request.form.get('name', 'Agent Developer').strip())[:100]
         email        = request.form.get('email', '').strip()[:254]
         password     = request.form.get('password', '').strip()[:128]
-        role         = 'Agent Developer'  # ← Always default; only admins can elevate roles
+        data         = request.get_json(silent=True) or {}
+        role         = (request.form.get('role', '') or data.get('role', '')).strip() or 'Agent Developer'
+        role         = role[:60]
         phone        = request.form.get('phone', '').strip()[:20]
         organization = request.form.get('organization', '').strip()[:100]
 
@@ -1984,6 +1986,38 @@ def admin_delete_user(target_id):
     conn.close()
 
     return jsonify({'message': f'User "{target["name"]}" deleted successfully', 'redirect': '/dashboard'})
+
+
+@app.route('/admin/change_role/<int:target_id>', methods=['POST'])
+def admin_change_role(target_id):
+    """Admin-only: change any user's role."""
+    if 'user_id' not in session:
+        return jsonify({'error': 'Not authenticated'}), 401
+
+    conn = get_db_connection()
+    me = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+    if not me or not check_is_admin(me['role']):
+        conn.close()
+        return jsonify({'error': 'Admin privileges required'}), 403
+
+    data = request.get_json(silent=True) or {}
+    new_role = data.get('role', '').strip()
+
+    VALID_ROLES = ['Agent Developer', 'Prompt Engineer', 'MCP Integration Specialist',
+                   'AI Architect', 'admin', 'Platform Admin']
+    if new_role not in VALID_ROLES:
+        conn.close()
+        return jsonify({'error': f'Invalid role. Choose from: {", ".join(VALID_ROLES)}'}), 400
+
+    target = conn.execute('SELECT * FROM users WHERE id = ?', (target_id,)).fetchone()
+    if not target:
+        conn.close()
+        return jsonify({'error': 'User not found'}), 404
+
+    conn.execute('UPDATE users SET role = ? WHERE id = ?', (new_role, target_id))
+    conn.commit()
+    conn.close()
+    return jsonify({'message': f'Role updated to "{new_role}" for {target["name"]}'})
 
 
 @app.route('/logout')
