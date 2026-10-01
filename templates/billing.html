@@ -222,20 +222,21 @@
     }
 
     /* ══════════════════════════════════════════════════════════════════════
-       REFERENCE DESIGN COMPONENT 1: TOP PROMOTION HERO BANNER
+       REFERENCE DESIGN COMPONENT 1: TOP PROMOTION HERO BANNER (DARK CYBER)
        ══════════════════════════════════════════════════════════════════════ */
     .promo-hero-banner {
-      background: linear-gradient(135deg, #5364f7 0%, #4656ee 45%, #6a77ff 100%);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(6, 78, 59, 0.35) 45%, rgba(10, 22, 17, 0.95) 100%);
       border-radius: 24px;
-      padding: 2.8rem 3.5rem;
+      padding: 2.6rem 3.2rem;
       margin-bottom: 2.6rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 16px 45px rgba(79, 70, 229, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), inset 0 0 35px rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      backdrop-filter: blur(20px);
     }
     .promo-hero-banner::before {
       content: '';
@@ -244,7 +245,7 @@
       right: 15%;
       width: 450px;
       height: 450px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -254,9 +255,9 @@
     }
     .promo-discount-badge {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.22);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      color: #ffffff;
+      background: rgba(16, 185, 129, 0.16);
+      border: 1px solid rgba(52, 211, 153, 0.5);
+      color: #34d399;
       font-size: 0.8rem;
       font-weight: 800;
       padding: 4px 14px;
@@ -264,6 +265,7 @@
       letter-spacing: 0.06em;
       margin-bottom: 14px;
       backdrop-filter: blur(10px);
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);
     }
     .promo-title {
       font-family: var(--font-display);
@@ -273,34 +275,35 @@
       margin: 0 0 10px;
       line-height: 1.22;
       letter-spacing: -0.02em;
+      text-shadow: 0 0 24px rgba(16, 185, 129, 0.25);
     }
     .promo-sub {
-      color: rgba(255, 255, 255, 0.9);
+      color: #cbd5e1;
       font-size: 1.02rem;
       margin: 0 0 26px;
       line-height: 1.5;
     }
     .promo-cta-btn {
-      background: #0b0f19;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       color: #ffffff;
       text-decoration: none;
       padding: 13px 26px;
       border-radius: 12px;
       font-size: 0.98rem;
-      font-weight: 700;
+      font-weight: 800;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      border: 1px solid #34d399;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
     }
     .promo-cta-btn:hover {
-      background: #172033;
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
       transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
-      color: #38bdf8;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.7);
+      color: #ffffff;
     }
 
     .promo-right {
@@ -321,7 +324,7 @@
       height: 100%;
       object-fit: contain;
       border-radius: 28px;
-      filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.45));
+      filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 20px rgba(16, 185, 129, 0.35));
     }
     @keyframes floatMascot {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -348,13 +351,14 @@
       letter-spacing: -0.02em;
     }
     .billing-switcher-pill {
-      background: #0f172a;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 4px;
-      border-radius: 12px;
+      background: rgba(10, 22, 17, 0.9);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 5px;
+      border-radius: 14px;
       display: inline-flex;
-      gap: 4px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      gap: 5px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(14px);
     }
     .billing-switch-btn {
       background: transparent;
@@ -364,22 +368,24 @@
       font-size: 0.9rem;
       font-weight: 600;
       padding: 9px 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .billing-switch-btn.active {
-      background: #5b6cf9;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       color: #ffffff;
       font-weight: 700;
-      box-shadow: 0 4px 14px rgba(91, 108, 249, 0.45);
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.45);
+      border: 1px solid rgba(52, 211, 153, 0.4);
     }
     .billing-switch-btn:hover:not(.active) {
       color: #ffffff;
+      background: rgba(16, 185, 129, 0.08);
     }
 
     /* ══════════════════════════════════════════════════════════════════════
-       REFERENCE DESIGN COMPONENT 3: THREE CLEAN PRICING CARDS
+       REFERENCE DESIGN COMPONENT 3: THREE CLEAN PRICING CARDS (DARK CYBER)
        ══════════════════════════════════════════════════════════════════════ */
     .modern-pricing-grid {
       display: grid;
@@ -395,21 +401,22 @@
     }
 
     .modern-plan-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(13, 26, 20, 0.85) 0%, rgba(6, 14, 11, 0.95) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      border-radius: 22px;
       padding: 2.4rem 2.2rem;
       display: flex;
       flex-direction: column;
-      color: #0f172a;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      color: #f8fafc;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
+      backdrop-filter: blur(20px);
     }
     .modern-plan-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 45px rgba(91, 108, 249, 0.25);
-      border-color: #5b6cf9;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(16, 185, 129, 0.25);
+      border-color: rgba(16, 185, 129, 0.55);
     }
     
     .card-top-row {
@@ -422,7 +429,7 @@
       font-family: var(--font-display);
       font-size: 1.85rem;
       font-weight: 800;
-      color: #0f172a;
+      color: #ffffff;
       margin-bottom: 0.8rem;
       letter-spacing: -0.01em;
     }
@@ -430,23 +437,24 @@
       margin-bottom: 0;
     }
     .pro-badge-tag {
-      background: #5b6cf9;
-      color: #ffffff;
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid #fbbf24;
+      color: #fbbf24;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       padding: 5px 12px;
-      border-radius: 8px;
+      border-radius: 20px;
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      box-shadow: 0 4px 12px rgba(91, 108, 249, 0.35);
+      box-shadow: 0 0 16px rgba(251, 191, 36, 0.35);
     }
     
     .card-starts-at {
       font-size: 0.76rem;
-      font-weight: 700;
+      font-weight: 800;
       color: #64748b;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 6px;
     }
@@ -461,18 +469,19 @@
       font-family: var(--font-display);
       font-size: 3.2rem;
       font-weight: 800;
-      color: #0f172a;
+      color: #ffffff;
       letter-spacing: -0.03em;
       line-height: 1;
+      text-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
     }
     .card-price-period {
       font-size: 0.88rem;
-      color: #64748b;
+      color: #94a3b8;
       font-weight: 500;
     }
 
     .card-plan-description {
-      color: #64748b;
+      color: #94a3b8;
       font-size: 0.92rem;
       line-height: 1.5;
       margin: 0 0 1.8rem;
@@ -481,35 +490,61 @@
 
     .card-subscribe-btn {
       width: 100%;
-      background: #5b6cf9;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       color: #ffffff;
-      border: none;
+      border: 1px solid #34d399;
       padding: 13px 20px;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 0.98rem;
-      font-weight: 700;
+      font-weight: 800;
       font-family: var(--font-family);
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(91, 108, 249, 0.35);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
       transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
       margin-bottom: 1.8rem;
     }
     .card-subscribe-btn:hover {
-      background: #4656ee;
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(91, 108, 249, 0.5);
+      box-shadow: 0 10px 28px rgba(16, 185, 129, 0.7);
+    }
+
+    .card-subscribe-btn-outline {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      box-shadow: none;
+    }
+    .card-subscribe-btn-outline:hover {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+    }
+
+    .card-subscribe-btn-cyan {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      box-shadow: none;
+    }
+    .card-subscribe-btn-cyan:hover {
+      background: rgba(56, 189, 248, 0.22);
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
     }
 
     .card-plan-divider {
       height: 1px;
-      background: #f1f5f9;
+      background: rgba(16, 185, 129, 0.15);
       margin-bottom: 1.5rem;
     }
     .card-section-label {
       font-size: 0.8rem;
       font-weight: 800;
-      color: #0f172a;
-      letter-spacing: 0.06em;
+      color: #6ee7b7;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 1.1rem;
     }
@@ -526,9 +561,9 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      color: #334155;
+      color: #e2e8f0;
       font-size: 0.94rem;
-      font-weight: 600;
+      font-weight: 500;
     }
     .feat-check-icon {
       width: 20px;
@@ -536,7 +571,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #5b6cf9;
+      color: #34d399;
+      filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.6));
       flex-shrink: 0;
     }
 
@@ -866,7 +902,7 @@
         <p class="card-plan-description">
           For professionals looking to make data-driven decisions quickly without specialized staff.
         </p>
-        <button type="button" class="card-subscribe-btn" onclick="handlePlusSubscribe()">
+        <button type="button" class="card-subscribe-btn card-subscribe-btn-outline" onclick="handlePlusSubscribe()">
           Subscribe
         </button>
         
@@ -875,19 +911,19 @@
         <ul class="card-feature-list">
           <li>
             <span class="feat-check-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </span>
             <span>250 Messages/Month</span>
           </li>
           <li>
             <span class="feat-check-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </span>
             <span>AI Custom Settings</span>
           </li>
           <li>
             <span class="feat-check-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </span>
             <span>Advanced Reasoning</span>
           </li>
@@ -895,9 +931,9 @@
       </div>
 
       <!-- Card 2: Pro (Featured with Get Pro Badge) -->
-      <div class="modern-plan-card">
+      <div class="modern-plan-card" style="border-color: rgba(16, 185, 129, 0.45); box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7), 0 0 30px rgba(16, 185, 129, 0.15);">
         <div class="card-top-row">
-          <div class="card-plan-title">Pro</div>
+          <div class="card-plan-title" style="color: #6ee7b7;">Pro</div>
           <div class="pro-badge-tag">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:2px;"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
             Get Pro
@@ -920,19 +956,19 @@
         <ul class="card-feature-list">
           <li>
             <span class="feat-check-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </span>
             <span>Unlimited Messages</span>
           </li>
           <li>
             <span class="feat-check-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </span>
             <span>10-Day File Storage</span>
           </li>
           <li>
             <span class="feat-check-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </span>
             <span>User Roles &amp; Permissions</span>
           </li>
@@ -944,33 +980,33 @@
         <div class="card-plan-title">Enterprise</div>
         <div class="card-starts-at">STARTS AT</div>
         <div class="card-price-display">
-          <span class="card-price-val" style="font-size:2.8rem;">Custom</span>
+          <span class="card-price-val" style="font-size:2.8rem; color: #38bdf8;">Custom</span>
         </div>
         <p class="card-plan-description">
           For organizations requiring customization, compliance, and advanced security at scale.
         </p>
-        <button type="button" class="card-subscribe-btn" onclick="openEnterpriseModal()">
+        <button type="button" class="card-subscribe-btn card-subscribe-btn-cyan" onclick="openEnterpriseModal()">
           Contact Us
         </button>
         
         <div class="card-plan-divider"></div>
-        <div class="card-section-label">EVERYTHING IN PRO</div>
+        <div class="card-section-label" style="color: #38bdf8;">EVERYTHING IN PRO</div>
         <ul class="card-feature-list">
           <li>
             <span class="feat-check-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </span>
             <span>Dedicated Deployments</span>
           </li>
           <li>
             <span class="feat-check-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </span>
             <span>Custom Data Integrations</span>
           </li>
           <li>
             <span class="feat-check-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5b6cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             </span>
             <span>Tailored Onboarding</span>
           </li>
@@ -1209,7 +1245,7 @@
         <button type="button" onclick="closeEnterpriseModal()" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:10px 20px; border-radius:10px; font-weight:700; cursor:pointer;">
           Close
         </button>
-        <button type="button" onclick="alert('Enterprise deployment consultation request logged! Our enterprise solutions lead will reach out within 2 hours.'); closeEnterpriseModal();" style="background:linear-gradient(135deg, #5b6cf9, #4656ee); border:none; color:#fff; padding:10px 22px; border-radius:10px; font-weight:700; cursor:pointer;">
+        <button type="button" onclick="alert('Enterprise deployment consultation request logged! Our enterprise solutions lead will reach out within 2 hours.'); closeEnterpriseModal();" style="background:linear-gradient(135deg, #0284c7, #0369a1); border:none; color:#fff; padding:10px 22px; border-radius:10px; font-weight:700; cursor:pointer; box-shadow:0 0 16px rgba(2,132,199,0.4);">
           Request Solutions Architecture Call
         </button>
       </div>
