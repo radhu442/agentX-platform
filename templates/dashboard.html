@@ -585,16 +585,20 @@
           <span class="nav-pill-green" style="color:#fbbf24; border-color:#f59e0b; background:rgba(245,158,11,0.15);">PRO</span>
         {% endif %}
       </a>
+      <a href="/profile" class="nav-item">
+        <span class="nav-icon-box">👤</span>
+        <span class="nav-label">Operator Profile</span>
+      </a>
 
       <div class="nav-spacer"></div>
 
-      <div class="sidebar-user-card">
+      <a href="/profile" class="sidebar-user-card" style="text-decoration:none; color:inherit;" title="Click to view/edit profile">
         <div class="user-avatar-circle">{{ session.get('name', 'U')[:1]|upper }}</div>
         <div class="user-info-text">
           <div class="user-display-name">{{ session.get('name', 'Operator') }}</div>
-          <div class=\"user-display-role\">● {{ session.get('role', 'Developer')|upper }} {% if user_is_pro %}<span style=\"color:#fbbf24; font-size:0.65rem; font-weight:800;\">[PRO]</span>{% elif user_wallet_balance > 0 %}<span style=\"color:#38bdf8; font-size:0.65rem;\">(${{ '%.2f'|format(user_wallet_balance) }})</span>{% endif %}</div>
+          <div class="user-display-role">● {{ session.get('role', 'Developer')|upper }} {% if user_is_pro %}<span style="color:#fbbf24; font-size:0.65rem; font-weight:800;">[PRO]</span>{% elif user_wallet_balance > 0 %}<span style="color:#38bdf8; font-size:0.65rem;">(${{ '%.2f'|format(user_wallet_balance) }})</span>{% endif %}</div>
         </div>
-      </div>
+      </a>
 
       <a href="/logout" class="nav-item logout">
         <span class="nav-icon-box" style="border-color:rgba(248,113,113,0.3); background:rgba(248,113,113,0.08);">⏻</span>

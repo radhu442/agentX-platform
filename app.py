@@ -89,10 +89,10 @@ def get_role_category(role_str):
 # Defines which pages each role category can visit.
 # Admin sees everything. Each other role has a focused, meaningful set.
 ROLE_PERMISSIONS = {
-    'admin':       {'dashboard', 'skills', 'mcp', 'freshworks', 'knowledge_graph', 'simulator', 'analytics', 'api_keys', 'billing'},
-    'developer':   {'dashboard', 'skills', 'knowledge_graph', 'analytics', 'api_keys', 'billing'},
-    'prompt':      {'dashboard', 'skills', 'simulator', 'knowledge_graph', 'analytics', 'api_keys', 'billing'},
-    'integration': {'dashboard', 'mcp', 'freshworks', 'knowledge_graph', 'analytics', 'api_keys', 'billing'},
+    'admin':       {'dashboard', 'skills', 'mcp', 'freshworks', 'knowledge_graph', 'simulator', 'analytics', 'api_keys', 'billing', 'profile'},
+    'developer':   {'dashboard', 'skills', 'knowledge_graph', 'analytics', 'api_keys', 'billing', 'profile'},
+    'prompt':      {'dashboard', 'skills', 'simulator', 'knowledge_graph', 'analytics', 'api_keys', 'billing', 'profile'},
+    'integration': {'dashboard', 'mcp', 'freshworks', 'knowledge_graph', 'analytics', 'api_keys', 'billing', 'profile'},
 }
 
 PAGE_LABELS = {
@@ -105,6 +105,7 @@ PAGE_LABELS = {
     'analytics':       '📊 Telemetry',
     'api_keys':        '🔑 API Keys',
     'billing':         '💳 Billing & Credits',
+    'profile':         '👤 Operator Profile',
 }
 
 
@@ -2016,8 +2017,106 @@ def admin_change_role(target_id):
 
     conn.execute('UPDATE users SET role = ? WHERE id = ?', (new_role, target_id))
     conn.commit()
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+    if not user:
+        conn.close()
+        session.clear()
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        name = (request.form.get('name', '').strip() or request.form.get('full_name', '').strip())[:100]
+        phone = request.form.get('phone', '').strip()[:20]
+        organization = request.form.get('organization', '').strip()[:100]
+        current_password = request.form.get('current_password', '').strip()
+        new_password = request.form.get('new_password', '').strip()
+        confirm_password = request.form.get('confirm_password', '').strip()
+
+        if not name:
+            conn.close()
+            return jsonify({'error': 'Name cannot be empty.'}), 400
+
+        # Handle avatar file upload
+        filename = user['profile_pic'] or 'default.png'
+        if 'profile_image' in request.files:
+            file = request.files['profile_image']
+            if file and file.filename != '':
+                filename = secure_filename(f"{secrets.token_hex(4)}_{file.filename}")
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        # Handle password update if requested
+        if new_password:
+            if not current_password:
+                conn.close()
+                return jsonify({'error': 'Please provide your current password to set a new password.'}), 400
+
+            pwd_ok = False
+            if user['password'].startswith(('pbkdf2:sha256:', 'scrypt:', 'argon2:')):
+                pwd_ok = check_password_hash(user['password'], current_password)
+            else:
+                pwd_ok = (user['password'] == current_password)
+
+            if not pwd_ok:
+                conn.close()
+                return jsonify({'error': 'Current password is incorrect.'}), 400
+
+            if len(new_password) < 8:
+                conn.close()
+                return jsonify({'error': 'New password must be at least 8 characters.'}), 400
+
+            if new_password != confirm_password:
+                conn.close()
+                return jsonify({'error': 'New password and confirm password do not match.'}), 400
+
+            hashed_pwd = generate_password_hash(new_password)
+            conn.execute(
+                'UPDATE users SET name = ?, phone = ?, organization = ?, profile_pic = ?, password = ? WHERE id = ?',
+                (name, phone, organization, filename, hashed_pwd, session['user_id'])
+            )
+        else:
+            conn.execute(
+                'UPDATE users SET name = ?, phone = ?, organization = ?, profile_pic = ? WHERE id = ?',
+                (name, phone, organization, filename, session['user_id'])
+            )
+
+        conn.commit()
+
+        # Update active session state
+        session['name'] = name
+
+        # Fetch updated user record
+        updated_user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+        conn.close()
+
+        return jsonify({
+            'success': True,
+            'message': 'Profile updated successfully!',
+            'user': {
+                'name': updated_user['name'],
+                'phone': updated_user['phone'],
+                'organization': updated_user['organization'],
+                'profile_pic': updated_user['profile_pic']
+            }
+        })
+
+    # Stats for profile overview
+    skill_count = conn.execute('SELECT COUNT(*) FROM skills WHERE user_id = ?', (session['user_id'],)).fetchone()[0]
+    mcp_count = conn.execute('SELECT COUNT(*) FROM mcp WHERE user_id = ?', (session['user_id'],)).fetchone()[0]
+    sim_count = conn.execute('SELECT COUNT(*) FROM simulator_logs WHERE user_id = ?', (session['user_id'],)).fetchone()[0]
     conn.close()
-    return jsonify({'message': f'Role updated to "{new_role}" for {target["name"]}'})
+
+    return render_template(
+        'profile.html',
+        user=user,
+        skill_count=skill_count,
+        mcp_count=mcp_count,
+        sim_count=sim_count
+    )
 
 
 @app.route('/logout')
